@@ -1,0 +1,14 @@
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\Common.dll
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.csprojAssemblyReference.cache
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.csproj.CoreCompileInputs.cache
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.AssemblyInfoInputs.cache
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.AssemblyInfo.cs
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\API.Core.deps.json
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\API.Core.runtimeconfig.json
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\API.Core.runtimeconfig.dev.json
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\API.Core.dll
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\API.Core.pdb
+C:\repos\CourseWork2019\API.Core\bin\Debug\netcoreapp2.2\Common.pdb
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.csproj.CopyComplete
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.dll
+C:\repos\CourseWork2019\API.Core\obj\Debug\netcoreapp2.2\API.Core.pdb
