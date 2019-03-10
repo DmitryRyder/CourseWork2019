@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using API.Core.DAL;
-using API.Core.Interfaces;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Route("/")]
     public class HomeController : Controller
     {
 
@@ -19,9 +16,17 @@ namespace API.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+        [HttpGet("/one")]
         public JsonResult Index()
         {
-            var p = unitOfWork.PlanetRepository.Query().Where(i => i.satellites.Count > 5).Select(i => i.Name).ToList();
+            var p = unitOfWork.GetRepository<Planet>().Query().Where(i => i.satellites.Count > 5).Select(i => i.Name).ToList();
+            //return "dqqwdqwdqd";
+            return Json(p);
+        }
+        [HttpGet("/two")]
+        public JsonResult Index2()
+        {
+            var p = unitOfWork.GetRepository<Planet>().GetAll();
             //return "dqqwdqwdqd";
             return Json(p);
         }

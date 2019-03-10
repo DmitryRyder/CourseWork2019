@@ -1,13 +1,9 @@
-﻿using API.Core.DAL;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace API.Core.Interfaces
 {
     public interface IDbContextFactory
     {
-        PlanetsDatabaseContext CreateDbContext();
+        DbContext CreateDbContext(ContextType type, string path);
     }
 }

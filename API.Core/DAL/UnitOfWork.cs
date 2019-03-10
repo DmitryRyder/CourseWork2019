@@ -1,55 +1,45 @@
 ﻿using API.Core.Interfaces;
 using API.Core.Repositories;
+using Common;
 using Common.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace API.Core.DAL
 {
     public class UnitOfWork
     {
+        private Dictionary<Type, object> repositories;
         private readonly DbContext context;
-        private IRepository<Planet> planetRepository;
-        private IRepository<Sattelite> satteliteReposiroty;
         public UnitOfWork(IDbContextFactory contextFactory)
         {
-            context = contextFactory.CreateDbContext();
-            planetRepository = new Repository<Planet>(context);
-            satteliteReposiroty = new Repository<Sattelite>(context);
+            repositories = new Dictionary<Type, object>();
+            context = contextFactory.CreateDbContext(ContextType.PlanetDatabaseContext, Constants.PlanetDatabse);
         }
 
-        public IRepository<Planet> PlanetRepository
+        public IRepository<T> GetRepository<T>() where T : BaseModel
         {
-            get
-            {
-                if (planetRepository == null)
-                    planetRepository = new Repository<Planet>(context); ;
-                return planetRepository;
+            if (repositories.Keys.Contains(typeof(T))){
+
+                return repositories[typeof(T)] as IRepository<T>;
             }
-        }
 
-        public IRepository<Sattelite> SatteliteReposiroty
-        {
-            get
-            {
-                if (satteliteReposiroty == null)
-                    satteliteReposiroty = new Repository<Sattelite>(context);
-                return satteliteReposiroty;
-            }
-        }
+            var rep = new Repository<T>(context);
+            repositories.Add(typeof(T), rep);
 
-        public void Dispose()
-        {
-            context.Dispose();
+            return rep;
         }
 
         public void Save()
         {
             context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            context.Dispose();
         }
     }
 }

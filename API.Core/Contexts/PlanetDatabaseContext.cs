@@ -1,10 +1,7 @@
 ﻿using Common.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace API.Core.DAL
+namespace API.Core.Contexts
 {
     public class PlanetsDatabaseContext : DbContext
     {

@@ -1,5 +1,4 @@
-﻿using API.Core.DAL;
-using API.Core.Interfaces;
+﻿using API.Core.Interfaces;
 using Common.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace API.Core.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : BaseModel
+    public class Repository<T> : IDisposable, IRepository<T> where T : BaseModel
     {
         private DbContext context;
         private DbSet<T> dbSet;
@@ -94,6 +93,26 @@ namespace API.Core.Repositories
                 dbSet.Attach(model);
             }
             dbSet.Remove(model);
+        }
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
