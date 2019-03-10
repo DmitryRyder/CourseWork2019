@@ -28,8 +28,8 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddTransient<IUnitOfWork, UnitOfWork>();   
-            services.AddTransient<IDbContextFactory, DbContextFactory>();
+            services.AddSingleton<IDbContextFactory, DbContextFactory>();
+            services.AddTransient<UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,10 +51,10 @@ namespace API
             {
                 routes.MapRoute(
                           name: "default",
-                          template: "{controller=Values}/{action=Get}/{id?}");
+                          template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapSpaFallbackRoute(
                           name: "Training project",
-                          defaults: new { controller = "Values", action = "Get" });
+                          defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
