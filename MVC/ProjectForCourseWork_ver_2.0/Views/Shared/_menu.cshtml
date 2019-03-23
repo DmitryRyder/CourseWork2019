@@ -1,0 +1,18 @@
+﻿@using Kendo.Mvc.UI
+
+<div id="megaStore">
+    <div class="col-sm-2">
+        @(Html.Kendo().Menu()
+                  .Name("Menu")
+                  .Items(items =>
+                  {
+                      items.Add().Text("Item 1");
+                      items.Add().Text("Item 2");
+                      items.Add().Text("Item 3");
+                      items.Add().Text("Item 4");
+                      items.Add().Text("Item 5");
+                      items.Add().Text("Disabled item").Enabled(false);
+                  })
+        )
+    </div>
+</div>

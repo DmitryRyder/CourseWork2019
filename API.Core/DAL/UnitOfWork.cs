@@ -16,7 +16,7 @@ namespace API.Core.DAL
         public UnitOfWork(IDbContextFactory contextFactory)
         {
             repositories = new Dictionary<Type, object>();
-            context = contextFactory.CreateDbContext(ContextType.PlanetDatabaseContext, Constants.PlanetDatabse);
+            context = contextFactory.CreateDbContext(ContextType.PowerConsumptionContext, Constants.PowerConsumptionDatabase);
         }
 
         public IRepository<T> GetRepository<T>() where T : BaseModel

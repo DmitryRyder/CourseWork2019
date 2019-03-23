@@ -21,6 +21,13 @@ namespace API.Core.DAL
                             context = new PlanetsDatabaseContext(optionsBuilder.Options);
                         }
                         break;
+                    case ContextType.PowerConsumptionContext:
+                        {
+                            var optionsBuilder = new DbContextOptionsBuilder<AccountingForEnergyContext>();
+                            optionsBuilder = optionsBuilder.UseSqlServer(path);
+                            context = new AccountingForEnergyContext(optionsBuilder.Options);
+                        }
+                        break;
                     default: break;
                 }
             }
