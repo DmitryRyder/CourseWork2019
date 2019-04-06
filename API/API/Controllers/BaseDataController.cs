@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
+using API.Controllers.Base;
 using API.Core.DAL;
 using API.Core.Interfaces;
+using AutoMapper;
+using Common.DTO.BaseData;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +13,17 @@ namespace API.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseDataController : Controller
+    public class BaseDataController : BaseController
     {
         UnitOfWork unitOfWork;
         IRepository<Building> buildingRepository;
         IRepository<Room> roomRepository;
+        private readonly IMapper mapper;
 
-        public BaseDataController(UnitOfWork unitOfWork)
+        public BaseDataController(UnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
             buildingRepository = unitOfWork.GetRepository<Building>();
             roomRepository = unitOfWork.GetRepository<Room>();
         }
@@ -40,21 +45,14 @@ namespace API.Controllers
             return new ObjectResult("Building added!");
         }
 
-        [HttpPost]
-        [Route("/AutoBuildingAdd")]
-        [ProducesResponseType(typeof(ObjectResult), 200)]
-        public IActionResult AutoAddOrganization()
+        [HttpGet]
+        [Route("/GetAllBuildings")]
+        [ProducesResponseType(typeof(List<BuildingDto>), 200)]
+        public JsonResult GetAllBuildings()
         {
-            var building = new Building
-            {
-                Name = "здание",
-                Post = "юр. адрес",
-                Number_of_floors = 5
-            };
+            var buildings = buildingRepository.GetAll();
 
-            buildingRepository.Insert(building);
-            buildingRepository.Save();
-            return new ObjectResult("Building added!");
+            return Json(mapper, buildings, typeof(List<BuildingDto>));
         }
 
         [HttpPost]

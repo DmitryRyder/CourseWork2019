@@ -1,9 +1,9 @@
 C:\repos\CourseWork2019\Common\bin\Debug\netcoreapp2.2\Common.deps.json
 C:\repos\CourseWork2019\Common\bin\Debug\netcoreapp2.2\Common.dll
 C:\repos\CourseWork2019\Common\bin\Debug\netcoreapp2.2\Common.pdb
+C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.csprojAssemblyReference.cache
 C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.csproj.CoreCompileInputs.cache
 C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.AssemblyInfoInputs.cache
 C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.AssemblyInfo.cs
 C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.dll
 C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.pdb
-C:\repos\CourseWork2019\Common\obj\Debug\netcoreapp2.2\Common.csprojAssemblyReference.cache

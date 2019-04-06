@@ -2,6 +2,7 @@
 using API.Core.DAL;
 using API.Core.Interfaces;
 using AutoMapper;
+using Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,23 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                    .AddControllersAsServices()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .AddJsonOptions(options =>
+                     {
+                         options.SerializerSettings.DateFormatString = Settings.JsonSetings.DateFormatString;
+                         options.SerializerSettings.ReferenceLoopHandling = Settings.JsonSetings.ReferenceLoopHandling;
+                         options.SerializerSettings.DefaultValueHandling = Settings.JsonSetings.DefaultValueHandling;
+                         options.SerializerSettings.TypeNameAssemblyFormatHandling = Settings.JsonSetings.TypeNameAssemblyFormatHandling;
+                         options.SerializerSettings.NullValueHandling = Settings.JsonSetings.NullValueHandling;
+                         options.SerializerSettings.Culture = Settings.JsonSetings.Culture;
+                         options.SerializerSettings.TypeNameHandling = Settings.JsonSetings.TypeNameHandling;
+                         options.SerializerSettings.ContractResolver = Settings.JsonSetings.ContractResolver;
+                         options.SerializerSettings.Formatting = Settings.JsonSetings.Formatting;
+                     });
+
             services.AddAutoMapper(MapperConfig.Config);
             services.AddTransient<IDbContextFactory, DbContextFactory>();
             services.AddSingleton<UnitOfWork>();

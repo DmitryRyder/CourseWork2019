@@ -91,6 +91,7 @@
         "packagesPath": "C:\\Users\\ryder\\.nuget\\packages\\",
         "outputPath": "C:\\repos\\CourseWork2019\\Common\\obj\\",
         "projectStyle": "PackageReference",
+        "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
@@ -99,6 +100,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
+          "net472",
           "netcoreapp2.2"
         ],
         "sources": {
@@ -108,9 +110,13 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {}
+          },
+          "net472": {
+            "projectReferences": {}
           }
         },
         "warningProperties": {
+          "allWarningsAsErrors": true,
           "warnAsError": [
             "NU1605"
           ]
@@ -128,6 +134,14 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.6.9, )"
+            },
+            "ZXing.Net.Bindings.ZKWeb.System.Drawing": {
+              "target": "Package",
+              "version": "[0.16.4, )"
             }
           },
           "imports": [
@@ -135,6 +149,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true
+        },
+        "net472": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.6.9, )"
+            }
+          }
         }
       }
     }
