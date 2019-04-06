@@ -14,13 +14,6 @@ namespace API.Core.DAL
             {
                 switch (type)
                 {
-                    case ContextType.PlanetDatabaseContext:
-                        {
-                            var optionsBuilder = new DbContextOptionsBuilder<PlanetsDatabaseContext>();
-                            optionsBuilder = optionsBuilder.UseSqlServer(path);
-                            context = new PlanetsDatabaseContext(optionsBuilder.Options);
-                        }
-                        break;
                     case ContextType.PowerConsumptionContext:
                         {
                             var optionsBuilder = new DbContextOptionsBuilder<AccountingForEnergyContext>();
@@ -35,17 +28,5 @@ namespace API.Core.DAL
 
             return context;
         }
-
-        //public DbContext CreateDbContext(Type tp, string path)
-        //{
-        //    //IConfigurationRoot configuration = new ConfigurationBuilder()
-        //    //.SetBasePath(Directory.GetCurrentDirectory())
-        //    //.AddJsonFile("appsettings.json")
-        //    //.Build();
-
-        //    var optionsBuilder = new DbContextOptionsBuilder<PlanetsDatabaseContext>();
-        //    optionsBuilder.UseSqlServer(path/*, b => b.MigrationsAssembly("EfDesignDemo.EF.Design")*/);
-        //    return new PlanetsDatabaseContext(optionsBuilder.Options); 
-        //}
     }
 }

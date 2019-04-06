@@ -1,5 +1,7 @@
-﻿using API.Core.DAL;
+﻿using API.Core.Automapper;
+using API.Core.DAL;
 using API.Core.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAutoMapper(MapperConfig.Config);
             services.AddTransient<IDbContextFactory, DbContextFactory>();
             services.AddSingleton<UnitOfWork>();
             services.AddSwaggerGen(c => {

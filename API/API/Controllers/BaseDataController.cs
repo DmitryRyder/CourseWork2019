@@ -41,6 +41,23 @@ namespace API.Controllers
         }
 
         [HttpPost]
+        [Route("/AutoBuildingAdd")]
+        [ProducesResponseType(typeof(ObjectResult), 200)]
+        public IActionResult AutoAddOrganization()
+        {
+            var building = new Building
+            {
+                Name = "здание",
+                Post = "юр. адрес",
+                Number_of_floors = 5
+            };
+
+            buildingRepository.Insert(building);
+            buildingRepository.Save();
+            return new ObjectResult("Building added!");
+        }
+
+        [HttpPost]
         [Route("/AutoRoomAdd")]
         [ProducesResponseType(typeof(ObjectResult), 200)]
         public IActionResult AutoAddRoom()
