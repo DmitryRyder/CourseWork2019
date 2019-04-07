@@ -6,7 +6,7 @@ using ProjectForCourseWork_ver_2._0.Controllers.Base;
 using System.Threading.Tasks;
 using Common.Code;
 using Common.DTO;
-using Common;
+using System.Linq;
 using Common.Filters;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
@@ -18,6 +18,7 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             var filters = new BaseFilterDto { Request = request };
             var objects = await RestQuery.ExecuteAsync<List<RoomDto>>("http://localhost:57770/", "GetAllRooms", Method.GET);
             var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
+
             var result = new DataSourceResult
             {
                 AggregateResults = aggregateResults,

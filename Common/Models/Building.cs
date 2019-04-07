@@ -10,10 +10,10 @@ namespace Common.Models
         public string Post { get; set; }
         public int Number_of_floors { get; set; }
 
-        public List<Rooms_by_building> RoomsByBuilding { get; set; }
+        public IList<Room> rooms { get; set; }
         public Building()
         {
-            RoomsByBuilding = new List<Rooms_by_building>();
+            rooms = new List<Room>();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace API.Core.Interfaces
         void Update(T model);
         void DeleteByIdAsync(int id);
         void DeleteById(int id);
-        IQueryable<T> Include(Expression<Func<T, object>> criteria);
+        //IQueryable<T> Include(Expression<Func<T, object>> criteria);
+        IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
     }
 }

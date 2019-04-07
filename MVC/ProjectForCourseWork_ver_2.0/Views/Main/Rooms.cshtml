@@ -22,12 +22,15 @@
                     columns.Bound(p => p.Area);
                     columns.Bound(p => p.Floor);
                     columns.Bound(p => p.TypeOfRoom);
+                    columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(180);
                     columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
                 })
                 .ToolBar(tools =>
                 {
                     tools.Create();
+                    tools.Save();
                 })
+                .Editable(editable => editable.Mode(GridEditMode.InCell))
                 .Pageable()
                 .Sortable()
                 .Scrollable()
@@ -35,9 +38,12 @@
                 .HtmlAttributes(new { style = "height:550px;" })
                 .DataSource(dataSource => dataSource
                 .Ajax()
+                .Events(events => events.Error("error_handler"))
                 .Model(model =>
                 {
                     model.Id(p => p.Id);
+                    model.Field(p => p.Building).DefaultValue(
+                        ViewData["defaultBuilding"] as BuildingDto);
                 })
                 .PageSize(20)
                 .Read(read => read.Action("GetAllRooms", "Rooms"))
@@ -45,7 +51,23 @@
                 .Update(update => update.Action("UpdateRoom", "Rooms"))
                 .Destroy(update => update.Action("DeleteRoom", "Rooms"))
                 )
-            )
+            )   
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function() {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

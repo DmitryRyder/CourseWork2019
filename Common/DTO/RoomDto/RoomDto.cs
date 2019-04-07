@@ -17,5 +17,8 @@ namespace Common.DTO
 
         [DisplayName("Тип помещения")]
         public string TypeOfRoom { get; set; }
+
+        [DisplayName("Здание")]
+        public BuildingDto Building{ get; set; }
     }
 }

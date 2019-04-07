@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
-using API.Core.Interfaces;
 using AutoMapper;
 using BackOffice.API.Core.Extensions;
 using Common.Code;
@@ -33,7 +32,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<RoomDto>), 200)]
         public JsonResult GetAllRooms()
         {
-            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom);
+            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
             
             return Json(mapper, Rooms, typeof(List<RoomDto>));
         }
@@ -84,6 +83,7 @@ namespace API.Controllers
             newRoom.Number = room.Number;
             newRoom.Area = room.Area;
             newRoom.Floor = room.Floor;
+            newRoom.TypeOfRoom.Name = model.TypeOfRoom;
 
             if (ModelState.IsValid && id == model.Id)
             {

@@ -35,7 +35,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<BuildingDto>), 200)]
         public JsonResult GetAllBuildings()
         {
-            var buildings = buildingRepository.GetAll();
+            var buildings = buildingRepository.Include(x => x.rooms);
 
             return Json(mapper, buildings, typeof(List<BuildingDto>));
         }

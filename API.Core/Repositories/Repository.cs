@@ -1,6 +1,7 @@
 ﻿using API.Core.Interfaces;
 using Common.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,25 @@ namespace API.Core.Repositories
             context.SaveChanges();
         }
 
-        public IQueryable<T> Include(Expression<Func<T, object>> criteria)
+        //public IQueryable<T> Include(Expression<Func<T, object>> criteria)
+        //{
+        //    return context.Set<T>().Include(criteria);
+        //}
+
+        public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
         {
-            return context.Set<T>().Include(criteria);
+            IIncludableQueryable<T, object> query = null;
+
+            if (includes.Length > 0)
+            {
+                query = dbSet.Include(includes[0]);
+            }
+            for (int queryIndex = 1; queryIndex < includes.Length; ++queryIndex)
+            {
+                query = query.Include(includes[queryIndex]);
+            }
+
+            return query == null ? dbSet : (IQueryable<T>)query;
         }
 
         public async void SaveAsync()
