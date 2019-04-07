@@ -4,15 +4,16 @@
     <div class="col-sm-2">
         @(Html.Kendo().Menu()
                   .Name("Menu")
-                  .Items(items =>
+                  .SecurityTrimming(false)
+                  .HoverDelay(100)
+                  .BindTo("menu", (item, node) =>
                   {
-                      items.Add().Text("Item 1");
-                      items.Add().Text("Item 2");
-                      items.Add().Text("Item 3");
-                      items.Add().Text("Item 4");
-                      items.Add().Text("Item 5");
-                      items.Add().Text("Disabled item").Enabled(false);
+                       if (item.Url != null)
+                       {
+                            var url = item.Url ?? Url.Action(item.ActionName, item.ControllerName);
+                       }
                   })
+                  .Orientation(MenuOrientation.Horizontal)
         )
     </div>
 </div>

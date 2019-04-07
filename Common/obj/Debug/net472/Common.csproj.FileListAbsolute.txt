@@ -2,7 +2,6 @@ C:\repos\CourseWork2019\Common\bin\Debug\net472\Common.dll
 C:\repos\CourseWork2019\Common\bin\Debug\net472\Common.pdb
 C:\repos\CourseWork2019\Common\bin\Debug\net472\Newtonsoft.Json.dll
 C:\repos\CourseWork2019\Common\bin\Debug\net472\RestSharp.dll
-C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.csprojAssemblyReference.cache
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.csproj.CoreCompileInputs.cache
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.AssemblyInfoInputs.cache
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.AssemblyInfo.cs

@@ -1,0 +1,12 @@
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\netcoreapp2.2\Common.DTO.Kendo.deps.json
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\netcoreapp2.2\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\netcoreapp2.2\Common.DTO.Kendo.pdb
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\netcoreapp2.2\Common.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\netcoreapp2.2\Common.pdb
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.csprojAssemblyReference.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.csproj.CoreCompileInputs.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.AssemblyInfoInputs.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.AssemblyInfo.cs
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.csproj.CopyComplete
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\netcoreapp2.2\Common.DTO.Kendo.pdb

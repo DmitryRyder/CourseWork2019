@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Common.DTO.BaseData
+namespace Common.DTO
 {
     public class BuildingDto : BaseDto
     {
-        [DisplayName("Город")]
+        [DisplayName("Название")]
         [Required(ErrorMessage = "Требуется название здания")]
         public string Name { get; set; }
 

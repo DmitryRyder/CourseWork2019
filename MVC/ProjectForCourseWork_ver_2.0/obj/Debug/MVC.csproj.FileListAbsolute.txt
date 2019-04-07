@@ -51,11 +51,13 @@ C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\roslyn\vbc.rsp
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\roslyn\VBCSCompiler.exe
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\roslyn\VBCSCompiler.exe.config
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Antlr3.Runtime.dll
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Kendo.Mvc.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.AspNet.TelemetryCorrelation.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.Web.Infrastructure.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Newtonsoft.Json.dll
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\RestSharp.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Diagnostics.DiagnosticSource.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.Helpers.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.Mvc.dll
@@ -65,11 +67,13 @@ C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.WebPages
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.WebPages.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.WebPages.Razor.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\WebGrease.dll
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.pdb
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Kendo.Mvc.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Newtonsoft.Json.pdb
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Newtonsoft.Json.xml
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\RestSharp.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Diagnostics.DiagnosticSource.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.Helpers.xml
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\System.Web.Mvc.xml
@@ -92,3 +96,5 @@ C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\MVC.csproj.Co
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\MVC.csproj.CopyComplete
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\ProjectForCourseWork_ver_2.0.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\ProjectForCourseWork_ver_2.0.pdb
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.DTO.Kendo.pdb

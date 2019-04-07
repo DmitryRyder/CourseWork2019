@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<siteMap>
+  <siteMapNode>
+    <siteMapNode id="100" title="Редактирвоание Моделей">
+      <siteMapNode title="Здания" controller="Main" action="Buildings"/>
+      <siteMapNode title="Помещения" url="Main" target="Rooms"/>
+    </siteMapNode>
+    <!--<siteMapNode id="200" title="Задачи">
+      <siteMapNode title="Задачи от меня" url="/Tickets/FromMe"/>
+      <siteMapNode title="Мои задачи" url="/Tickets/My"/>
+      <siteMapNode title="Список всех задач" controller="Ticket" action="Tickets"/>
+    </siteMapNode>-->
+  </siteMapNode>
+</siteMap>

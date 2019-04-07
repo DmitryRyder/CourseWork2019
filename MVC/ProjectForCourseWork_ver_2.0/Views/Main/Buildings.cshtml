@@ -1,0 +1,50 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<BuildingDto>
+
+@{
+    ViewBag.Title = "Здания";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid(Model)
+                .BackGrid()
+                .Name("grBuildings")
+                .Groupable(g => g.Enabled(true))
+                .Columns(columns =>
+                {
+                    //columns.Bound(p => p.Id).Filterable(false);
+                    columns.Bound(p => p.Name);
+                    columns.Bound(p => p.Post);
+                    columns.Bound(p => p.Number_of_floors);
+                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+                })
+                .ToolBar(tools =>
+                {
+                    tools.Create();
+                })
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .HtmlAttributes(new { style = "height:550px;" })
+                .DataSource(dataSource => dataSource
+                .Ajax()
+                .Model(model =>
+                {
+                    model.Id(p => p.Id);
+                })
+                .PageSize(20)
+                .Read(read => read.Action("GetAllBuildings", "Buildings"))
+                .Create(create => create.Action("AddBuilding", "Buildings"))
+                .Update(update => update.Action("UpdateBuilding", "Buildings"))
+                .Destroy(update => update.Action("DeleteBuilding", "Buildings"))
+                )
+            )
+        </div>
+    </div>
+</div>

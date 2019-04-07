@@ -1,0 +1,16 @@
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Common.DTO.Kendo.pdb
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Newtonsoft.Json.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\RestSharp.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Common.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Kendo.Mvc.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Common.pdb
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\Kendo.Mvc.xml
+C:\repos\CourseWork2019\Common.DTO.Kendo\bin\Debug\net472\ru-RU\Kendo.Mvc.resources.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.csprojAssemblyReference.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.csproj.CoreCompileInputs.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.AssemblyInfoInputs.cache
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.AssemblyInfo.cs
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.csproj.CopyComplete
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\Common.DTO.Kendo\obj\Debug\net472\Common.DTO.Kendo.pdb

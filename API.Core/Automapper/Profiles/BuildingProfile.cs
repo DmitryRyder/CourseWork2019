@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using Common.DTO.BaseData;
+using Common.DTO;
 using Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace API.Core.Automapper.Profiles
 {
@@ -12,6 +9,7 @@ namespace API.Core.Automapper.Profiles
         public BuildingProfile()
         {
             CreateMap<Building, BuildingDto>();
+            CreateMap<BuildingDto, Building>();
         }
     }
 }

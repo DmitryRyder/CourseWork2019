@@ -8,7 +8,17 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
 {
     public class MainController : Controller
     {
-        public ActionResult GetTable()
+        public ActionResult GetBuildings()
+        {
+            return View();
+        }
+
+        public ActionResult Buildings()
+        {
+            return View();
+        }
+
+        public ActionResult Rooms()
         {
             return View();
         }

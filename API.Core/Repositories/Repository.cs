@@ -84,15 +84,22 @@ namespace API.Core.Repositories
             context.Entry(model).State = EntityState.Modified;
         }
 
-        public void Delete(T id)
+        public async void DeleteByIdAsync(int id)
         {
-            T model = dbSet.Find(id);
-
-            if (context.Entry(model).State == EntityState.Detached)
+            T entity = await dbSet.FindAsync(id);
+            if (entity != null)
             {
-                dbSet.Attach(model);
+                dbSet.Remove(entity);
             }
-            dbSet.Remove(model);
+        }
+
+        public void DeleteById(int id)
+        {
+            T entity = dbSet.Find(id);
+            if (entity != null)
+            {
+                dbSet.Remove(entity);
+            }
         }
 
         private bool disposed = false;

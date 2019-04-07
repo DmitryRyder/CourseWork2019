@@ -16,7 +16,7 @@ namespace ProjectForCourseWork_ver_2._0
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Main", action = "GetTable", id = UrlParameter.Optional }
+                defaults: new { controller = "Main", action = "Buildings", id = UrlParameter.Optional }
             );
         }
     }

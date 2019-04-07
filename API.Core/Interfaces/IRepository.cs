@@ -20,6 +20,7 @@ namespace API.Core.Interfaces
         void Insert(T model);
         void InsertAsync(T model);
         void Update(T model);
-        void Delete(T id);
+        void DeleteByIdAsync(int id);
+        void DeleteById(int id);
     }
 }
