@@ -41,7 +41,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("/AddBuilding/{id}")]
+        [Route("/AddBuilding")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
         public IActionResult AddBuilding(BuildingDto model)
         {

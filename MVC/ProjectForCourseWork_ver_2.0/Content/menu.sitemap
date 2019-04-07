@@ -4,7 +4,7 @@
   <siteMapNode>
     <siteMapNode id="100" title="Редактирвоание Моделей">
       <siteMapNode title="Здания" controller="Main" action="Buildings"/>
-      <siteMapNode title="Помещения" url="Main" target="Rooms"/>
+      <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
     </siteMapNode>
     <!--<siteMapNode id="200" title="Задачи">
       <siteMapNode title="Задачи от меня" url="/Tickets/FromMe"/>

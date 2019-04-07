@@ -8,3 +8,4 @@ C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.AssemblyInfo.cs
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.csproj.CopyComplete
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.dll
 C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.pdb
+C:\repos\CourseWork2019\Common\obj\Debug\net472\Common.csprojAssemblyReference.cache

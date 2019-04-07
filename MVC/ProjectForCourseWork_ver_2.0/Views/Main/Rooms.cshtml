@@ -1,0 +1,50 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<RoomDto>
+
+@{
+    ViewBag.Title = "Помещения";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid(Model)
+                .BackGrid()
+                .Name("grRooms")
+                .Groupable(g => g.Enabled(true))
+                .Columns(columns =>
+                {
+                    //columns.Bound(p => p.Id).Filterable(false);
+                    columns.Bound(p => p.Number);
+                    columns.Bound(p => p.Area);
+                    columns.Bound(p => p.Floor);
+                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+                })
+                .ToolBar(tools =>
+                {
+                    tools.Create();
+                })
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .HtmlAttributes(new { style = "height:550px;" })
+                .DataSource(dataSource => dataSource
+                .Ajax()
+                .Model(model =>
+                {
+                    model.Id(p => p.Id);
+                })
+                .PageSize(20)
+                .Read(read => read.Action("GetAllRooms", "Rooms"))
+                .Create(create => create.Action("AddRoom", "Rooms"))
+                .Update(update => update.Action("UpdateRoom", "Rooms"))
+                .Destroy(update => update.Action("DeleteRoom", "Rooms"))
+                )
+            )
+        </div>
+    </div>
+</div>

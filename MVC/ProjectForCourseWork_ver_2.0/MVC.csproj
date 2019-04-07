@@ -130,6 +130,7 @@
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BuildingsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,10 +203,12 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Main\Buildings.cshtml" />
+    <Content Include="Views\Main\Rooms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Buildings\" />
+    <Folder Include="Views\Rooms\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
