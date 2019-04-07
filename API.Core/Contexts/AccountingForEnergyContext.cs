@@ -7,6 +7,7 @@ namespace API.Core.Contexts
     {
         public AccountingForEnergyContext(DbContextOptions<AccountingForEnergyContext> options) : base(options) { }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Type_of_room> Type_of_rooms { get; set; }
         public DbSet<Building> Buildings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

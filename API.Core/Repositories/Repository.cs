@@ -63,6 +63,11 @@ namespace API.Core.Repositories
             context.SaveChanges();
         }
 
+        public IQueryable<T> Include(Expression<Func<T, object>> criteria)
+        {
+            return context.Set<T>().Include(criteria);
+        }
+
         public async void SaveAsync()
         {
             await context.SaveChangesAsync();

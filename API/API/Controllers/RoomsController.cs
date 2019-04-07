@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Common.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,14 +20,12 @@ namespace API.Controllers
     public class RoomsController : BaseController
     {
         UnitOfWork unitOfWork;
-        IRepository<Room> RoomRepository;
         private readonly IMapper mapper;
 
         public RoomsController(UnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            RoomRepository = unitOfWork.GetRepository<Room>();
         }
 
         [HttpGet]
@@ -35,8 +33,8 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<RoomDto>), 200)]
         public JsonResult GetAllRooms()
         {
-            var Rooms = RoomRepository.GetAll();
-
+            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom);
+            
             return Json(mapper, Rooms, typeof(List<RoomDto>));
         }
 
@@ -45,12 +43,32 @@ namespace API.Controllers
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
         public IActionResult AddRoom(RoomDto model)
         {
-            var Room = model.MapTo<Room>(mapper);
+            var room = model.MapTo<Room>(mapper);
+            Type_of_room typeOfRoom = null;
 
+            if (!model.TypeOfRoom.IsNullOrEmpty())
+            {
+                typeOfRoom = unitOfWork.GetRepository<Type_of_room>().Query()
+                                                                         .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
+                                                                         .FirstOrDefault();
+            }
+
+            if (typeOfRoom == null && !model.TypeOfRoom.IsNullOrEmpty())
+            {
+                unitOfWork.GetRepository<Type_of_room>().Insert(new Type_of_room { Name = model.TypeOfRoom });
+                unitOfWork.GetRepository<Type_of_room>().Save();
+            }
+            else
+                return new ObjectResult("Model added unsuccessfully!");
+
+            room.Type_of_roomId = unitOfWork.GetRepository<Type_of_room>().Query()
+                                                                            .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
+                                                                            .Select(t => t.Id)
+                                                                            .FirstOrDefault();
             if (ModelState.IsValid)
             {
-                RoomRepository.Insert(Room);
-                RoomRepository.Save();
+                unitOfWork.GetRepository<Room>().Insert(room);
+                unitOfWork.GetRepository<Room>().Save();
                 return new ObjectResult("Model added successfully!");
             }
             return new ObjectResult("Model added unsuccessfully!");
@@ -62,15 +80,15 @@ namespace API.Controllers
         public IActionResult UpdateRoom(int id, RoomDto model)
         {
             var room = model.MapTo<Room>(mapper);
-            var newRoom = RoomRepository.GetById(id);
+            var newRoom = unitOfWork.GetRepository<Room>().GetById(id);
             newRoom.Number = room.Number;
             newRoom.Area = room.Area;
             newRoom.Floor = room.Floor;
 
             if (ModelState.IsValid && id == model.Id)
             {
-                RoomRepository.Update(newRoom);
-                RoomRepository.Save();
+                unitOfWork.GetRepository<Room>().Update(newRoom);
+                unitOfWork.GetRepository<Room>().Save();
                 return new ObjectResult("Model updated successfully!");
             }
             return new ObjectResult("Model updated unsuccessfully!");
@@ -81,8 +99,8 @@ namespace API.Controllers
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
         public IActionResult DeleteRoom(int id)
         {
-            RoomRepository.DeleteById(id);
-            RoomRepository.Save();
+            unitOfWork.GetRepository<Room>().DeleteById(id);
+            unitOfWork.GetRepository<Room>().Save();
 
             return new ObjectResult("Model deleted successfully!");
         }

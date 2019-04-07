@@ -1,2 +1,5 @@
 *.assets.cache
 *.csprojAssemblyReference.cache
+/Common.csproj.CoreCompileInputs.cache
+/Common.dll
+/Common.pdb

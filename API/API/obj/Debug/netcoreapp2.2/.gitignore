@@ -1,1 +1,3 @@
 *.csprojAssemblyReference.cache
+/API.dll
+/API.pdb
