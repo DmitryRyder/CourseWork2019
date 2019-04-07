@@ -30,7 +30,7 @@
                     tools.Create();
                     tools.Save();
                 })
-                .Editable(editable => editable.Mode(GridEditMode.InCell))
+                .Editable(editable => editable.Mode(GridEditMode.InCell).TemplateName("ClientBuilding"))
                 .Pageable()
                 .Sortable()
                 .Scrollable()
