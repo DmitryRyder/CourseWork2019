@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
@@ -39,15 +40,15 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("/AddBuilding")]
+        [Route("/AddBuildings")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult AddBuilding(BuildingDto model)
+        public IActionResult AddBuildings(IEnumerable<BuildingDto> models)
         {
-            var building = model.MapTo<Building>(mapper);
+            var buildings = models.MapTo<List<Building>>(mapper);
 
             if (ModelState.IsValid)
             {
-                unitOfWork.GetRepository<Building>().InsertAsync(building);
+                unitOfWork.GetRepository<Building>().AddRange(buildings);
                 unitOfWork.Save();
                 return new ObjectResult("Model added successfully!");
             }
@@ -55,9 +56,9 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        [Route("/UpdateBuilding/{id}")]
+        [Route("/UpdateBuildings/{id}")]
         [ProducesResponseType(typeof(string), 200)]
-        public IActionResult UpdateBuilding(int id, BuildingDto model)
+        public IActionResult UpdateBuildings(int id, BuildingDto model)
         {
             var building = model.MapTo<Building>(mapper);
             var newBuilding = unitOfWork.GetRepository<Building>().GetById(id);

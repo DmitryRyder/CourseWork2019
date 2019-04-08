@@ -1,7 +1,6 @@
 ﻿using Common.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
 using AutoMapper;

@@ -41,7 +41,6 @@ namespace API.Core.DAL
         {
             var currentContext = context;
 
-
             context.SaveChanges();
         }
 

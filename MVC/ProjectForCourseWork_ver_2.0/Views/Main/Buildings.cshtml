@@ -20,7 +20,7 @@
                     columns.Bound(p => p.Name);
                     columns.Bound(p => p.Post);
                     columns.Bound(p => p.Number_of_floors);
-                    columns.Command(command => { command.Destroy(); }).Width(200);
+                    columns.Command(command => { command.Destroy(); }).Width(200);  
                 })
                 .ToolBar(tools =>
                 {
@@ -34,6 +34,7 @@
                 .Filterable()
                 .DataSource(dataSource => dataSource
                 .Ajax()
+                .Batch(true)
                 .Events(events => events.Error("error_handler"))
                 .Model(model =>
                 {

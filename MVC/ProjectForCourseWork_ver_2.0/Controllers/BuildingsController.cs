@@ -8,6 +8,7 @@ using Common.Code;
 using Common.DTO;
 using Common;
 using Common.Filters;
+using System;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -34,9 +35,9 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objects.Data);
         }
 
-        public async Task<ActionResult> AddBuilding(BuildingDto building)
+        public async Task<ActionResult> AddBuilding([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuilding", Method.POST, building);
+            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuildings", Method.POST, buildings);
             return Json(response);
         }
 

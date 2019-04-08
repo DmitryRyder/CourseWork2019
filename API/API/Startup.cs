@@ -44,6 +44,7 @@ namespace API
             services.AddAutoMapper(MapperConfig.Config);
             services.AddTransient<IDbContextFactory, DbContextFactory>();
             services.AddSingleton<UnitOfWork>();
+            services.AddScoped(x => x.GetServices<UnitOfWork>());
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info
                 {
