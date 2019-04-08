@@ -33,7 +33,11 @@ namespace ProjectForCourseWork_ver_2._0
                 "~/Content/kendo/kendo.common-bootstrap.min.css",
                 "~/Content/kendo/kendo.bootstrap.min.css"));
 
-            bundles.IgnoreList.Clear();
+            bundles.Add(new ScriptBundle("~/bundles/gridJS")
+                        .Include("~/Scripts/helpers/gridHelpers.js"));
+
+
+bundles.IgnoreList.Clear();
         }
     }
 }

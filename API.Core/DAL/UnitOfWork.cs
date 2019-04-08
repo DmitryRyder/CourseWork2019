@@ -13,6 +13,8 @@ namespace API.Core.DAL
     {
         private Dictionary<Type, object> repositories;
         private readonly DbContext context;
+        private readonly object _lock = new object();
+        private bool updated = false;
         public UnitOfWork(IDbContextFactory contextFactory)
         {
             repositories = new Dictionary<Type, object>();
@@ -21,19 +23,25 @@ namespace API.Core.DAL
 
         public IRepository<T> GetRepository<T>() where T : BaseModel
         {
-            if (repositories.Keys.Contains(typeof(T))){
+            //lock (_lock)
+            //{
+                if (repositories.Keys.Contains(typeof(T)))
+                {
+                    return repositories[typeof(T)] as IRepository<T>;
+                }
 
-                return repositories[typeof(T)] as IRepository<T>;
-            }
-
-            var rep = new Repository<T>(context);
-            repositories.Add(typeof(T), rep);
+                var rep = new Repository<T>(context);
+                repositories.Add(typeof(T), rep);
 
             return rep;
+            //}
         }
 
         public void Save()
         {
+            var currentContext = context;
+
+
             context.SaveChanges();
         }
 

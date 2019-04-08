@@ -64,10 +64,10 @@ namespace API.Core.Repositories
             context.SaveChanges();
         }
 
-        //public IQueryable<T> Include(Expression<Func<T, object>> criteria)
-        //{
-        //    return context.Set<T>().Include(criteria);
-        //}
+        public async void SaveAsync()
+        {
+            await context.SaveChangesAsync();
+        }
 
         public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
         {
@@ -83,11 +83,6 @@ namespace API.Core.Repositories
             }
 
             return query == null ? dbSet : (IQueryable<T>)query;
-        }
-
-        public async void SaveAsync()
-        {
-            await context.SaveChangesAsync();
         }
 
         public void Insert(T model)

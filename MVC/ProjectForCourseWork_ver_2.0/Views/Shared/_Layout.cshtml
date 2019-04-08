@@ -21,21 +21,7 @@
 
 <body>
     @RenderBody()
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-18 col-md-12">
-                <div id="grid"></div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="container-fluid">
-            <p class="text-muted">Copyright © @DateTime.Now.Year Курсовая работа Чиркова Дмитрий Валерьевич</p>
-        </div>
-    </footer>
-
+    @Scripts.Render("~/bundles/gridJS")
     <script>
         $(document).ready(function () {
             $("#responsive-panel").kendoResponsivePanel({
@@ -48,6 +34,10 @@
             $("#responsive-panel").getKendoResponsivePanel().toggle();
         }
     </script>
-    <footer></footer>
+    <footer>
+        <script src="https://kendo.cdn.telerik.com/2019.1.115/js/jszip.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2019.1.115/js/cultures/kendo.culture.ru-RU.min.js"></script>
+        <script src="https://kendo.cdn.telerik.com/2019.1.115/js/messages/kendo.messages.ru-RU.min.js"></script>
+    </footer>
 </body>
 </html>

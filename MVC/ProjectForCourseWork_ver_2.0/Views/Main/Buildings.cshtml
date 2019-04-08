@@ -4,16 +4,15 @@
 
 @model IEnumerable<BuildingDto>
 
-@{
-    ViewBag.Title = "Здания";
-}
+<div class = "title2" >
+    <h2>Здания</h2>
+</div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-18 col-md-12">
+<div class="row2">
             @(Html.Kendo().Grid(Model)
                 .BackGrid()
                 .Name("grBuildings")
+                .HtmlAttributes(new { style = "height:760px" })
                 .Groupable(g => g.Enabled(true))
                 .Columns(columns =>
                 {
@@ -21,19 +20,21 @@
                     columns.Bound(p => p.Name);
                     columns.Bound(p => p.Post);
                     columns.Bound(p => p.Number_of_floors);
-                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+                    columns.Command(command => { command.Destroy(); }).Width(200);
                 })
                 .ToolBar(tools =>
                 {
                     tools.Create();
+                    tools.Save();
                 })
+                .Editable(editable => editable.Mode(GridEditMode.InCell))
                 .Pageable()
                 .Sortable()
                 .Scrollable()
                 .Filterable()
-                .HtmlAttributes(new { style = "height:550px;" })
                 .DataSource(dataSource => dataSource
                 .Ajax()
+                .Events(events => events.Error("error_handler"))
                 .Model(model =>
                 {
                     model.Id(p => p.Id);
@@ -45,6 +46,7 @@
                 .Destroy(update => update.Action("DeleteBuilding", "Buildings"))
                 )
             )
-        </div>
-    </div>
 </div>
+
+<script>
+</script>

@@ -20,14 +20,12 @@ namespace API.Controllers
     public class BuildingsController : BaseController
     {
         UnitOfWork unitOfWork;
-        IRepository<Building> buildingRepository;
         private readonly IMapper mapper;
 
         public BuildingsController(UnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            buildingRepository = unitOfWork.GetRepository<Building>();
         }
 
         [HttpGet]
@@ -35,7 +33,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<BuildingDto>), 200)]
         public JsonResult GetAllBuildings()
         {
-            var buildings = buildingRepository.Include(x => x.rooms);
+            var buildings = unitOfWork.GetRepository<Building>().Include(x => x.rooms);
 
             return Json(mapper, buildings, typeof(List<BuildingDto>));
         }
@@ -49,8 +47,8 @@ namespace API.Controllers
 
             if (ModelState.IsValid)
             {
-                buildingRepository.Insert(building);
-                buildingRepository.Save();
+                unitOfWork.GetRepository<Building>().InsertAsync(building);
+                unitOfWork.Save();
                 return new ObjectResult("Model added successfully!");
             }
             return new ObjectResult("Model added unsuccessfully!");
@@ -62,15 +60,15 @@ namespace API.Controllers
         public IActionResult UpdateBuilding(int id, BuildingDto model)
         {
             var building = model.MapTo<Building>(mapper);
-            var newBuilding = buildingRepository.GetById(id);
+            var newBuilding = unitOfWork.GetRepository<Building>().GetById(id);
             newBuilding.Name = building.Name;
             newBuilding.Post = building.Post;
             newBuilding.Number_of_floors = building.Number_of_floors;
 
             if (ModelState.IsValid && id == model.Id)
             {
-                buildingRepository.Update(newBuilding);
-                buildingRepository.Save();
+                unitOfWork.GetRepository<Building>().Update(newBuilding);
+                unitOfWork.GetRepository<Building>().Save();
                 return new ObjectResult("Model updated successfully!");
             }
             return new ObjectResult("Model updated unsuccessfully!");
@@ -81,8 +79,8 @@ namespace API.Controllers
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
         public IActionResult DeleteBuilding(int id)
         {
-            buildingRepository.DeleteById(id);
-            buildingRepository.Save();
+            unitOfWork.GetRepository<Building>().DeleteById(id);
+            unitOfWork.GetRepository<Building>().Save();
 
             return new ObjectResult("Model deleted successfully!");
         }

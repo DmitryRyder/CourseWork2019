@@ -27,6 +27,13 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(result);
         }
 
+        public async Task<ActionResult> GetForDropDownList()
+        {
+            var objects = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "GetAllBuildings", Method.GET);
+
+            return Json(objects.Data);
+        }
+
         public async Task<ActionResult> AddBuilding(BuildingDto building)
         {
             var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuilding", Method.POST, building);
