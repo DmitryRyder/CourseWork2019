@@ -35,20 +35,20 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objects.Data);
         }
 
-        public async Task<ActionResult> AddBuilding([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
+        public async Task<ActionResult> AddBuildings([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
         {
             var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuildings", Method.POST, buildings);
             return Json(response);
         }
 
-        public async Task<ActionResult> UpdateBuilding(int id, BuildingDto building)
+        public async Task<ActionResult> UpdateBuildings([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"UpdateBuilding/{id}", Method.PUT, building);
+            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "UpdateBuildings", Method.PUT, buildings);
             return Json(response);
         }
-        public async Task<ActionResult> DeleteBuilding(int id)
+        public async Task<ActionResult> DeleteBuildings(int id)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"DeleteBuilding/{id}", Method.DELETE);
+            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"DeleteBuilding", Method.DELETE);
             return Json(response);
         }
     }

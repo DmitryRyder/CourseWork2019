@@ -49,26 +49,22 @@ namespace API.Controllers
             if (ModelState.IsValid)
             {
                 unitOfWork.GetRepository<Building>().AddRange(buildings);
-                unitOfWork.Save();
+                unitOfWork.GetRepository<Building>().Save();
                 return new ObjectResult("Model added successfully!");
             }
             return new ObjectResult("Model added unsuccessfully!");
         }
 
         [HttpPut]
-        [Route("/UpdateBuildings/{id}")]
+        [Route("/UpdateBuildings")]
         [ProducesResponseType(typeof(string), 200)]
-        public IActionResult UpdateBuildings(int id, BuildingDto model)
+        public IActionResult UpdateBuildings(IEnumerable<BuildingDto> models)
         {
-            var building = model.MapTo<Building>(mapper);
-            var newBuilding = unitOfWork.GetRepository<Building>().GetById(id);
-            newBuilding.Name = building.Name;
-            newBuilding.Post = building.Post;
-            newBuilding.Number_of_floors = building.Number_of_floors;
+            var buildings = models.MapTo<List<Building>>(mapper);
 
-            if (ModelState.IsValid && id == model.Id)
+            if (ModelState.IsValid)
             {
-                unitOfWork.GetRepository<Building>().Update(newBuilding);
+                unitOfWork.GetRepository<Building>().UpdateRange(buildings);
                 unitOfWork.GetRepository<Building>().Save();
                 return new ObjectResult("Model updated successfully!");
             }

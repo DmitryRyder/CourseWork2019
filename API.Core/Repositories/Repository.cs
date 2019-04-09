@@ -100,10 +100,10 @@ namespace API.Core.Repositories
             await dbSet.AddRangeAsync(models);
         }
 
-        //public void UpdateRange(IList<T> models)
-        //{
-        //    dbSet.UpdateRange
-        //}
+        public void UpdateRange(IList<T> models)
+        {
+            dbSet.UpdateRange(models);
+        }
 
         public void Update(T model)
         {

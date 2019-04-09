@@ -23,6 +23,7 @@ namespace API.Core.Interfaces
         void DeleteByIdAsync(int id);
         void DeleteById(int id);
         void AddRange(IList<T> models);
+        void UpdateRange(IList<T> models);
         //IQueryable<T> Include(Expression<Func<T, object>> criteria);
         IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
     }
