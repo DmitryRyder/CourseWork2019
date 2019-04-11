@@ -11,5 +11,11 @@ namespace Common.Models
         public Type_of_room TypeOfRoom { get; set; }
         public int BuildingId { get; set; }
         public Building Building { get; set; }
+        public List<Room_rental> Room_rentals { get; set; }
+
+        public Room()
+        {
+            Room_rentals = new List<Room_rental>();
+        }
     }
 }

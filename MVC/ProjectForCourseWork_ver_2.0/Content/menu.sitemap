@@ -2,14 +2,13 @@
 
 <siteMap>
   <siteMapNode>
-    <siteMapNode id="100" title="Редактирвоание Моделей">
+    <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Здания" controller="Main" action="Buildings"/>
+      <siteMapNode title="Типы комнат" controller="Main" action="TypeOfRooms"/>
+      <siteMapNode title="Организации" controller="Main" action="Organizations"/>
+    </siteMapNode>
+    <siteMapNode id="200" title="Зависимые таблицы  ">
       <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
     </siteMapNode>
-    <!--<siteMapNode id="200" title="Задачи">
-      <siteMapNode title="Задачи от меня" url="/Tickets/FromMe"/>
-      <siteMapNode title="Мои задачи" url="/Tickets/My"/>
-      <siteMapNode title="Список всех задач" controller="Ticket" action="Tickets"/>
-    </siteMapNode>-->
   </siteMapNode>
 </siteMap>

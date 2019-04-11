@@ -1,0 +1,9 @@
+﻿@using Kendo.Mvc.UI
+@model Common.DTO.RoomDto
+
+
+@(Html.Kendo().ComboBoxFor(m => m)
+        .DataValueField("Id")
+        .DataTextField("Number")
+        .BindTo((System.Collections.IEnumerable)ViewData["rooms"])
+)

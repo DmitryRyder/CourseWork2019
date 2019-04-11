@@ -7,17 +7,3 @@
         .DataTextField("Name")
         .BindTo((System.Collections.IEnumerable)ViewData["buildings"])
 )
-
-@*@(Html.Kendo()
-          .DropDownListFor(m => m.Name)
-          .DataSource(source => source
-               .Read(r => r.Action("GetForDropDownList", "BuildingsController"))
-          )
-          .DataValueField("Id")
-          .DataTextField("Name")
-          .HtmlAttributes(new { style = "width:100%" })
-    )*@
-
-<script>
-    console.log("Зашли в темплейт");
-</script>

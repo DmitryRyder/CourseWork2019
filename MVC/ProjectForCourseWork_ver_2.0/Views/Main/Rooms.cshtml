@@ -19,8 +19,8 @@
                 columns.Bound(p => p.Number);
                 columns.Bound(p => p.Area);
                 columns.Bound(p => p.Floor);
-                columns.Bound(p => p.TypeOfRoom);
-                columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(180).EditorTemplateName("BuildingNameEdit");
+                columns.Bound(p => p.TypeOfRoom).ClientTemplate("#=TypeOfRoom.Name#").Sortable(false).Width(250).EditorTemplateName("TypeOfRoomNameEdit");
+                columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit");
                 columns.Command(command => { command.Destroy(); }).Width(200);
             })
             .ToolBar(tools =>
@@ -28,7 +28,7 @@
                 tools.Create();
                 tools.Save();
             })
-            .Editable(editable => editable.Mode(GridEditMode.InCell))
+            .Editable(editable => editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(false))
             .Pageable()
             .Sortable()
             .Scrollable()
@@ -42,6 +42,8 @@
                 model.Field(p => p.Id).Editable(false);
                 model.Field(p => p.Building).DefaultValue(
                     ViewData["defaultBuilding"] as BuildingDto);
+                model.Field(p => p.TypeOfRoom).DefaultValue(
+                    ViewData["defaultType"] as TypeOfRoomDto);
             })
             .PageSize(30)
             .Read(read => read.Action("GetAllRooms", "Rooms"))
@@ -51,10 +53,13 @@
             )
         )
     </div>
-    </div>
-</div>
 
-<script type="text/javascript">
+<script>
 
+$("#grRooms").kendoGrid({
+   editable: {
+        confirmation: false
+   }
+});
 
 </script>

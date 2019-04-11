@@ -42,30 +42,33 @@ namespace API.Controllers
         public IActionResult AddRoom(RoomDto model)
         {
             var room = model.MapTo<Room>(mapper);
-            Type_of_room typeOfRoom = null;
 
-            if (!model.TypeOfRoom.IsNullOrEmpty())
-            {
-                typeOfRoom = unitOfWork.GetRepository<Type_of_room>().Query()
-                                                                         .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
-                                                                         .FirstOrDefault();
-            }
+            room.Building = null;
+            room.TypeOfRoom = null;
 
-            if (typeOfRoom == null && !model.TypeOfRoom.IsNullOrEmpty())
-            {
-                unitOfWork.GetRepository<Type_of_room>().Insert(new Type_of_room { Name = model.TypeOfRoom });
-                unitOfWork.GetRepository<Type_of_room>().Save();
-            }
-            else
-                return new ObjectResult("Model added unsuccessfully!");
+            //if (!model.TypeOfRoom.IsNullOrEmpty())
+            //{
+            //    typeOfRoom = unitOfWork.GetRepository<Type_of_room>().Query().Join
+            //                                                             .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
+            //                                                             .FirstOrDefault();
+            //}
 
-            room.Type_of_roomId = unitOfWork.GetRepository<Type_of_room>().Query()
-                                                                            .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
-                                                                            .Select(t => t.Id)
-                                                                            .FirstOrDefault();
+            //if (typeOfRoom == null && !model.TypeOfRoom.IsNullOrEmpty())
+            //{
+            //    unitOfWork.GetRepository<Type_of_room>().Insert(new Type_of_room { Name = model.TypeOfRoom });
+            //    unitOfWork.GetRepository<Type_of_room>().Save();
+            //}
+            //else
+            //    return new ObjectResult("Model added unsuccessfully!");
+
+            //room.Type_of_roomId = unitOfWork.GetRepository<Type_of_room>().Query()
+            //                                                                .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
+            //                                                                .Select(t => t.Id)
+            //                                                                .FirstOrDefault();
+
             if (ModelState.IsValid)
             {
-                unitOfWork.GetRepository<Room>().Insert(room);
+                unitOfWork.GetRepository<Room>().InsertAsync(room);
                 unitOfWork.GetRepository<Room>().Save();
                 return new ObjectResult("Model added successfully!");
             }
@@ -82,7 +85,6 @@ namespace API.Controllers
             newRoom.Number = room.Number;
             newRoom.Area = room.Area;
             newRoom.Floor = room.Floor;
-            newRoom.TypeOfRoom.Name = model.TypeOfRoom;
 
             if (ModelState.IsValid && id == model.Id)
             {

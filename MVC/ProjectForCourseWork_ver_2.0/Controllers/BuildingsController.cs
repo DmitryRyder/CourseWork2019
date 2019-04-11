@@ -6,9 +6,8 @@ using ProjectForCourseWork_ver_2._0.Controllers.Base;
 using System.Threading.Tasks;
 using Common.Code;
 using Common.DTO;
-using Common;
 using Common.Filters;
-using System;
+using Kendo.Mvc.Extensions;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -18,14 +17,14 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         {
             var filters = new BaseFilterDto { Request = request };
             var objects = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "GetAllBuildings", Method.GET);
-            var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
-            var result = new DataSourceResult
-            {
-                AggregateResults = aggregateResults,
-                Data = data,
-                Total = objects.DataCount
-            };
-            return Json(result);
+            //var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
+            //var result = new DataSourceResult
+            //{
+            //    AggregateResults = aggregateResults,
+            //    Data = data,
+            //    Total = objects.DataCount
+            //};
+            return Json(objects.Data.ToDataSourceResult(request));
         }
 
         public async Task<ActionResult> GetForDropDownList()
@@ -35,20 +34,27 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objects.Data);
         }
 
-        public async Task<ActionResult> AddBuildings([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
+        //public async Task<ActionResult> AddBuildings([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
+        //{
+        //    var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuildings", Method.POST, buildings);
+        //    return Json(response);
+        //}
+
+        public async Task<ActionResult> AddBuilding(BuildingDto building)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "AddBuildings", Method.POST, buildings);
+            var response = await RestQuery.ExecuteAsync<BuildingDto>("http://localhost:57770/", "AddBuilding", Method.POST, building);
             return Json(response);
         }
 
-        public async Task<ActionResult> UpdateBuildings([DataSourceRequest] DataSourceRequest request, [Bind(Prefix = "models")]IEnumerable<BuildingDto> buildings)
+        public async Task<ActionResult> UpdateBuilding(int id, BuildingDto building)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "UpdateBuildings", Method.PUT, buildings);
+            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"UpdateBuilding/{id}", Method.PUT, building);
             return Json(response);
         }
-        public async Task<ActionResult> DeleteBuildings(int id)
+
+        public async Task<ActionResult> DeleteBuilding(int id)
         {
-            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"DeleteBuilding", Method.DELETE);
+            var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"DeleteBuilding/{id}", Method.DELETE);
             return Json(response);
         }
     }

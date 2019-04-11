@@ -1,0 +1,49 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<TypeOfRoomDto>
+
+<div class="title2">
+    <h2>Типы помещений</h2>
+</div>
+
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grTypesOfRoom")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.Id).Width(80);
+            columns.Bound(p => p.Name).Width(80);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+        })
+        .ToolBar(tools =>
+        {
+            tools.Create();
+        })
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+            model.Field(p => p.Id).Editable(false);
+        })
+        .PageSize(20)
+        .Read(read => read.Action("GetAllTypes", "TypeOfRoom"))
+        .Create(create => create.Action("AddType", "TypeOfRoom"))
+        .Update(update => update.Action("UpdateType", "TypeOfRoom"))
+        .Destroy(update => update.Action("DeleteType", "TypeOfRoom"))
+        )
+    )
+</div>
+
+<script>
+</script>

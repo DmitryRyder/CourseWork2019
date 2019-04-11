@@ -20,21 +20,20 @@
                     columns.Bound(p => p.Name);
                     columns.Bound(p => p.Post);
                     columns.Bound(p => p.Number_of_floors);
-                    columns.Command(command => { command.Destroy(); }).Width(200);  
+                    columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
                 })
                 .ToolBar(tools =>
                 {
                     tools.Create();
-                    tools.Save();
+                    //tools.Save();
                 })
-                .Editable(editable => editable.Mode(GridEditMode.InCell))
+                //.Editable(editable => editable.Mode(GridEditMode.InCell))
                 .Pageable()
                 .Sortable()
                 .Scrollable()
                 .Filterable()
                 .DataSource(dataSource => dataSource
                 .Ajax()
-                .Batch(true)
                 .Events(events => events.Error("error_handler"))
                 .Model(model =>
                 {
@@ -42,9 +41,9 @@
                 })
                 .PageSize(20)
                 .Read(read => read.Action("GetAllBuildings", "Buildings"))
-                .Create(create => create.Action("AddBuildings", "Buildings"))
-                .Update(update => update.Action("UpdateBuildings", "Buildings"))
-                .Destroy(update => update.Action("DeleteBuildings", "Buildings"))
+                .Create(create => create.Action("AddBuilding", "Buildings")).Batch(false)/*.AutoSync(true)*/
+                .Update(update => update.Action("UpdateBuilding", "Buildings")).Batch(false)
+                .Destroy(update => update.Action("DeleteBuilding", "Buildings")).Batch(false)
                 )
             )
 </div>
