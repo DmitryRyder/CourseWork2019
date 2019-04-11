@@ -2,3 +2,6 @@
 /Common.csprojAssemblyReference.cache
 /Common.dll
 /Common.pdb
+/Common.assets.cache
+/Common.csproj.FileListAbsolute.txt
+*.gitignore

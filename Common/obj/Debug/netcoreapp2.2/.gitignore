@@ -3,3 +3,5 @@
 /Common.csproj.CoreCompileInputs.cache
 /Common.dll
 /Common.pdb
+/Common.csproj.FileListAbsolute.txt
+*.gitignore
