@@ -9,6 +9,7 @@
     </siteMapNode>
     <siteMapNode id="200" title="Зависимые таблицы  ">
       <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
+      <siteMapNode title="Арендуемые помещения" controller="Main" action="RoomsRental"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

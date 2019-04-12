@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using API.Controllers.Base;
 using API.Core.DAL;
 using AutoMapper;
@@ -37,7 +38,7 @@ namespace API.Controllers
         [HttpPost]
         [Route("/AddRentalRoom")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult AddRoom(RoomRentalDto model)
+        public IActionResult AddRentalRoom(RoomRentalDto model)
         {
             var roomRental = model.MapTo<Room_rental>(mapper);
 
@@ -56,7 +57,7 @@ namespace API.Controllers
         [HttpPut]
         [Route("/UpdateRentalRoom/{id}")]
         [ProducesResponseType(typeof(string), 200)]
-        public IActionResult UpdateRoom(int id, RoomRentalDto model)
+        public IActionResult UpdateRentalRoom(int id, RoomRentalDto model)
         {
             var room = model.MapTo<Room_rental>(mapper);
             var newRoomRental = unitOfWork.GetRepository<Room_rental>().GetById(id);
@@ -75,7 +76,7 @@ namespace API.Controllers
         [HttpDelete]
         [Route("/DeleteRentalRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult DeleteRoom(int id)
+        public IActionResult DeleteRentalRoom(int id)
         {
             unitOfWork.GetRepository<Room_rental>().DeleteById(id);
             unitOfWork.GetRepository<Room_rental>().Save();

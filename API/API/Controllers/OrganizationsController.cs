@@ -30,7 +30,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<OrganizationDto>), 200)]
         public JsonResult GetAllOrganizations()
         {
-            var organizations = unitOfWork.GetRepository<Organization>();
+            var organizations = unitOfWork.GetRepository<Organization>().GetAll();
 
             return Json(mapper, organizations, typeof(List<OrganizationDto>));
         }

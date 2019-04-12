@@ -132,6 +132,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\RoomsRentalController.cs" />
     <Compile Include="Controllers\TypeOfRoomController.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,7 +211,7 @@
     <Content Include="Views\Main\EditorTemplates\BuildingNameEdit.cshtml" />
     <Content Include="Views\Main\TypeOfRooms.cshtml" />
     <Content Include="Views\Main\EditorTemplates\TypeOfRoomNameEdit.cshtml" />
-    <Content Include="Views\Main\RoomRental.cshtml" />
+    <Content Include="Views\Main\RoomsRental.cshtml" />
     <Content Include="Views\Main\EditorTemplates\RoomNumberEdit.cshtml" />
     <Content Include="Views\Main\EditorTemplates\OrganizationNameEdit.cshtml" />
     <Content Include="Views\Main\Organizations.cshtml" />
@@ -219,6 +220,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Buildings\" />
     <Folder Include="Views\Organizations\" />
+    <Folder Include="Views\RoomsRental\" />
     <Folder Include="Views\Rooms\" />
     <Folder Include="Views\TypeOfRoom\" />
   </ItemGroup>

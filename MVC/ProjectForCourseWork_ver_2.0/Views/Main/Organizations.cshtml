@@ -16,15 +16,15 @@
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Id).Width(80);
-            columns.Bound(p => p.Name).Width(80);
-            columns.Bound(p => p.Post).Width(80);
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.Post);
             columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
         })
         .ToolBar(tools =>
         {
             tools.Create();
         })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
         .Pageable()
         .Sortable()
         .Scrollable()
@@ -35,7 +35,7 @@
         .Model(model =>
         {
             model.Id(p => p.Id);
-            model.Field(p => p.Id).Editable(false);
+            //model.Field(p => p.Id).Editable(false);
         })
         .PageSize(20)
         .Read(read => read.Action("GetAllOrganizations", "Organizations"))
@@ -47,4 +47,11 @@
 </div>
 
 <script>
+
+$("#grOrganizations").kendoGrid({
+   editable: {
+        confirmation: false
+   }
+});
+
 </script>

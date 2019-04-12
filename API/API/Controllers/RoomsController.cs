@@ -36,6 +36,16 @@ namespace API.Controllers
             return Json(mapper, Rooms, typeof(List<RoomDto>));
         }
 
+        [HttpGet]
+        [Route("/GetRoomsNotRental")]
+        [ProducesResponseType(typeof(List<RoomDto>), 200)]
+        public JsonResult GetRoomsNotRental()
+        {
+            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
+
+            return Json(mapper, Rooms, typeof(List<RoomDto>));
+        }
+
         [HttpPost]
         [Route("/AddRoom")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]

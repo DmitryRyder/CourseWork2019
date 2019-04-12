@@ -2,8 +2,8 @@
 @model Common.DTO.RoomDto
 
 
-@(Html.Kendo().ComboBoxFor(m => m)
+@(Html.Kendo().ComboBoxFor(m => m).Name("rN")
         .DataValueField("Id")
         .DataTextField("Number")
-        .BindTo((System.Collections.IEnumerable)ViewData["rooms"])
+        .BindTo((System.Collections.IEnumerable)ViewData["rooms"]).Enable(false);
 )
