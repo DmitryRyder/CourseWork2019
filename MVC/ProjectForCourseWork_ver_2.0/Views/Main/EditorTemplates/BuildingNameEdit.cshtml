@@ -6,8 +6,4 @@
         .DataValueField("Id")
         .DataTextField("Name")
         .BindTo((System.Collections.IEnumerable)ViewData["buildings"])
-        .Events(e =>
-        {
-                e.Change("onChange").Select("onSelect");
-        })
 )

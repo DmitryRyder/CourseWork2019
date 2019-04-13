@@ -8,6 +8,7 @@ using Common.Code;
 using Common.DTO;
 using System.Linq;
 using Common.Filters;
+using Kendo.Mvc.Extensions;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -15,17 +16,17 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
     {
         public async Task<ActionResult> GetAllRentalRooms([DataSourceRequest] DataSourceRequest request)
         {
-            var filters = new BaseFilterDto { Request = request };
+            //var filters = new BaseFilterDto { Request = request };
             var objects = await RestQuery.ExecuteAsync<List<RoomRentalDto>>("http://localhost:57770/", "GetAllRentalRooms", Method.GET);
-            var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
+            //var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
 
-            var result = new DataSourceResult
-            {
-                AggregateResults = aggregateResults,
-                Data = data,
-                Total = objects.DataCount
-            };
-            return Json(result);
+            //var result = new DataSourceResult
+            //{
+            //    AggregateResults = aggregateResults,
+            //    Data = data,
+            //    Total = objects.DataCount
+            //};
+            return Json(objects.Data.ToDataSourceResult(request));
         }
 
         public async Task<ActionResult> AddRentalRoom(RoomRentalDto Room)

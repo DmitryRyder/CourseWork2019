@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
@@ -11,6 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы со зданиями
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -25,6 +29,9 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Метод возвращающий все здания в базе данных
+        /// </summary>
         [HttpGet]
         [Route("/GetAllBuildings")]
         [ProducesResponseType(typeof(List<BuildingDto>), 200)]
@@ -35,6 +42,22 @@ namespace API.Controllers
             return Json(mapper, buildings, typeof(List<BuildingDto>));
         }
 
+        /// <summary>
+        /// Метод возвращающий комнаты для определнного здания
+        /// </summary>
+        [HttpGet]
+        [Route("/GetRoomsForBuilding/{id}")]
+        [ProducesResponseType(typeof(List<RoomDto>), 200)]
+        public JsonResult GetRoomsForBuilding(int? id)
+        {
+            var rooms = unitOfWork.GetRepository<Room>().Include(x => x.Building).Where(r => r.BuildingId == id);
+
+            return Json(mapper, rooms, typeof(List<RoomDto>));
+        }
+
+        /// <summary>
+        /// Метод добавляющий здание в базу данных
+        /// </summary>
         [HttpPost]
         [Route("/AddBuilding")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
@@ -51,6 +74,9 @@ namespace API.Controllers
             return new ObjectResult("Model added unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод для обновления существующего здания в базе данных
+        /// </summary>
         [HttpPut]
         [Route("/UpdateBuilding/{id}")]
         [ProducesResponseType(typeof(string), 200)]
@@ -71,6 +97,9 @@ namespace API.Controllers
             return new ObjectResult("Model updated unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод для удаления здания по id
+        /// </summary>
         [HttpDelete]
         [Route("/DeleteBuilding/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]

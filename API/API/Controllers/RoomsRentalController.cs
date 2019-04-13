@@ -30,7 +30,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<RoomDto>), 200)]
         public JsonResult GetAllRentalRooms()
         {
-            var RoomsRental = unitOfWork.GetRepository<Room_rental>().Include(x => x.Room, x => x.Organization);
+            var RoomsRental = unitOfWork.GetRepository<Room_rental>().Include(x => x.Room, x => x.Organization, x => x.Room.Building);
 
             return Json(mapper, RoomsRental, typeof(List<RoomRentalDto>));
         }

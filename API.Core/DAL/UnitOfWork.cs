@@ -9,12 +9,10 @@ using System.Linq;
 
 namespace API.Core.DAL
 {
-    public class UnitOfWork
+    public class UnitOfWork : IDisposable
     {
         private Dictionary<Type, object> repositories;
         private readonly DbContext context;
-        private readonly object _lock = new object();
-        private bool updated = false;
         public UnitOfWork(IDbContextFactory contextFactory)
         {
             repositories = new Dictionary<Type, object>();
@@ -23,30 +21,36 @@ namespace API.Core.DAL
 
         public IRepository<T> GetRepository<T>() where T : BaseModel
         {
-            //lock (_lock)
-            //{
-                if (repositories.Keys.Contains(typeof(T)))
-                {
-                    return repositories[typeof(T)] as IRepository<T>;
-                }
+            if (repositories.Keys.Contains(typeof(T)))
+            {
+                return repositories[typeof(T)] as IRepository<T>;
+            }
 
-                var rep = new Repository<T>(context);
-                repositories.Add(typeof(T), rep);
+            var rep = new Repository<T>(context);
+            repositories.Add(typeof(T), rep);
 
             return rep;
-            //}
         }
 
-        public void Save()
+        public async void SaveAsync()
         {
-            var currentContext = context;
-
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            if (context != null)
+            {
+                context.Dispose();
+                repositories.Clear();
+            }
         }
     }
 }

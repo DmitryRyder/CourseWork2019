@@ -7,6 +7,10 @@
 <div class="title2">
     <h2>Помещения в аренде</h2>
 </div>
+
+<div class="floatingButtons">
+    <button id="open" class="k-button">Добавить Аренду</button>
+</div>
 <div class="row2">
     @(Html.Kendo().Grid(Model)
         .BackGrid()
@@ -15,9 +19,9 @@
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250).EditorTemplateName("OrganizationNameEdit");
-            columns.Bound(p => p.Room.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit");
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Sortable(false).Width(250).EditorTemplateName("RoomNumberEdit");
+            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250).EditorTemplateName("OrganizationNameEdit").Title("Организация");
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit").Title("Здание");
+            //columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Sortable(false).Width(250).EditorTemplateName("RoomNumberEdit").Title("Номер помещения");
             columns.Bound(p => p.InputDate);
             columns.Bound(p => p.OutputDate);
             columns.Command(command => { command.Destroy(); }).Width(200);
@@ -37,12 +41,13 @@
         .Events(events => events.Error("error_handler"))
         .Model(model =>
         {
+            model.Id(p => p.Id);
             model.Field(p => p.Organization).DefaultValue(
                 ViewData["defaultOrganization"] as OrganizationDto);
             model.Field(p => p.Room).DefaultValue(
-                ViewData["defaultRoom"] as RoomDto);
-            model.Field(p => p.Room.Building).DefaultValue(
-                ViewData["defaultBuilding"] as BuildingDto);
+                ViewData["defaultBuilding"] as RoomDto);
+            //model.Field(p => p.Room).DefaultValue(
+            //    ViewData["defaultRoom"] as RoomDto);
         })
         .PageSize(30)
         .Read(read => read.Action("GetAllRentalRooms", "RoomsRental"))
@@ -51,9 +56,60 @@
         .Destroy(update => update.Action("DeleteRentalRoom", "RoomsRental"))
         )
     )
+
+    @(Html.Kendo().Window()
+        .Name("AddRentalWindow")
+        .Width(420)
+        .Height(600)
+        .Visible(false)
+        .Draggable(true)
+        .Resizable()
+        .Title("Добавление помещения в аренду")
+        .Actions(actions => actions.Refresh().Close())
+        .LoadContentFrom("AddRentalWindow", "Main")
+    )
 </div>
 
 <script>
+    $(document).ready(function () {
+        var myWindow = $("#AddRentalWindow");
+        var Room_rental = {
+            InputDate: 0,
+            OutputDate: 0,
+            RoomId: 0,
+            OrganizationId: 0
+        }//Model
+        $("#open").click(function (e) {
+            myWindow.data("kendoWindow").open();
+            myWindow.data("kendoWindow").center();
+        });
+
+        $("#add").click(function (e) {
+            var options = {};
+            options.url = 'http://localhost:57109/AddRentalRoom';
+            options.type = "POST";
+            var room_rental = Room_rental;
+            room_rental.InputDate = $("#inputDate").val();
+            room_rental.OutputDate = $("#outputDate").val();
+            room_rental.RoomId = $("#rooms").val();
+            room_rental.OrganizationId = $("#organizations").val();
+            console.dir(room_rental);
+            options.data = JSON.stringify(room_rental);
+            options.contentType = "application/json";
+            options.dataType = "html";
+            //options.success = function () {
+            //    getDetails(planetId);
+            //};
+            $.ajax(options);
+        });
+    });
+
+        function filterBuildings() {
+            return {
+                buildingId: $("#buildings").val()
+            };
+        }
+</script>
 
     @*function buildingId() {
             return {
@@ -65,14 +121,14 @@
         }
     }*@
 
-        function onSelect(e) {
-    		if (e.item) {
-    			var dataItem = this.dataItem(e.item.index());
-                console.log("event :: select (" + dataItem + " : " + dataItem.Id + ")");
-                $("#rN").enable = true;
-    		} else {
-    			console.log("event :: select");
-    		}
-    }
+    @*//    function onSelect(e) {
+    //		if (e.item) {
+    //			var dataItem = this.dataItem(e.item.index());
+    //            console.log("event :: select (" + dataItem + " : " + dataItem.Id + ")");
+    //            $("#rN").enable = true;
+    //		} else {
+    //			console.log("event :: select");
+    //		}
+    //}*@
 
-</script>
+

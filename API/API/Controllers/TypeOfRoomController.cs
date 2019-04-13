@@ -45,7 +45,7 @@ namespace API.Controllers
             if (ModelState.IsValid)
             {
                 unitOfWork.GetRepository<Type_of_room>().InsertAsync(type);
-                unitOfWork.GetRepository<Type_of_room>().SaveAsync();
+                unitOfWork.SaveAsync();
                 return new ObjectResult("Model added successfully!");
             }
             return new ObjectResult("Model added unsuccessfully!");

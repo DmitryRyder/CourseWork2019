@@ -15,18 +15,16 @@
             .Groupable(g => g.Enabled(true))
             .Columns(columns =>
             {
-                //columns.Bound(p => p.Id).Filterable(false);
                 columns.Bound(p => p.Number);
                 columns.Bound(p => p.Area);
                 columns.Bound(p => p.Floor);
                 columns.Bound(p => p.TypeOfRoom).ClientTemplate("#=TypeOfRoom.Name#").Sortable(false).Width(250).EditorTemplateName("TypeOfRoomNameEdit");
                 columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit");
-                columns.Command(command => { command.Destroy(); }).Width(200);
+                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
             })
             .ToolBar(tools =>
             {
                 tools.Create();
-                tools.Save();
             })
             .Editable(editable => editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(false))
             .Pageable()
@@ -47,12 +45,14 @@
             })
             .PageSize(30)
             .Read(read => read.Action("GetAllRooms", "Rooms"))
-            .Create(create => create.Action("AddRoom", "Rooms"))
+            .Create(create => create.Action("AddRoom", "Rooms")).Events(p => p.Sync("rebindDataSource"))
             .Update(update => update.Action("UpdateRoom", "Rooms"))
             .Destroy(update => update.Action("DeleteRoom", "Rooms"))
             )
         )
     </div>
-
 <script>
+    function rebindDataSource() {
+        $("#grRooms").data("kendoGrid").dataSource.read();
+    }
 </script>

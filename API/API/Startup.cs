@@ -1,6 +1,7 @@
 ﻿using API.Core.Automapper;
 using API.Core.DAL;
 using API.Core.Interfaces;
+using API.Swagger;
 using AutoMapper;
 using Common;
 using Microsoft.AspNetCore.Builder;
@@ -44,16 +45,10 @@ namespace API
             services.AddAutoMapper(MapperConfig.Config);
             services.AddTransient<IDbContextFactory, DbContextFactory>();
             services.AddSingleton<UnitOfWork>();
-            services.AddScoped<UnitOfWork>();
-            services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new Info
-                {
-                    Version = "v1",
-                    Title = "Test API",
-                    Description = "ASP.NET Core Web API"
-                });
+            services.AddSwaggerDocumentation();
+            //services.AddScoped<UnitOfWork>();
+
                 //c.CustomSchemaIds(r => r.FullName);
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,10 +56,7 @@ namespace API
         {
             //app.UseHttpsRedirection();
             app.UseMvc(RouteConfig.Configure);
-            app.UseSwagger();
-            app.UseSwaggerUI(c => {  
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API For CourseWork");
-            });
+            app.UseSwaggerDocumentation();
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(

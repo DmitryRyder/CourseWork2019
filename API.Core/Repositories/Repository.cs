@@ -66,11 +66,7 @@ namespace API.Core.Repositories
 
         public async void SaveAsync()
         {
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (InvalidOperationException) { await context.SaveChangesAsync(); }
+            await context.SaveChangesAsync();
         }
 
         public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)

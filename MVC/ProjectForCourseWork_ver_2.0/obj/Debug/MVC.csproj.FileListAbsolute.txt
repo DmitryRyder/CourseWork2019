@@ -98,3 +98,5 @@ C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\ProjectForCou
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\obj\Debug\ProjectForCourseWork_ver_2.0.pdb
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.DTO.Kendo.dll
 C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Common.DTO.Kendo.pdb
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.AspNetCore.Mvc.Core.dll
+C:\repos\CourseWork2019\MVC\ProjectForCourseWork_ver_2.0\bin\Microsoft.AspNetCore.Mvc.Core.xml

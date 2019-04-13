@@ -14,8 +14,8 @@ namespace Common.DTO
         [Required(ErrorMessage = "Введите дату выезда")]
         public DateTime OutputDate { get; set; }
         public int RoomId { get; set; }
-        public Room Room { get; set; }
+        public RoomDto Room { get; set; }
         public int OrganizationId { get; set; }
-        public Organization Organization { get; set; }
+        public OrganizationDto Organization { get; set; }
     }
 }

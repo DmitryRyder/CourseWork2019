@@ -39,7 +39,7 @@
         })
         .PageSize(20)
         .Read(read => read.Action("GetAllOrganizations", "Organizations"))
-        .Create(create => create.Action("AddOrganization", "Organizations"))
+        .Create(create => create.Action("AddOrganization", "Organizations")).Events(p => p.Sync("rebindDataSource"))
         .Update(update => update.Action("UpdateOrganization", "Organizations"))
         .Destroy(update => update.Action("DeleteOrganization", "Organizations"))
         )
@@ -47,11 +47,7 @@
 </div>
 
 <script>
-
-$("#grOrganizations").kendoGrid({
-   editable: {
-        confirmation: false
-   }
-});
-
+       function rebindDataSource() {
+        $("#grOrganizations").data("kendoGrid").dataSource.read();
+    }
 </script>

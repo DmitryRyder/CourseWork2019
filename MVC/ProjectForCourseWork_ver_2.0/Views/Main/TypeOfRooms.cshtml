@@ -24,6 +24,7 @@
         {
             tools.Create();
         })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
         .Pageable()
         .Sortable()
         .Scrollable()
@@ -38,7 +39,7 @@
         })
         .PageSize(20)
         .Read(read => read.Action("GetAllTypes", "TypeOfRoom"))
-        .Create(create => create.Action("AddType", "TypeOfRoom"))
+        .Create(create => create.Action("AddType", "TypeOfRoom")).Events(p => p.Sync("rebindDataSource"))
         .Update(update => update.Action("UpdateType", "TypeOfRoom"))
         .Destroy(update => update.Action("DeleteType", "TypeOfRoom"))
         )
@@ -46,4 +47,7 @@
 </div>
 
 <script>
+    function rebindDataSource() {
+        $("#grTypesOfRoom").data("kendoGrid").dataSource.read();
+    }
 </script>

@@ -54,3 +54,42 @@
 .title2 {
     margin-bottom: 15px !important;
 }
+.floatingButtons {
+    position: fixed;
+    z-index: 999;
+    top: 45px;
+    left: 15px;
+    padding: 1px;
+}
+
+.floatingButtonsRight {
+    position: fixed;
+    z-index: 999;
+    top: 45px;
+    right: 15px;
+    padding: 1px;
+}
+
+@media screen and (max-width: 1300px) {
+    .floatingButtons, .floatingButtonsRight {
+        top: 65px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .floatingButtons, .floatingButtonsRight {
+        top: 105px;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .floatingButtons, .floatingButtonsRight {
+        top: 125px;
+    }
+}
+
+@media screen and (max-width: 385px) {
+    .floatingButtons, .floatingButtonsRight {
+        top: 155px;
+    }
+}

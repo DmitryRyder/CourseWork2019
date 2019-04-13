@@ -16,7 +16,6 @@
                 .Groupable(g => g.Enabled(true))
                 .Columns(columns =>
                 {
-                    //columns.Bound(p => p.Id).Filterable(false);
                     columns.Bound(p => p.Name);
                     columns.Bound(p => p.Post);
                     columns.Bound(p => p.Number_of_floors);
@@ -25,9 +24,8 @@
                 .ToolBar(tools =>
                 {
                     tools.Create();
-                    //tools.Save();
                 })
-                //.Editable(editable => editable.Mode(GridEditMode.InCell))
+                .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
                 .Pageable()
                 .Sortable()
                 .Scrollable()
@@ -41,12 +39,14 @@
                 })
                 .PageSize(20)
                 .Read(read => read.Action("GetAllBuildings", "Buildings"))
-                .Create(create => create.Action("AddBuilding", "Buildings")).Batch(false)/*.AutoSync(true)*/
-                .Update(update => update.Action("UpdateBuilding", "Buildings")).Batch(false)
-                .Destroy(update => update.Action("DeleteBuilding", "Buildings")).Batch(false)
+                .Create(create => create.Action("AddBuilding", "Buildings")).Events(p => p.Sync("rebindDataSource"))
+                .Update(update => update.Action("UpdateBuilding", "Buildings"))
+                .Destroy(update => update.Action("DeleteBuilding", "Buildings"))
                 )
             )
 </div>
-
 <script>
+   function rebindDataSource() {
+        $("#grBuildings").data("kendoGrid").dataSource.read();
+    }
 </script>
