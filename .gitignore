@@ -213,3 +213,4 @@ _[Ss]cripts
 /API.Core/obj/Debug/netcoreapp2.2/API.Core.dll
 /API.Core/obj/Debug/netcoreapp2.2/API.Core.pdb
 /API.Core/obj/project.assets.json
+*.csprojAssemblyReference.cache
