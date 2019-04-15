@@ -7,6 +7,10 @@
 <div class = "title2" >
     <h2>Помещения</h2>
 </div>
+
+<div class="floatingButtons">
+    <button id="open" class="k-button">Добавить Аренду</button>
+</div>
 <div class="row2">
         @(Html.Kendo().Grid(Model)
             .BackGrid()
@@ -18,15 +22,15 @@
                 columns.Bound(p => p.Number);
                 columns.Bound(p => p.Area);
                 columns.Bound(p => p.Floor);
-                columns.Bound(p => p.TypeOfRoom).ClientTemplate("#=TypeOfRoom.Name#").Sortable(false).Width(250).EditorTemplateName("TypeOfRoomNameEdit");
-                columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit");
-                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+                columns.Bound(p => p.TypeOfRoom).ClientTemplate("#=TypeOfRoom.Name#").Sortable(false).Width(250);//.EditorTemplateName("TypeOfRoomNameEdit");
+                columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250);//.EditorTemplateName("BuildingNameEdit");
+                columns.Command(command => {command.Destroy(); }).Width(200);
             })
-            .ToolBar(tools =>
-            {
-                tools.Create();
-            })
-            .Editable(editable => editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(false))
+            //.ToolBar(tools =>
+            //{
+            //    tools.Create();
+            //})
+            .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
             .Pageable()
             .Sortable()
             .Scrollable()
@@ -38,21 +42,44 @@
             {
                 model.Id(p => p.Id);
                 model.Field(p => p.Id).Editable(false);
-                model.Field(p => p.Building).DefaultValue(
-                    ViewData["defaultBuilding"] as BuildingDto);
-                model.Field(p => p.TypeOfRoom).DefaultValue(
-                    ViewData["defaultType"] as TypeOfRoomDto);
+                //model.Field(p => p.Building).DefaultValue(
+                //    ViewData["defaultBuilding"] as BuildingDto);
+                //model.Field(p => p.TypeOfRoom).DefaultValue(
+                //    ViewData["defaultType"] as TypeOfRoomDto);
             })
             .PageSize(30)
             .Read(read => read.Action("GetAllRooms", "Rooms"))
-            .Create(create => create.Action("AddRoom", "Rooms")).Events(p => p.Sync("rebindDataSource"))
-            .Update(update => update.Action("UpdateRoom", "Rooms"))
+            //.Create(create => create.Action("AddRoom", "Rooms")).Events(p => p.Sync("rebindDataSource"))
+            //.Update(update => update.Action("UpdateRoom", "Rooms"))
             .Destroy(update => update.Action("DeleteRoom", "Rooms"))
             )
         )
+        @(Html.Kendo().Window()
+        .Name("AddRoomWindow")
+        .Width(420)
+        .Height(600)
+        .Visible(false)
+        .Draggable(true)
+        .Resizable()
+        .Title("Добавление помещения")
+        .Actions(actions => actions.Refresh().Close())
+        .LoadContentFrom("AddRoomWindow", "Main")
+        )
     </div>
 <script>
+    $(document).ready(function () {
+        var myWindow = $("#AddRoomWindow");
+        $("#open").click(function (e) {
+            myWindow.data("kendoWindow").open();
+            myWindow.data("kendoWindow").center();
+        });
+    });
     function rebindDataSource() {
         $("#grRooms").data("kendoGrid").dataSource.read();
+    }
+    function filterBuildings() {
+         return {
+             buildingId: $("#build").val()
+         };
     }
 </script>

@@ -6,6 +6,7 @@ using ProjectForCourseWork_ver_2._0.Controllers.Base;
 using System.Threading.Tasks;
 using Common.Code;
 using Common.DTO;
+using System;
 using Common.Filters;
 using Kendo.Mvc.Extensions;
 namespace ProjectForCourseWork_ver_2._0.Controllers
@@ -25,13 +26,13 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(response);
         }
 
-        public async Task<ActionResult> UpdateOrganization(int id, OrganizationDto organization)
+        public async Task<ActionResult> UpdateOrganization(Guid id, OrganizationDto organization)
         {
             var response = await RestQuery.ExecuteAsync<List<OrganizationDto>>("http://localhost:57770/", $"UpdateOrganization/{id}", Method.PUT, organization);
             return Json(response);
         }
 
-        public async Task<ActionResult> DeleteOrganization(int id)
+        public async Task<ActionResult> DeleteOrganization(Guid id)
         {
             var response = await RestQuery.ExecuteAsync<List<OrganizationDto>>("http://localhost:57770/", $"DeleteOrganization/{id}", Method.DELETE);
             return Json(response);

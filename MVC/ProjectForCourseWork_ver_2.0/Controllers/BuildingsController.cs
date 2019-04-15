@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Common.Code;
 using Common.DTO;
 using Common.Filters;
+using System;
 using Kendo.Mvc.Extensions;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
@@ -46,13 +47,13 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(response);
         }
 
-        public async Task<ActionResult> UpdateBuilding(int id, BuildingDto building)
+        public async Task<ActionResult> UpdateBuilding(Guid id, BuildingDto building)
         {
             var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"UpdateBuilding/{id}", Method.PUT, building);
             return Json(response);
         }
 
-        public async Task<ActionResult> DeleteBuilding(int id)
+        public async Task<ActionResult> DeleteBuilding(Guid id)
         {
             var response = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", $"DeleteBuilding/{id}", Method.DELETE);
             return Json(response);

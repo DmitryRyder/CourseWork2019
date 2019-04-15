@@ -5,7 +5,7 @@ namespace Common.Models
     [Serializable]
     public class BaseModel : IComparable
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public override bool Equals(object obj)
         {

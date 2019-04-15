@@ -15,30 +15,30 @@ namespace API.Swagger
         {
             services.AddSwaggerGen(c =>
             {
-                    c.SwaggerDoc("v1", new Info
-                    {
-                        Version = "v1",
-                        Title = "API",
-                    });
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "API",
+                });
 
-                    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                    //c.IncludeXmlComments(xmlPath);
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(@"C:\repos\CourseWork2019\API\API\API.xml");
 
-                    //var security = new Dictionary<string, IEnumerable<string>>
-                    //{
-                    //    {"Bearer", new string[] { }},
-                    //};
+                //var security = new Dictionary<string, IEnumerable<string>>
+                //{
+                //    {"Bearer", new string[] { }},
+                //};
 
-                    //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                    //{
-                    //    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    //    Name = "Authorization",
-                    //    In = "header",
-                    //    Type = "apiKey"
-                    //});
-                    //c.AddSecurityRequirement(security);
-                    c.DescribeAllEnumsAsStrings();
+                //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                //{
+                //    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                //    Name = "Authorization",
+                //    In = "header",
+                //    Type = "apiKey"
+                //});
+                //c.AddSecurityRequirement(security);
+                //c.DescribeAllEnumsAsStrings();
             });
 
             return services;

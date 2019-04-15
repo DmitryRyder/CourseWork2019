@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Common.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace API.Core.Automapper.Converters
 {
@@ -10,15 +8,15 @@ namespace API.Core.Automapper.Converters
     /// <summary>
     /// Конвертер для получения только айдишников из сущности для автомаппера
     /// </summary>
-    public class ModelToIntConverter : ITypeConverter<BaseModel, int>
+    public class ModelToGuidConverter : ITypeConverter<BaseModel, Guid>
     {
         /// <param name="source"></param>
         /// <param name="destination"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public int Convert(BaseModel source, int destination, ResolutionContext context)
+        public Guid Convert(BaseModel source, Guid destination, ResolutionContext context)
         {
-            return source?.Id ?? 0;
+            return source.Id;
         }
     }
 }

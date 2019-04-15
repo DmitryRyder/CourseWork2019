@@ -8,6 +8,7 @@ using Common.Code;
 using Common.DTO;
 using Common.Filters;
 using Kendo.Mvc.Extensions;
+using System;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -26,13 +27,13 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(response);
         }
 
-        public async Task<ActionResult> UpdateType(int id, TypeOfRoomDto type)
+        public async Task<ActionResult> UpdateType(Guid id, TypeOfRoomDto type)
         {
             var response = await RestQuery.ExecuteAsync<string>("http://localhost:57770/", $"UpdateType/{id}", Method.PUT, type);
             return Json(response);
         }
 
-        public async Task<ActionResult> DeleteType(int id)
+        public async Task<ActionResult> DeleteType(Guid id)
         {
             var response = await RestQuery.ExecuteAsync<string>("http://localhost:57770/", $"DeleteType/{id}", Method.DELETE);
             return Json(response);

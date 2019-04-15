@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,10 +16,9 @@ namespace Common.DTO
 
         [DisplayName("Этаж")]
         public int Floor { get; set; }
-
-        [DisplayName("Тип помещения")]
+        public Guid Type_of_roomId { get; set; }
         public TypeOfRoomDto TypeOfRoom { get; set; }
-
+        public Guid BuildingId { get; set; }
         [DisplayName("Здание")]
         public BuildingDto Building { get; set; }
     }

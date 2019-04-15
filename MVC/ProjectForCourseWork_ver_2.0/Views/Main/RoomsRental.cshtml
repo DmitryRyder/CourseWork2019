@@ -19,19 +19,14 @@
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250).EditorTemplateName("OrganizationNameEdit").Title("Организация");
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Sortable(false).Width(250).EditorTemplateName("BuildingNameEdit").Title("Здание");
-            //columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Sortable(false).Width(250).EditorTemplateName("RoomNumberEdit").Title("Номер помещения");
+            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250);
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Sortable(false).Width(250);
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Sortable(false).Width(250);
             columns.Bound(p => p.InputDate);
             columns.Bound(p => p.OutputDate);
             columns.Command(command => { command.Destroy(); }).Width(200);
         })
-        .ToolBar(tools =>
-        {
-            tools.Create();
-            tools.Save();
-        })
-        .Editable(editable => editable.Mode(GridEditMode.InCell).DisplayDeleteConfirmation(false))
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
         .Pageable()
         .Sortable()
         .Scrollable()
@@ -42,17 +37,10 @@
         .Model(model =>
         {
             model.Id(p => p.Id);
-            model.Field(p => p.Organization).DefaultValue(
-                ViewData["defaultOrganization"] as OrganizationDto);
-            model.Field(p => p.Room).DefaultValue(
-                ViewData["defaultBuilding"] as RoomDto);
-            //model.Field(p => p.Room).DefaultValue(
-            //    ViewData["defaultRoom"] as RoomDto);
+            model.Field(p => p.Id).Editable(false);
         })
         .PageSize(30)
         .Read(read => read.Action("GetAllRentalRooms", "RoomsRental"))
-        .Create(create => create.Action("AddRentalRoom", "RoomsRental"))
-        .Update(update => update.Action("UpdateRentalRoom", "RoomsRental"))
         .Destroy(update => update.Action("DeleteRentalRoom", "RoomsRental"))
         )
     )
@@ -73,62 +61,14 @@
 <script>
     $(document).ready(function () {
         var myWindow = $("#AddRentalWindow");
-        var Room_rental = {
-            InputDate: 0,
-            OutputDate: 0,
-            RoomId: 0,
-            OrganizationId: 0
-        }//Model
         $("#open").click(function (e) {
             myWindow.data("kendoWindow").open();
             myWindow.data("kendoWindow").center();
         });
-
-        $("#add").click(function (e) {
-            var options = {};
-            options.url = 'http://localhost:57109/AddRentalRoom';
-            options.type = "POST";
-            var room_rental = Room_rental;
-            room_rental.InputDate = $("#inputDate").val();
-            room_rental.OutputDate = $("#outputDate").val();
-            room_rental.RoomId = $("#rooms").val();
-            room_rental.OrganizationId = $("#organizations").val();
-            console.dir(room_rental);
-            options.data = JSON.stringify(room_rental);
-            options.contentType = "application/json";
-            options.dataType = "html";
-            //options.success = function () {
-            //    getDetails(planetId);
-            //};
-            $.ajax(options);
-        });
     });
-
         function filterBuildings() {
             return {
                 buildingId: $("#buildings").val()
             };
         }
 </script>
-
-    @*function buildingId() {
-            return {
-                departmentId: '@(Model.Department?.Id ?? 0)'
-            };
-            return {
-                departmentId: cbDepartment.value()
-            };
-        }
-    }*@
-
-    @*//    function onSelect(e) {
-    //		if (e.item) {
-    //			var dataItem = this.dataItem(e.item.index());
-    //            console.log("event :: select (" + dataItem + " : " + dataItem.Id + ")");
-    //            $("#rN").enable = true;
-    //		} else {
-    //			console.log("event :: select");
-    //		}
-    //}*@
-
-

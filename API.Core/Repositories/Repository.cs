@@ -21,14 +21,14 @@ namespace API.Core.Repositories
             this.dbSet = context.Set<T>();
         }
 
-        public T GetById(int? id)
+        public T GetById(Guid id)
         {
-            return id is null ? null : dbSet.Find(id);
+            return id == null ? null : dbSet.Find(id);
         }
 
-        public async Task<T> GetByIdAsync(int? id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            return id is null ? null : await dbSet.FindAsync(id);
+            return id == null ? null : await dbSet.FindAsync(id);
         }
 
         public List<T> GetAll()
@@ -54,7 +54,7 @@ namespace API.Core.Repositories
             return query;
         }
 
-        public IQueryable<T> Query(int id)
+        public IQueryable<T> Query(Guid id)
         {
             return context.Query<T>().Where(i => i.Id == id);
         }
@@ -85,6 +85,22 @@ namespace API.Core.Repositories
             return query == null ? dbSet : (IQueryable<T>)query;
         }
 
+        public async Task<List<T>> IncludeAsync(params Expression<Func<T, object>>[] includes)
+        {
+            IIncludableQueryable<T, object> query = null;
+
+            if (includes.Length > 0)
+            {
+                query = dbSet.Include(includes[0]);
+            }
+            for (int queryIndex = 1; queryIndex < includes.Length; ++queryIndex)
+            {
+                query = query.Include(includes[queryIndex]);
+            }
+
+            return await ((IQueryable<T>)query).ToListAsync();
+        }
+
         public void Insert(T model)
         {
             dbSet.Add(model);
@@ -111,7 +127,7 @@ namespace API.Core.Repositories
             context.Entry(model).State = EntityState.Modified;
         }
 
-        public async void DeleteByIdAsync(int id)
+        public async void DeleteByIdAsync(Guid id)
         {
             T entity = await dbSet.FindAsync(id);
             if (entity != null)
@@ -120,7 +136,7 @@ namespace API.Core.Repositories
             }
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(Guid id)
         {
             T entity = dbSet.Find(id);
             if (entity != null)

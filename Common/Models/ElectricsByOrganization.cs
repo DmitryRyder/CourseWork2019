@@ -1,16 +1,13 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.Models
 {
-    public class ElectricsByOrganization
+    public class ElectricsByOrganization : BaseModel
     {
-        [Key]
-        public int ElectricId { get; set; }
+        [ForeignKey("ElectricId ")]
         public Electric Electric { get; set; }
 
-        [Key]
-        public int OrganizationId { get; set; }
+        [ForeignKey("OrganizationId")]
         public Organization Organization { get; set; }
     }
 }

@@ -219,6 +219,7 @@
     <Content Include="Views\Main\EditorTemplates\OrganizationNameEdit.cshtml" />
     <Content Include="Views\Main\Organizations.cshtml" />
     <Content Include="Views\Main\AddRentalWindow.cshtml" />
+    <Content Include="Views\Main\AddRoomWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

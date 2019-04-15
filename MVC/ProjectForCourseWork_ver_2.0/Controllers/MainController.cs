@@ -30,25 +30,9 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return View();
         }
 
-        public async Task<ActionResult> CascadingGetOrganizations()
+        public ActionResult AddRoomWindow()
         {
-            var objectsO = await RestQuery.ExecuteAsync<List<OrganizationDto>>("http://localhost:57770/", "GetAllOrganizations", Method.GET);
-
-            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
-        }
-
-        public async Task<ActionResult> CascadingGetBuildings()
-        {
-            var objectsO = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "GetAllBuildings", Method.GET);
-
-            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
-        }
-
-        public async Task<ActionResult> CascadingGetRooms(int? buildingId)
-        {
-            var objectsO = await RestQuery.ExecuteAsync<List<RoomDto>>("http://localhost:57770/", $"GetRoomsForBuilding/{buildingId}", Method.GET);
-
-            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
         public async Task<ActionResult> Rooms()

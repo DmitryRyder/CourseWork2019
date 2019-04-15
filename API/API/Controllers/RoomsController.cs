@@ -9,6 +9,9 @@ using Common.Code;
 using Common.DTO;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace API.Controllers
 {
@@ -29,11 +32,11 @@ namespace API.Controllers
         [HttpGet]
         [Route("/GetAllRooms")]
         [ProducesResponseType(typeof(List<RoomDto>), 200)]
-        public JsonResult GetAllRooms()
+        public JsonResult GetAllRoomsAsync()
         {
-            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
-            
-            return Json(mapper, Rooms, typeof(List<RoomDto>));
+            var rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
+
+            return Json(mapper, rooms, typeof(List<RoomDto>));
         }
 
         [HttpGet]
@@ -56,26 +59,6 @@ namespace API.Controllers
             room.Building = null;
             room.TypeOfRoom = null;
 
-            //if (!model.TypeOfRoom.IsNullOrEmpty())
-            //{
-            //    typeOfRoom = unitOfWork.GetRepository<Type_of_room>().Query().Join
-            //                                                             .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
-            //                                                             .FirstOrDefault();
-            //}
-
-            //if (typeOfRoom == null && !model.TypeOfRoom.IsNullOrEmpty())
-            //{
-            //    unitOfWork.GetRepository<Type_of_room>().Insert(new Type_of_room { Name = model.TypeOfRoom });
-            //    unitOfWork.GetRepository<Type_of_room>().Save();
-            //}
-            //else
-            //    return new ObjectResult("Model added unsuccessfully!");
-
-            //room.Type_of_roomId = unitOfWork.GetRepository<Type_of_room>().Query()
-            //                                                                .Where(t => model.TypeOfRoom.ToLower() == t.Name.ToLower())
-            //                                                                .Select(t => t.Id)
-            //                                                                .FirstOrDefault();
-
             if (ModelState.IsValid)
             {
                 unitOfWork.GetRepository<Room>().InsertAsync(room);
@@ -88,7 +71,7 @@ namespace API.Controllers
         [HttpPut]
         [Route("/UpdateRoom/{id}")]
         [ProducesResponseType(typeof(string), 200)]
-        public IActionResult UpdateRoom(int id, RoomDto model)
+        public IActionResult UpdateRoom(Guid id, RoomDto model)
         {
             var room = model.MapTo<Room>(mapper);
             var newRoom = unitOfWork.GetRepository<Room>().GetById(id);
@@ -108,7 +91,7 @@ namespace API.Controllers
         [HttpDelete]
         [Route("/DeleteRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult DeleteRoom(int id)
+        public IActionResult DeleteRoom(Guid id)
         {
             unitOfWork.GetRepository<Room>().DeleteById(id);
             unitOfWork.GetRepository<Room>().Save();

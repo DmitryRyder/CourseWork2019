@@ -26,7 +26,7 @@
                       {
                           source.Read(read =>
                           {
-                              read.Action("CascadingGetOrganizations", "Main");
+                              read.Action("CascadingGetOrganizations", "RoomsRental");
                           });
                       })
                 )
@@ -44,7 +44,7 @@
                 {
                     source.Read(read =>
                     {
-                        read.Action("CascadingGetBuildings", "Main");
+                        read.Action("CascadingGetBuildings", "RoomsRental");
                     });
                 })
                 )
@@ -62,7 +62,7 @@
                 {
                     source.Read(read =>
                     {
-                        read.Action("CascadingGetRooms", "Main").Data("filterBuildings");
+                        read.Action("CascadingGetRooms", "RoomsRental").Data("filterBuildings");
                     })
                     .ServerFiltering(true);
                 })
@@ -111,15 +111,15 @@
     }
 </style>
 <script>
-    var Room_rental = {
+    $(document).ready(function () {
+        var Room_rental = {
+            Id:0,
             InputDate: 0,
             OutputDate: 0,
             RoomId: 0,
             OrganizationId: 0
         }//Model
-
-    $(document).ready(function () {
-       $("#add").click(function (e) {
+        $("#add").click(function (e) {
             var options = {};
             options.url = 'http://localhost:57109/RoomsRental/AddRentalRoom';
             options.type = "POST";

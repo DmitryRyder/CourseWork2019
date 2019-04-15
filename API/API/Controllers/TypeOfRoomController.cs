@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
@@ -54,10 +55,10 @@ namespace API.Controllers
         [HttpPut]
         [Route("/UpdateType/{id}")]
         [ProducesResponseType(typeof(string), 200)]
-        public async Task<IActionResult> UpdateBuilding(int id, TypeOfRoomDto model)
+        public async Task<IActionResult> UpdateBuilding(Guid id, TypeOfRoomDto model)
         {
             var type = model.MapTo<Type_of_room>(mapper);
-            var newType= await unitOfWork.GetRepository<Type_of_room>().GetByIdAsync(id);
+            var newType = await unitOfWork.GetRepository<Type_of_room>().GetByIdAsync(id);
             newType.Name = type.Name;
 
             if (ModelState.IsValid && id == model.Id)
@@ -72,7 +73,7 @@ namespace API.Controllers
         [HttpDelete]
         [Route("/DeleteType/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult DeleteBuilding(int id)
+        public IActionResult DeleteBuilding(Guid id)
         {
             unitOfWork.GetRepository<Type_of_room>().DeleteById(id);
             unitOfWork.GetRepository<Type_of_room>().Save();

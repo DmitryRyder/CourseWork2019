@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using API.Core.Automapper.Converters;
 using Common.Models;
+using System;
 
 namespace API.Core.Automapper
 {
@@ -10,8 +11,8 @@ namespace API.Core.Automapper
         {
             m.CreateMap<bool, string>()
              .ConvertUsing(b => b ? "Да" : "Нет");
-            m.CreateMap<BaseModel, int>()
-             .ConvertUsing<ModelToIntConverter>();
+            //m.CreateMap<BaseModel, Guid>()
+            // .ConvertUsing<ModelToGuidConverter>();
             m.CreateMissingTypeMaps = true;
             m.ValidateInlineMaps = false;
         }

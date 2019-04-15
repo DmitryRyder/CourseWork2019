@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace API.Core.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork /*: IDisposable*/
     {
         private Dictionary<Type, object> repositories;
         private readonly DbContext context;
@@ -37,20 +37,20 @@ namespace API.Core.DAL
             await context.SaveChangesAsync();
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
-        private void Dispose(bool disposing)
-        {
-            if (!disposing) return;
-            if (context != null)
-            {
-                context.Dispose();
-                repositories.Clear();
-            }
-        }
+        //private void Dispose(bool disposing)
+        //{
+        //    if (!disposing) return;
+        //    if (context != null)
+        //    {
+        //        context.Dispose();
+        //        repositories.Clear();
+        //    }
+        //}
     }
 }

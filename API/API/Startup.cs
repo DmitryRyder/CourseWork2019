@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace API
 {
@@ -22,7 +21,6 @@ namespace API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -43,12 +41,12 @@ namespace API
                      });
 
             services.AddAutoMapper(MapperConfig.Config);
-            services.AddTransient<IDbContextFactory, DbContextFactory>();
-            services.AddSingleton<UnitOfWork>();
+            services.AddSingleton<IDbContextFactory, DbContextFactory>();
+            services.AddTransient<UnitOfWork>();
             services.AddSwaggerDocumentation();
             //services.AddScoped<UnitOfWork>();
 
-                //c.CustomSchemaIds(r => r.FullName);
+            //c.CustomSchemaIds(r => r.FullName);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

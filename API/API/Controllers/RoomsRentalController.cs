@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using API.Controllers.Base;
 using API.Core.DAL;
@@ -27,10 +28,12 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("/GetAllRentalRooms")]
-        [ProducesResponseType(typeof(List<RoomDto>), 200)]
+        [ProducesResponseType(typeof(List<RoomRentalDto>), 200)]
         public JsonResult GetAllRentalRooms()
         {
             var RoomsRental = unitOfWork.GetRepository<Room_rental>().Include(x => x.Room, x => x.Organization, x => x.Room.Building);
+
+            var rooms = RoomsRental.MapTo<List<RoomRentalDto>>(mapper);
 
             return Json(mapper, RoomsRental, typeof(List<RoomRentalDto>));
         }
@@ -42,8 +45,8 @@ namespace API.Controllers
         {
             var roomRental = model.MapTo<Room_rental>(mapper);
 
-            roomRental.Room = null;
-            roomRental.Organization = null;
+            //roomRental.Room = null;
+            //roomRental.Organization = null;
 
             if (ModelState.IsValid)
             {
@@ -57,7 +60,7 @@ namespace API.Controllers
         [HttpPut]
         [Route("/UpdateRentalRoom/{id}")]
         [ProducesResponseType(typeof(string), 200)]
-        public IActionResult UpdateRentalRoom(int id, RoomRentalDto model)
+        public IActionResult UpdateRentalRoom(Guid id, RoomRentalDto model)
         {
             var room = model.MapTo<Room_rental>(mapper);
             var newRoomRental = unitOfWork.GetRepository<Room_rental>().GetById(id);
@@ -76,7 +79,7 @@ namespace API.Controllers
         [HttpDelete]
         [Route("/DeleteRentalRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public IActionResult DeleteRentalRoom(int id)
+        public IActionResult DeleteRentalRoom(Guid id)
         {
             unitOfWork.GetRepository<Room_rental>().DeleteById(id);
             unitOfWork.GetRepository<Room_rental>().Save();

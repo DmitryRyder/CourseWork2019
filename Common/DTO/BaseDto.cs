@@ -8,7 +8,7 @@ namespace Common.DTO
     public class BaseDto : IComparable
     {
         [DisplayName("Id")]
-        public virtual int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonIgnore]
         public virtual string Text =>
@@ -31,55 +31,55 @@ namespace Common.DTO
 
         public virtual Dictionary<string, string> Validate() => null;
 
-        protected void AssertNotNull(string fieldName, string exString, Dictionary<string, string> result)
-        {
-            var obj = GetType()
-                     .GetProperty(fieldName)
-                    ?.GetValue(this, null);
-            if (result.ContainsKey(fieldName))
-                return;
-            switch (obj)
-            {
-                case string sObj:
-                    if (string.IsNullOrEmpty(sObj))
-                        result.Add(fieldName, exString);
-                    break;
-                case BaseDto dtoObj:
-                    if (dtoObj.Id <= 0)
-                        result.Add(fieldName, exString);
-                    break;
-                case DateTime dateObj:
-                    if (dateObj.Year <= 1)
-                        result.Add(fieldName, exString);
-                    break;
-                case null:
-                    result.Add(fieldName, exString);
-                    break;
-            }
-        }
+        //protected void AssertNotNull(string fieldName, string exString, Dictionary<string, string> result)
+        //{
+        //    var obj = GetType()
+        //             .GetProperty(fieldName)
+        //            ?.GetValue(this, null);
+        //    if (result.ContainsKey(fieldName))
+        //        return;
+        //    switch (obj)
+        //    {
+        //        case string sObj:
+        //            if (string.IsNullOrEmpty(sObj))
+        //                result.Add(fieldName, exString);
+        //            break;
+        //        case BaseDto dtoObj:
+        //            if (dtoObj.Id <= 0)
+        //                result.Add(fieldName, exString);
+        //            break;
+        //        case DateTime dateObj:
+        //            if (dateObj.Year <= 1)
+        //                result.Add(fieldName, exString);
+        //            break;
+        //        case null:
+        //            result.Add(fieldName, exString);
+        //            break;
+        //    }
+        //}
 
-        protected void AssertNumeric(string fieldName, string exString, Dictionary<string, string> result, Func<decimal, bool> func)
-        {
-            AssertNotNull(fieldName, exString, result);
-            var obj = GetType()
-                     .GetProperty(fieldName)
-                    ?.GetValue(this, null);
-            switch (obj)
-            {
-                case decimal dObj:
-                    if (!func(dObj) && !result.ContainsKey(fieldName))
-                        result.Add(fieldName, exString);
-                    break;
-                case double doubleObj:
-                    if (!func((decimal)doubleObj) && !result.ContainsKey(fieldName))
-                        result.Add(fieldName, exString);
-                    break;
-                case int iObj:
-                    if (!func(iObj) && !result.ContainsKey(fieldName))
-                        result.Add(fieldName, exString);
-                    break;
-            }
-        }
+        //protected void AssertNumeric(string fieldName, string exString, Dictionary<string, string> result, Func<decimal, bool> func)
+        //{
+        //    AssertNotNull(fieldName, exString, result);
+        //    var obj = GetType()
+        //             .GetProperty(fieldName)
+        //            ?.GetValue(this, null);
+        //    switch (obj)
+        //    {
+        //        case decimal dObj:
+        //            if (!func(dObj) && !result.ContainsKey(fieldName))
+        //                result.Add(fieldName, exString);
+        //            break;
+        //        case double doubleObj:
+        //            if (!func((decimal)doubleObj) && !result.ContainsKey(fieldName))
+        //                result.Add(fieldName, exString);
+        //            break;
+        //        case int iObj:
+        //            if (!func(iObj) && !result.ContainsKey(fieldName))
+        //                result.Add(fieldName, exString);
+        //            break;
+        //    }
+        //}
 
         public virtual int CompareTo(object obj)
         {
@@ -89,6 +89,6 @@ namespace Common.DTO
         }
 
         [JsonIgnore]
-        public bool IsNew => Id == 0;
+        public bool IsNew => Id == null;
     }
 }
