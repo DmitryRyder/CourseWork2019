@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
 using AutoMapper;
@@ -10,7 +8,6 @@ using Common.Code;
 using Common.DTO;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace API.Controllers
 {

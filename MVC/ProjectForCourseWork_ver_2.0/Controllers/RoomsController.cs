@@ -18,16 +18,8 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
     {
         public async Task<ActionResult> GetAllRooms([DataSourceRequest] DataSourceRequest request)
         {
-            //var filters = new BaseFilterDto { Request = request };
             var objects = await RestQuery.ExecuteAsync<List<RoomDto>>("http://localhost:57770/", "GetAllRooms", Method.GET);
-            //var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
 
-            //var result = new DataSourceResult
-            //{
-            //    AggregateResults = aggregateResults,
-            //    Data = data,
-            //    Total = objects.DataCount
-            //};
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
@@ -66,8 +58,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public async Task<ActionResult> CascadingGetFloors(Guid buildingId)
         {
             var objectsO = await RestQuery.ExecuteAsync<List<Selected>>("http://localhost:57770/", $"GetFloorsForBuilding/{buildingId}", Method.GET);
-            //var objectsO = await RestQuery.ExecuteAsync<List<BuildingDto>>("http://localhost:57770/", "GetAllBuildings", Method.GET);
-            //var t = new List<Selected> { new Selected { Key = "2" }, new Selected { Key = "3" }, new Selected { Key = "4" } };
 
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }

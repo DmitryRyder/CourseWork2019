@@ -15,16 +15,7 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
     {
         public async Task<ActionResult> GetAllElectricsByOrganization([DataSourceRequest] DataSourceRequest request)
         {
-            //var filters = new BaseFilterDto { Request = request };
             var objects = await RestQuery.ExecuteAsync<List<ElectricsByOrganizationDto>>("http://localhost:57770/", "GetAllElectricsByOrganization", Method.GET);
-            //var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(objects.Data);
-
-            //var result = new DataSourceResult
-            //{
-            //    AggregateResults = aggregateResults,
-            //    Data = data,
-            //    Total = objects.DataCount
-            //};
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
