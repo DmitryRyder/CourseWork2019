@@ -1,6 +1,8 @@
 ﻿@using Common.DTO
+@using Common.Extensions
 @using ProjectForCourseWork_ver_2._0.Extensions
 @using Kendo.Mvc.UI
+@using Common
 
 @model IEnumerable<RoomRentalDto>
 
@@ -8,8 +10,56 @@
     <h2>Помещения в аренде</h2>
 </div>
 
-<div class="floatingButtons">
-    <button id="open" class="k-button">Добавить Аренду</button>
+<div class="filters row">
+    <div class="col-lg-4">
+        <label class="col-sm-5">Дата въезда</label>
+        <div class="col-sm-7">
+            <label for="dtStart">с</label>
+            @(Html.Kendo()
+                  .DatePicker()
+                  .BackDatePicker()
+                  .Name("dtInputStart")
+                  .HtmlAttributes(new { style = "width:calc(20% - 5px);" })
+                  .Value(DateTime.Today.StartOfMonth()))
+            <label for="dtEnd">по</label>
+            @(Html.Kendo()
+                  .DatePicker()
+                  .BackDatePicker()
+                  .Name("dtInputEnd")
+                  .HtmlAttributes(new { style = "width:calc(20% - 5px);" })
+                  .Value(DateTime.Today.EndOfMonth())
+            )
+        </div>
+        <label class="col-sm-5">Дата выезда</label>
+        <div class="col-sm-7">
+            <label for="dtStart">с</label>
+            @(Html.Kendo()
+                  .DatePicker()
+                  .BackDatePicker()
+                  .Name("dtOutputStart")
+                  .HtmlAttributes(new { style = "width:calc(20% - 5px);" })
+                  .Value(DateTime.Today.StartOfMonth()))
+            <label for="dtEnd">по</label>
+            @(Html.Kendo()
+                  .DatePicker()
+                  .BackDatePicker()
+                  .Name("dtOutputEnd")
+                  .HtmlAttributes(new { style = "width:calc(20% - 5px);" })
+                  .Value(DateTime.Today.EndOfMonth())
+            )
+        </div>
+        <div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
+            @(Html.Kendo().Button()
+                                  .Name("btFilter")
+                                  .Content("Применить фильтры")
+                                  .Events(e => e.Click("btFilter_onClick"))
+            )
+            @(Html.Kendo().Button()
+                      .Name("open")
+                      .Content("Добавить аренду")
+            )
+        </div>
+    </div>
 </div>
 <div class="row2">
     @(Html.Kendo().Grid(Model)
@@ -19,11 +69,11 @@
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250);
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Sortable(false).Width(250);
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Sortable(false).Width(250);
-            columns.Bound(p => p.InputDate);
-            columns.Bound(p => p.OutputDate);
+            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Width(250);
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Width(250);
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Width(250);
+            columns.Bound(p => p.InputDate).Format(Constants.AttributeDateFormat);
+            columns.Bound(p => p.OutputDate).Format(Constants.AttributeDateFormat);
             columns.Command(command => { command.Destroy(); }).Width(200);
         })
         .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
@@ -40,7 +90,7 @@
             model.Field(p => p.Id).Editable(false);
         })
         .PageSize(30)
-        .Read(read => read.Action("GetAllRentalRooms", "RoomsRental"))
+        .Read(read => read.Action("GetFiltered", "RoomsRental").Data("filters"))
         .Destroy(update => update.Action("DeleteRentalRoom", "RoomsRental"))
         )
     )
@@ -59,6 +109,7 @@
 </div>
 
 <script>
+    var grRoomsRental, dtStart, dtEnd;
     $(document).ready(function () {
         var myWindow = $("#AddRentalWindow");
         $("#open").click(function (e) {
@@ -66,9 +117,24 @@
             myWindow.data("kendoWindow").center();
         });
     });
-        function filterBuildings() {
-            return {
-                buildingId: $("#buildings").val()
-            };
+    function filterBuildings() {
+        return {
+            buildingId: $("#buildings").val()
+        };
+    }
+    function filters() {
+        //console.log($("#dtStart").val() + " " + $("#dtEnd").val());
+        return {
+            DateInputStart: $("#dtInputStart").val(),
+            DateInputEnd: $("#dtInputEnd").val(),
+            DateOutputStart: $("#dtOutputStart").val(),
+            DateOutputEnd: $("#dtOutputEnd").val()
         }
+    }
+    function rebindDataSource() {
+        $("#grRoomsRental").data("kendoGrid").dataSource.read();
+    }
+    function btFilter_onClick() {
+        rebindDataSource();
+    }
 </script>

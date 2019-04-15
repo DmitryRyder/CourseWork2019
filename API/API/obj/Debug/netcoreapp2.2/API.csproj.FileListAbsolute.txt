@@ -18,3 +18,5 @@ C:\repos\CourseWork2019\API\API\bin\Debug\netcoreapp2.2\Common.pdb
 C:\repos\CourseWork2019\API\API\obj\Debug\netcoreapp2.2\API.RazorTargetAssemblyInfo.cache
 C:\repos\CourseWork2019\API\API\obj\Debug\netcoreapp2.2\API.csproj.CopyComplete
 C:\repos\CourseWork2019\API\API\bin\Debug\netcoreapp2.2\API.xml
+C:\repos\CourseWork2019\API\API\bin\Debug\netcoreapp2.2\Common.DTO.Kendo.dll
+C:\repos\CourseWork2019\API\API\bin\Debug\netcoreapp2.2\Common.DTO.Kendo.pdb

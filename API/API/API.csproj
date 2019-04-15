@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\API.Core\API.Core.csproj" />
+    <ProjectReference Include="..\..\Common.DTO.Kendo\Common.DTO.Kendo.csproj" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
 

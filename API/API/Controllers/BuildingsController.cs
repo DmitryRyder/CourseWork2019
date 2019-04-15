@@ -10,15 +10,9 @@ using Common.Code;
 using Common.DTO;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace API.Controllers
 {
-    class Flor
-    {
-        public int Floor { get; set; }
-    }
-
     /// <summary>
     /// Контроллер для работы со зданиями
     /// </summary>

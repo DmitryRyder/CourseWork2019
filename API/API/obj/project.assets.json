@@ -2387,6 +2387,23 @@
           "lib/netstandard2.0/Microsoft.Extensions.Options.DataAnnotations.dll": {}
         }
       },
+      "Microsoft.Extensions.PlatformAbstractions/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.AppContext": "4.1.0",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime.Extensions": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.Extensions.PlatformAbstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Extensions.PlatformAbstractions.dll": {}
+        }
+      },
       "Microsoft.Extensions.Primitives/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -3496,6 +3513,25 @@
         },
         "compile": {
           "ref/netstandard1.3/System.Console.dll": {}
+        }
+      },
+      "System.Data.Common/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Globalization": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading.Tasks": "4.0.11"
+        },
+        "compile": {
+          "ref/netstandard1.2/System.Data.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.2/System.Data.Common.dll": {}
         }
       },
       "System.Data.SqlClient/4.6.0": {
@@ -4865,6 +4901,83 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Telerik.UI.for.AspNet.Core/2016.3.914": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Formatters.Xml": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0",
+          "Microsoft.AspNetCore.Routing": "1.0.0",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+          "System.Data.Common": "4.1.0",
+          "System.Linq.Queryable": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Xml.XmlDocument": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/Kendo.Mvc.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Kendo.Mvc.dll": {}
+        },
+        "resource": {
+          "lib/netstandard1.6/bg-BG/Kendo.Mvc.resources.dll": {
+            "locale": "bg-BG"
+          },
+          "lib/netstandard1.6/cs-CZ/Kendo.Mvc.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/netstandard1.6/da-DK/Kendo.Mvc.resources.dll": {
+            "locale": "da-DK"
+          },
+          "lib/netstandard1.6/de-DE/Kendo.Mvc.resources.dll": {
+            "locale": "de-DE"
+          },
+          "lib/netstandard1.6/es-ES/Kendo.Mvc.resources.dll": {
+            "locale": "es-ES"
+          },
+          "lib/netstandard1.6/fr-CA/Kendo.Mvc.resources.dll": {
+            "locale": "fr-CA"
+          },
+          "lib/netstandard1.6/fr-FR/Kendo.Mvc.resources.dll": {
+            "locale": "fr-FR"
+          },
+          "lib/netstandard1.6/it-IT/Kendo.Mvc.resources.dll": {
+            "locale": "it-IT"
+          },
+          "lib/netstandard1.6/nl-NL/Kendo.Mvc.resources.dll": {
+            "locale": "nl-NL"
+          },
+          "lib/netstandard1.6/pl-PL/Kendo.Mvc.resources.dll": {
+            "locale": "pl-PL"
+          },
+          "lib/netstandard1.6/pt-BR/Kendo.Mvc.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard1.6/pt-PT/Kendo.Mvc.resources.dll": {
+            "locale": "pt-PT"
+          },
+          "lib/netstandard1.6/ro-RO/Kendo.Mvc.resources.dll": {
+            "locale": "ro-RO"
+          },
+          "lib/netstandard1.6/ru-RU/Kendo.Mvc.resources.dll": {
+            "locale": "ru-RU"
+          },
+          "lib/netstandard1.6/sv-SE/Kendo.Mvc.resources.dll": {
+            "locale": "sv-SE"
+          },
+          "lib/netstandard1.6/tr-TR/Kendo.Mvc.resources.dll": {
+            "locale": "tr-TR"
+          },
+          "lib/netstandard1.6/uk-UA/Kendo.Mvc.resources.dll": {
+            "locale": "uk-UA"
+          },
+          "lib/netstandard1.6/zh-CN/Kendo.Mvc.resources.dll": {
+            "locale": "zh-CN"
+          }
+        }
+      },
       "ZKWeb.System.Drawing/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4938,6 +5051,21 @@
         },
         "runtime": {
           "bin/placeholder/Common.dll": {}
+        }
+      },
+      "Common.DTO.Kendo/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Common": "1.0.0",
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Telerik.UI.for.AspNet.Core": "2016.3.914"
+        },
+        "compile": {
+          "bin/placeholder/Common.DTO.Kendo.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Common.DTO.Kendo.dll": {}
         }
       }
     }
@@ -7143,6 +7271,21 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.DataAnnotations.xml",
         "microsoft.extensions.options.dataannotations.2.2.0.nupkg.sha512",
         "microsoft.extensions.options.dataannotations.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.PlatformAbstractions/1.0.0": {
+      "sha512": "zyjUzrOmuevOAJpIo3Mt5GmpALVYCVdLZ99keMbmCxxgQH7oxzU58kGHzE6hAgYEiWsdfMJLjVR7r+vSmaJmtg==",
+      "type": "package",
+      "path": "microsoft.extensions.platformabstractions/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/Microsoft.Extensions.PlatformAbstractions.dll",
+        "lib/net451/Microsoft.Extensions.PlatformAbstractions.xml",
+        "lib/netstandard1.3/Microsoft.Extensions.PlatformAbstractions.dll",
+        "lib/netstandard1.3/Microsoft.Extensions.PlatformAbstractions.xml",
+        "microsoft.extensions.platformabstractions.1.0.0.nupkg.sha512",
+        "microsoft.extensions.platformabstractions.nuspec"
       ]
     },
     "Microsoft.Extensions.Primitives/2.2.0": {
@@ -9389,6 +9532,57 @@
         "ref/xamarinwatchos10/_._",
         "system.console.4.3.0.nupkg.sha512",
         "system.console.nuspec"
+      ]
+    },
+    "System.Data.Common/4.1.0": {
+      "sha512": "epU8jeTe7aE7RqGHq9rZ8b0Q4Ah7DgubzHQblgZMSqgW1saW868WmooSyC5ywf8upLBkcVLDu93W9GPWUYsU2Q==",
+      "type": "package",
+      "path": "system.data.common/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net451/System.Data.Common.dll",
+        "lib/netstandard1.2/System.Data.Common.dll",
+        "lib/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net451/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.dll",
+        "ref/netstandard1.2/System.Data.Common.xml",
+        "ref/netstandard1.2/de/System.Data.Common.xml",
+        "ref/netstandard1.2/es/System.Data.Common.xml",
+        "ref/netstandard1.2/fr/System.Data.Common.xml",
+        "ref/netstandard1.2/it/System.Data.Common.xml",
+        "ref/netstandard1.2/ja/System.Data.Common.xml",
+        "ref/netstandard1.2/ko/System.Data.Common.xml",
+        "ref/netstandard1.2/ru/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hans/System.Data.Common.xml",
+        "ref/netstandard1.2/zh-hant/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.dll",
+        "ref/portable-net451+win8+wp8+wpa81/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/de/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/es/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/fr/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/it/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ja/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ko/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/ru/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hans/System.Data.Common.xml",
+        "ref/portable-net451+win8+wp8+wpa81/zh-hant/System.Data.Common.xml",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.data.common.4.1.0.nupkg.sha512",
+        "system.data.common.nuspec"
       ]
     },
     "System.Data.SqlClient/4.6.0": {
@@ -13413,6 +13607,55 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Telerik.UI.for.AspNet.Core/2016.3.914": {
+      "sha512": "psKOmuIiTWl6KHC51c45Rs7owxgd6xLSiTHcd5yiS9CkLObm121vMc6Ts5OKiPzB1bD0WDAx8bsQIS+aKyvUwA==",
+      "type": "package",
+      "path": "telerik.ui.for.aspnet.core/2016.3.914",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/Kendo.Mvc.dll",
+        "lib/net451/bg-BG/Kendo.Mvc.resources.dll",
+        "lib/net451/cs-CZ/Kendo.Mvc.resources.dll",
+        "lib/net451/da-DK/Kendo.Mvc.resources.dll",
+        "lib/net451/de-DE/Kendo.Mvc.resources.dll",
+        "lib/net451/es-ES/Kendo.Mvc.resources.dll",
+        "lib/net451/fr-CA/Kendo.Mvc.resources.dll",
+        "lib/net451/fr-FR/Kendo.Mvc.resources.dll",
+        "lib/net451/it-IT/Kendo.Mvc.resources.dll",
+        "lib/net451/nl-NL/Kendo.Mvc.resources.dll",
+        "lib/net451/pl-PL/Kendo.Mvc.resources.dll",
+        "lib/net451/pt-BR/Kendo.Mvc.resources.dll",
+        "lib/net451/pt-PT/Kendo.Mvc.resources.dll",
+        "lib/net451/ro-RO/Kendo.Mvc.resources.dll",
+        "lib/net451/ru-RU/Kendo.Mvc.resources.dll",
+        "lib/net451/sv-SE/Kendo.Mvc.resources.dll",
+        "lib/net451/tr-TR/Kendo.Mvc.resources.dll",
+        "lib/net451/uk-UA/Kendo.Mvc.resources.dll",
+        "lib/net451/zh-CN/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/Kendo.Mvc.dll",
+        "lib/netstandard1.6/bg-BG/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/cs-CZ/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/da-DK/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/de-DE/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/es-ES/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/fr-CA/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/fr-FR/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/it-IT/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/nl-NL/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/pl-PL/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/pt-BR/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/pt-PT/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/ro-RO/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/ru-RU/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/sv-SE/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/tr-TR/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/uk-UA/Kendo.Mvc.resources.dll",
+        "lib/netstandard1.6/zh-CN/Kendo.Mvc.resources.dll",
+        "telerik.ui.for.aspnet.core.2016.3.914.nupkg.sha512",
+        "telerik.ui.for.aspnet.core.nuspec"
+      ]
+    },
     "ZKWeb.System.Drawing/4.0.1": {
       "sha512": "r8OLPZ2cb9SSwjm8GNkMbqOgo58N8d8RwxJN1yF01atv+MQdNOqa5Xx117tIjWUbB6pBnVe6u+pXkYVORaCeWw==",
       "type": "package",
@@ -13547,12 +13790,18 @@
       "type": "project",
       "path": "../../Common/Common.csproj",
       "msbuildProject": "../../Common/Common.csproj"
+    },
+    "Common.DTO.Kendo/1.0.0": {
+      "type": "project",
+      "path": "../../Common.DTO.Kendo/Common.DTO.Kendo.csproj",
+      "msbuildProject": "../../Common.DTO.Kendo/Common.DTO.Kendo.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "API.Core >= 1.0.0",
       "Common >= 1.0.0",
+      "Common.DTO.Kendo >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -13593,6 +13842,9 @@
           "projectReferences": {
             "C:\\repos\\CourseWork2019\\API.Core\\API.Core.csproj": {
               "projectPath": "C:\\repos\\CourseWork2019\\API.Core\\API.Core.csproj"
+            },
+            "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj": {
+              "projectPath": "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj"
             },
             "C:\\repos\\CourseWork2019\\Common\\Common.csproj": {
               "projectPath": "C:\\repos\\CourseWork2019\\Common\\Common.csproj"

@@ -104,6 +104,31 @@
             Метод для удаления здания по id
             </summary>
         </member>
+        <member name="T:API.Controllers.ElectricsController">
+            <summary>
+            Контроллер для работы со зданиями
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsController.GetAllElectrics">
+            <summary>
+            Метод возвращающий всё электрооборудование для организаций в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsController.AddElectric(Common.DTO.ElectricDto)">
+            <summary>
+            Метод добавляющий элекрооборудование в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsController.UpdateElectric(System.Guid,Common.DTO.ElectricDto)">
+            <summary>
+            Метод для обновления существующего здания в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsController.DeleteElectric(System.Guid)">
+            <summary>
+            Метод для удаления электрооборудования по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.OrganizationsController">
             <summary>
             Контроллер для работы с организациями

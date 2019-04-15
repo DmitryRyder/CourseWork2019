@@ -132,11 +132,14 @@
     <Compile Include="App_Start\SiteMapConfig.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\BuildingsController.cs" />
+    <Compile Include="Controllers\ElectricsByOrganizationController.cs" />
+    <Compile Include="Controllers\ElectricsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\RoomsRentalController.cs" />
     <Compile Include="Controllers\TypeOfRoomController.cs" />
+    <Compile Include="Extensions\DatePickerExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,10 +223,15 @@
     <Content Include="Views\Main\Organizations.cshtml" />
     <Content Include="Views\Main\AddRentalWindow.cshtml" />
     <Content Include="Views\Main\AddRoomWindow.cshtml" />
+    <Content Include="Views\Main\ElectricsByOrganization.cshtml" />
+    <Content Include="Views\Main\Electrics.cshtml" />
+    <Content Include="Views\Main\AddElectricWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Buildings\" />
+    <Folder Include="Views\ElectricsByOrganization\" />
+    <Folder Include="Views\Electrics\" />
     <Folder Include="Views\Organizations\" />
     <Folder Include="Views\RoomsRental\" />
     <Folder Include="Views\Rooms\" />

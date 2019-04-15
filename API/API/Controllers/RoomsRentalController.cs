@@ -7,6 +7,7 @@ using AutoMapper;
 using BackOffice.API.Core.Extensions;
 using Common.Code;
 using Common.DTO;
+using Common.Filters;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +33,20 @@ namespace API.Controllers
         public JsonResult GetAllRentalRooms()
         {
             var RoomsRental = unitOfWork.GetRepository<Room_rental>().Include(x => x.Room, x => x.Organization, x => x.Room.Building);
+
+            var rooms = RoomsRental.MapTo<List<RoomRentalDto>>(mapper);
+
+            return Json(mapper, RoomsRental, typeof(List<RoomRentalDto>));
+        }
+
+        [HttpPost]
+        [Route("/GetFilteredRentalRooms")]
+        [ProducesResponseType(typeof(List<RoomRentalDto>), 200)]
+        public JsonResult GetFilteredRentalRooms(RoomRentalDtoFilters filter)
+        {
+            var RoomsRental = unitOfWork.GetRepository<Room_rental>().Include(x => x.Room, x => x.Organization, x => x.Room.Building)
+                                                                     .Where(x => x.InputDate >= filter.DateInputStart && x.InputDate <= filter.DateInputEnd
+                                                                            && x.OutputDate >= filter.DateOutputStart && x.OutputDate <= filter.DateOutputEnd);
 
             var rooms = RoomsRental.MapTo<List<RoomRentalDto>>(mapper);
 

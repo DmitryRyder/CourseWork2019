@@ -6,10 +6,9 @@ using ProjectForCourseWork_ver_2._0.Controllers.Base;
 using System.Threading.Tasks;
 using Common.Code;
 using Common.DTO;
-using System.Linq;
 using System;
-using Common.Filters;
 using Kendo.Mvc.Extensions;
+using Common.Filters;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -28,6 +27,22 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             //    Total = objects.DataCount
             //};
             return Json(objects.Data.ToDataSourceResult(request));
+        }
+
+        public async Task<ActionResult> GetFiltered([DataSourceRequest] DataSourceRequest request, RoomRentalDtoFilters filters)
+        {
+            //filters.Request = request;
+            var response = await RestQuery.ExecuteAsync<List<RoomRentalDto>>("http://localhost:57770/", "GetFilteredRentalRooms", Method.POST, filters);
+            //var (data, aggregateResults) = filters.ApplyGroupingAndAggregates(response.Data);
+
+            //var result = new DataSourceResult
+            //{
+            //    AggregateResults = aggregateResults,
+            //    Data = data,
+            //    Total = response.DataCount
+            //};
+
+            return Json(response.Data.ToDataSourceResult(request));
         }
 
         public async Task<ActionResult> AddRentalRoom(RoomRentalDto Room)

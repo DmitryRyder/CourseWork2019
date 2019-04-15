@@ -111,6 +111,9 @@
               "C:\\repos\\CourseWork2019\\API.Core\\API.Core.csproj": {
                 "projectPath": "C:\\repos\\CourseWork2019\\API.Core\\API.Core.csproj"
               },
+              "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj": {
+                "projectPath": "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj"
+              },
               "C:\\repos\\CourseWork2019\\Common\\Common.csproj": {
                 "projectPath": "C:\\repos\\CourseWork2019\\Common\\Common.csproj"
               }
@@ -162,6 +165,81 @@
           "assetTargetFallback": true,
           "warn": true
         }
+      }
+    },
+    "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj",
+        "projectName": "Common.DTO.Kendo",
+        "projectPath": "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\Common.DTO.Kendo.csproj",
+        "packagesPath": "C:\\Users\\ryder\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\CourseWork2019\\Common.DTO.Kendo\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ryder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472",
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\repos\\CourseWork2019\\Common\\Common.csproj": {
+                "projectPath": "C:\\repos\\CourseWork2019\\Common\\Common.csproj"
+              }
+            }
+          },
+          "net472": {
+            "projectReferences": {
+              "C:\\repos\\CourseWork2019\\Common\\Common.csproj": {
+                "projectPath": "C:\\repos\\CourseWork2019\\Common\\Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true,
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Telerik.UI.for.AspNet.Core": {
+              "target": "Package",
+              "version": "[2016.3.914, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        },
+        "net472": {}
       }
     },
     "C:\\repos\\CourseWork2019\\Common\\Common.csproj": {

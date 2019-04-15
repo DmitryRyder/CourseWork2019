@@ -25,6 +25,21 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return View();
         }
 
+        public ActionResult ElectricsByOrganization()
+        {
+            return View();
+        }
+
+        public ActionResult Electrics()
+        {
+            return View();
+        }
+
+        public ActionResult AddElectricWindow()
+        {
+            return View();
+        }
+       
         public ActionResult AddRentalWindow()
         {
             return View();

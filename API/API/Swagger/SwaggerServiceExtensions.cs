@@ -2,10 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 namespace API.Swagger
 {
