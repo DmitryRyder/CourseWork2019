@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Common.Models
 {
@@ -7,11 +7,15 @@ namespace Common.Models
     {
         public DateTime InputDate { get; set; }
         public DateTime OutputDate { get; set; }
-        //[ForeignKey("RoomId")]
         public Guid RoomId { get; set; }
         public Room Room { get; set; }
-        //[ForeignKey("OrganizationId")]
         public Guid OrganizationId { get; set; }
         public Organization Organization { get; set; }
+        public List<Invoice> Invoices { get; set; }
+
+        public Room_rental()
+        {
+            Invoices = new List<Invoice>();
+        }
     }
 }

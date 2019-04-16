@@ -144,6 +144,26 @@
             Метод для удаления электрооборудования по id
             </summary>
         </member>
+        <member name="T:API.Controllers.InvoiceController">
+            <summary>
+            Контроллер для работы со счетами
+            </summary>
+        </member>
+        <member name="M:API.Controllers.InvoiceController.GetAllBuildings">
+            <summary>
+            Метод возвращающий все счета в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.InvoiceController.AddInvoice(Common.DTO.InvoiceDto)">
+            <summary>
+            Метод добавляющий счет в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.InvoiceController.DeleteBuilding(System.Guid)">
+            <summary>
+            Метод для удаления счета по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.OrganizationsController">
             <summary>
             Контроллер для работы с организациями
@@ -167,6 +187,36 @@
         <member name="M:API.Controllers.OrganizationsController.DeleteOrganization(System.Guid)">
             <summary>
             Метод для удаления организации по id
+            </summary>
+        </member>
+        <member name="T:API.Controllers.ReportsController">
+            <summary>
+            Контроллер для вывода отчетов согласно заданию курсовой
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetOrganizationsForPeriod(Common.Filters.OrganizationPeriodFilterDto)">
+            <summary>
+            Метод возвращающий все организации въезжавшие в помещения за определенный период
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetOrganizationsInBuildAndPeriod(Common.Filters.OrganizationBuildingAndPeriodFilterDto)">
+            <summary>
+            Метод возвращающий все организации въезжавшие в заданное здание за выбранный период
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetOrganizationsOutBuildAndPeriod(Common.Filters.OrganizationBuildingAndPeriodFilterDto)">
+            <summary>
+            Метод возвращающий все организации выехавшие из заданного здания за выбранный период
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetDebtorOrganizationForDate(Common.Filters.OrganizationDebtorDateFilter)">
+            <summary>
+            Метод возвращающий все организации с просроченной оплатой по счетам за электричество
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetInvoicesWithFullInfoOfCurrentMonth">
+            <summary>
+            Метод возвращающий все счета за текущий месяц
             </summary>
         </member>
         <member name="M:API.RouteConfig.Configure(Microsoft.AspNetCore.Routing.IRouteBuilder)">

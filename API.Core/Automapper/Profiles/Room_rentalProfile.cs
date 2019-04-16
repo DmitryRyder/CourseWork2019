@@ -8,7 +8,10 @@ namespace API.Core.Automapper.Profiles
     {
         public Room_rentalProfile()
         {
-            CreateMap<Room_rental, RoomRentalDto>();
+            CreateMap<Room_rental, RoomRentalDto>()
+                .ForMember(m => m.BuildingName, o => o.MapFrom(s => s.Room.Building.Name))
+                .ForMember(m => m.OrganizationName, o => o.MapFrom(s => s.Organization.Name))
+                .ForMember(m => m.RoomNumber, o => o.MapFrom(s => s.Room.Number));
             CreateMap<RoomRentalDto, Room_rental>();
         }
     }

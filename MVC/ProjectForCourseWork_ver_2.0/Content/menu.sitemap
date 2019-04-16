@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <siteMap>
   <siteMapNode>
     <siteMapNode id="100" title="Таблицы справочники">
@@ -9,9 +8,17 @@
       <siteMapNode title="Электрооборудование" controller="Main" action="Electrics"/>
     </siteMapNode>
     <siteMapNode id="200" title="Зависимые таблицы">
-      <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
-      <siteMapNode title="Арендуемые помещения" controller="Main" action="RoomsRental"/>
+      <siteMapNode id="210" title="Помещения">
+        <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
+        <siteMapNode title="Арендуемые помещения" controller="Main" action="RoomsRental"/>
+      </siteMapNode>
       <siteMapNode title="Электрооборудование по предприятиям" controller="Main" action="ElectricsByOrganization"/>
+      <siteMapNode title="Счета на оплату" controller="Main" action="invoices"/>
+    </siteMapNode>
+    <siteMapNode id="300" title="Отчеты">
+      <siteMapNode title="Отчет по организациям за период" controller="Main" action="OneGetOrganizationsForPeriod"/>
+      <siteMapNode title="Отчет по организациям въехавшим в выбранное здание за период" controller="Main" action="TwoGetOrganizationsInBuildAndPeriod"/>
     </siteMapNode>
   </siteMapNode>
+
 </siteMap>

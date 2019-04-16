@@ -68,7 +68,7 @@ namespace API.Controllers
 
             List<Selected> floors = new List<Selected>();
 
-            for (int i = 1; i < building.Number_of_floors; i++)
+            for (int i = 1; i <= building.Number_of_floors; i++)
                 floors.Add(new Selected { Key = i.ToString()});
 
             return Json(floors);

@@ -1,7 +1,5 @@
-﻿using Common.Models;
-using System;
+﻿using System;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.DTO
 {

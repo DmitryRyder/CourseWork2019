@@ -16,12 +16,20 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
 
         public ActionResult AddElectricWindow() => View();
        
-        public ActionResult AddRentalWindow() => View();
+        public ActionResult AddRentalWindow() => View(); 
+        
+        public ActionResult AddInvoiceWindow() => View();
 
         public ActionResult AddRoomWindow() => View();
 
         public ActionResult Rooms() => View();
 
         public ActionResult RoomsRental() => View();
+
+        public ActionResult Invoices() => View();
+
+        //ОТЧЕТЫ
+        public ActionResult OneGetOrganizationsForPeriod() => View();
+        public ActionResult TwoGetOrganizationsInBuildAndPeriod() => View();
     }
 }

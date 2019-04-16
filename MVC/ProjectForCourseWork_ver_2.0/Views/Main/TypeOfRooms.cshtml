@@ -12,12 +12,11 @@
     @(Html.Kendo().Grid(Model)
         .BackGrid()
         .Name("grTypesOfRoom")
-        .HtmlAttributes(new { style = "height:760px" })
+        .HtmlAttributes(new { style = "height:760px; margin: 0 auto"})
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Id).Width(80);
-            columns.Bound(p => p.Name).Width(80);
+            columns.Bound(p => p.Name);
             columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
         })
         .ToolBar(tools =>
