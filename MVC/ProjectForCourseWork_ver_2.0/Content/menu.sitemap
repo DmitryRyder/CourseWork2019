@@ -23,6 +23,10 @@
   <siteMapNode>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Типы узлов" controller="Main" action="MPTypeOfNodes"/>
+      <siteMapNode title="Органы управления" controller="Main" action="MPManagementBodies"/>
     </siteMapNode>
-  </siteMapNode>
+    <siteMapNode id="200" title="Зависимые таблицы">
+      <siteMapNode title="Узлы тепловых сетей" controller="Main" action="MPThermalNodes"/>
+      </siteMapNode>
+    </siteMapNode>
 </siteMap>

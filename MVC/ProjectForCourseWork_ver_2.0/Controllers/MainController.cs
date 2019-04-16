@@ -5,6 +5,9 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
     public class MainController : Controller
     {
         public ActionResult MPTypeOfNodes() => View();
+        public ActionResult MPManagementBodies() => View();
+        public ActionResult MPThermalNodes() => View();
+        public ActionResult AddThermalNodeWindow() => View();
 
         //public ActionResult TypeOfRooms() => View();
 
@@ -15,9 +18,9 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         //public ActionResult Electrics() => View();
 
         //public ActionResult AddElectricWindow() => View();
-       
+
         //public ActionResult AddRentalWindow() => View(); 
-        
+
         //public ActionResult AddInvoiceWindow() => View();
 
         //public ActionResult AddRoomWindow() => View();

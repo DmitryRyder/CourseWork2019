@@ -164,6 +164,51 @@
             Метод для удаления счета по id
             </summary>
         </member>
+        <member name="T:API.Controllers.MPManagementBodyController">
+            <summary>
+            Контроллер для работы с узлами тепловой сети
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPManagementBodyController.GetAllManagementBodies">
+            <summary>
+            Метод возвращающий все органы управления из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPManagementBodyController.AddManagementBody(Common.DTO.ManagementBodyDto)">
+            <summary>
+            Метод добавляющий орган управления в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPManagementBodyController.UpdateManagementBody(System.Guid,Common.DTO.ManagementBodyDto)">
+            <summary>
+            Метод для обновления существующего органа управления в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPManagementBodyController.DeleteTypeOfNode(System.Guid)">
+            <summary>
+            Метод для удаления органа управления по id
+            </summary>
+        </member>
+        <member name="T:API.Controllers.MPThermalNodeController">
+            <summary>
+            Контроллер для работы с узлами тепловой сети
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNodeController.GetAllThermalNodes">
+            <summary>
+            Метод возвращающий все узлы из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNodeController.AddThermalNode(Common.DTO.ThermalNodeDto)">
+            <summary>
+            Метод добавляющий узел в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNodeController.DeleteTypeOfNode(System.Guid)">
+            <summary>
+            Метод для удаления узла по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.MPTypeOfNodesController">
             <summary>
             Контроллер для работы с типами узлов
