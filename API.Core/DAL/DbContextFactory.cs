@@ -14,11 +14,11 @@ namespace API.Core.DAL
             {
                 switch (type)
                 {
-                    case ContextType.PowerConsumptionContext:
+                    case ContextType.ThermalNetworksDBContext:
                         {
-                            var optionsBuilder = new DbContextOptionsBuilder<AccountingForEnergyContext>();
+                            var optionsBuilder = new DbContextOptionsBuilder<ThermalNetworksDBContext>();
                             optionsBuilder = optionsBuilder.UseSqlServer(path);
-                            context = new AccountingForEnergyContext(optionsBuilder.Options);
+                            context = new ThermalNetworksDBContext(optionsBuilder.Options);
                         }
                         break;
                     default: break;

@@ -1,0 +1,50 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<TypeOfNodeDto>
+
+<div class="title2">
+    <h2>Здания</h2>
+</div>
+
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grTypeOfNodes")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.Name);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+        })
+        .ToolBar(tools =>
+        {
+            tools.Create();
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+        })
+        .PageSize(20)
+        .Read(read => read.Action("GetAllTypeOfNodes", "MPTypeOfNodes"))
+        .Create(create => create.Action("AddTypeOfNode", "MPTypeOfNodes")).Events(p => p.Sync("rebindDataSource"))
+        .Update(update => update.Action("UpdateTypeOfNode", "MPTypeOfNodes"))
+        .Destroy(update => update.Action("DeleteTypeOfNode", "MPTypeOfNodes"))
+        )
+    )
+</div>
+<script>
+   function rebindDataSource() {
+        $("#grBuildings").data("kendoGrid").dataSource.read();
+    }
+</script>

@@ -10,6 +10,7 @@ namespace Common
 
         public static string PlanetDatabse = "workstation id=PlanetsDatabaseContext.mssql.somee.com;packet size=4096;user id=Ryder_SQLLogin_1;pwd=tfah5u3xng;data source=PlanetsDatabaseContext.mssql.somee.com;persist security info=False;Initial Catalog=PlanetsDatabaseContext;";
         public static string PowerConsumptionDatabase = "Data Source=DESKTOP-UKB4KSV;Initial Catalog=AccountingForEnergy;Integrated Security=True";
+        public static string ThermalNetworksDBContext = "Data Source=DESKTOP-UKB4KSV;Initial Catalog=MaksP;Integrated Security=True";
 
         #endregion
 #if NETFRAMEWORK

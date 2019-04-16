@@ -164,6 +164,31 @@
             Метод для удаления счета по id
             </summary>
         </member>
+        <member name="T:API.Controllers.MPTypeOfNodesController">
+            <summary>
+            Контроллер для работы с типами узлов
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPTypeOfNodesController.GetAllTypeOfNodes">
+            <summary>
+            Метод возвращающий все типы узлов из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPTypeOfNodesController.AddTypeOfNode(Common.DTO.TypeOfNodeDto)">
+            <summary>
+            Метод добавляющий тип узла в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPTypeOfNodesController.UpdateTypeOfNode(System.Guid,Common.DTO.TypeOfNodeDto)">
+            <summary>
+            Метод для обновления существующего типа узла в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPTypeOfNodesController.DeleteTypeOfNode(System.Guid)">
+            <summary>
+            Метод для удаления типа узла по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.OrganizationsController">
             <summary>
             Контроллер для работы с организациями

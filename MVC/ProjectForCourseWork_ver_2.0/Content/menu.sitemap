@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap>
-  <siteMapNode>
+  <!--<siteMapNode>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Здания" controller="Main" action="Buildings"/>
       <siteMapNode title="Типы комнат" controller="Main" action="TypeOfRooms"/>
@@ -19,6 +19,10 @@
       <siteMapNode title="Отчет по организациям за период" controller="Main" action="OneGetOrganizationsForPeriod"/>
       <siteMapNode title="Отчет по организациям въехавшим в выбранное здание за период" controller="Main" action="TwoGetOrganizationsInBuildAndPeriod"/>
     </siteMapNode>
+  </siteMapNode>-->
+  <siteMapNode>
+    <siteMapNode id="100" title="Таблицы справочники">
+      <siteMapNode title="Типы узлов" controller="Main" action="MPTypeOfNodes"/>
+    </siteMapNode>
   </siteMapNode>
-
 </siteMap>

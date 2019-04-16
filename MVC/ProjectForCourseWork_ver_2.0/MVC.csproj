@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ElectricsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MPTypeOfNodesController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
@@ -232,6 +233,7 @@
     <Content Include="Views\Main\AddInvoiceWindow.cshtml" />
     <Content Include="Views\Main\OneGetOrganizationsForPeriod.cshtml" />
     <Content Include="Views\Main\TwoGetOrganizationsInBuildAndPeriod.cshtml" />
+    <Content Include="Views\Main\MPTypeOfNodes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,6 +241,7 @@
     <Folder Include="Views\ElectricsByOrganization\" />
     <Folder Include="Views\Electrics\" />
     <Folder Include="Views\Invoice\" />
+    <Folder Include="Views\MPTypeOfNodes\" />
     <Folder Include="Views\Organizations\" />
     <Folder Include="Views\Reports\" />
     <Folder Include="Views\RoomsRental\" />

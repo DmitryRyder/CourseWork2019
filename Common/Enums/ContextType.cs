@@ -1,5 +1,6 @@
 ﻿public enum ContextType
 {
     PlanetDatabaseContext,
-    PowerConsumptionContext
+    PowerConsumptionContext,
+    ThermalNetworksDBContext
 }
