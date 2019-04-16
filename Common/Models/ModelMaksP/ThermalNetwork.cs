@@ -7,8 +7,8 @@ namespace Common.Models
     {
         public string Name { get; set; }
         public int NumberOfNetwork { get; set; }
-        public string NetworkView { get; set; } //"вид сети" - однотрубная/двухтрубная
-
+        public Guid ThermalTypeId { get; set; }
+        public ThermalType ThermalType { get; set; } //"вид сети" - однотрубная/двухтрубная
         public Guid OrganizationID { get; set; }
         public OrganizationM Organization { get; set; }
 

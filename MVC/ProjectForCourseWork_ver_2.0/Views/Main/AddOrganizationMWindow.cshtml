@@ -7,18 +7,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AddThermalNodeWindow</title>
+    <title>AddOrganizationMWindow</title>
 </head>
 <body>
     <div class="demo-section k-content">
-        <form id="roomForm">
+        <form id="organizationForm">
             <ul id="fieldlist">
                 <li>
-                    <label for="typeOfnode">Тип узла:</label>
+                    <label for="typeOfnode">Орган управления:</label>
                     @(Html.Kendo().ComboBox()
-                    .Name("typeOfnode")
-                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите Здание" })
-                    .Placeholder("Выберите тип узла..")
+                    .Name("managementBody")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите орган управления" })
+                    .Placeholder("Выберите орган управления..")
                     .DataTextField("Name")
                     .DataValueField("Id")
                     .Filter(FilterType.Contains)
@@ -26,29 +26,19 @@
                     {
                         source.Read(read =>
                         {
-                            read.Action("CascadingGetTypeOfNodes", "MPThermalNode");
+                            read.Action("CascadingGetManagementBodies", "MPOrganizations");
                         });
                     })
                     )
                 </li>
-                @*<li>
-                        <label for="thermalNetwork">Сеть в которую входит узел:</label>
-                        @(Html.Kendo().ComboBox()
-                        .Name("thermalNetwork")
-                        .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите Этаж" })
-                        .Placeholder("Выберите тепловую сеть...")
-                        .DataTextField("Name")
-                        .DataValueField("Id")
-                        .Filter(FilterType.Contains)
-                        .DataSource(source =>
-                        {
-                            source.Read(read =>
-                            {
-                                read.Action("CascadingGetFloors", "Rooms");
-                            });
-                        })
-                        )
-                    </li>*@
+                <li>
+                    <label for="rooms">Название организации:</label>
+                    @(Html.Kendo().TextBox()
+                    .Name("organization")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Введите название организации" })
+                    .Enable(true)
+                    )
+                </li>
                 <li class="confirm">
                     <button class="k-button k-primary" type="submit">Добавить</button>
                 </li>
@@ -141,12 +131,12 @@
         }
     </style>
     <script>
-        var ThermalNode = {
-            ThermalNetworkId: 0,
-            TypeOfNodeId: 0
+        var Organization = {
+            ManagementBodyId: 0,
+            Name: 0
         }//Model
     $(document).ready(function () {
-        var validator = $("#roomForm").kendoValidator().data("kendoValidator");
+        var validator = $("#organizationForm").kendoValidator().data("kendoValidator");
         $("form").submit(function (event) {
             event.preventDefault();
             if (validator.validate()) {
@@ -158,13 +148,13 @@
     });
         function PostSend() {
             var options = {};
-            options.url = 'http://localhost:57109/MPThermalNode/AddThermalNode';
+            options.url = 'http://localhost:57109/MPOrganizations/AddOrganizationM';
             options.type = "POST";
-            var thermalNode = ThermalNode;
-            thermalNode.ThermalNetworkId = $("#thermalNetwork").val();
-            thermalNode.TypeOfNodeId = $("#typeOfnode").val();
-            console.dir(thermalNode);
-            options.data = JSON.stringify(thermalNode);
+            var organization = Organization;
+            organization.ManagementBodyId = $("#managementBody").val();
+            organization.Name = $("#organization").val();
+            console.dir(organization);
+            options.data = JSON.stringify(organization);
             options.contentType = "application/json";
             options.dataType = "html";
             options.success = function () {

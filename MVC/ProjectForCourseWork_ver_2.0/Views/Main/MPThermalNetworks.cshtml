@@ -1,0 +1,74 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<ThermalNetworkDto>
+
+<div class="title2">
+    <h2>Тепловые сети</h2>
+</div>
+
+<div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
+    <button id="open" class="k-button">Добавить тепловую сеть</button>
+</div>
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grThermalNetworks")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.NumberOfNetwork);
+            columns.Bound(p => p.NetworkView);
+            columns.Bound(p => p.OrganizationName);
+            columns.Command(command => { command.Destroy(); }).Width(200);
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+            model.Field(p => p.Id).Editable(false);
+        })
+        .PageSize(30)
+        .Read(read => read.Action("GetAllThermalNetworks", "MPThermalNetwork"))
+        //.Create(create => create.Action("AddRoom", "Rooms")).Events(p => p.Sync("rebindDataSource"))
+        //.Update(update => update.Action("UpdateRoom", "Rooms"))
+        .Destroy(update => update.Action("DeleteThermalNetwork", "MPThermalNetwork"))
+        )
+    )
+    @(Html.Kendo().Window()
+    .Name("AddThermalNetworkWindow")
+    .Width(420)
+    .Height(500)
+    .Visible(false)
+    .Draggable(true)
+    .Resizable()
+    .Title("Добавление тепловой сети")
+    .Actions(actions => actions.Refresh().Close())
+    .LoadContentFrom("AddThermalNetworkWindow", "Main")
+    )
+</div>
+<script>
+    var myWindow;
+    $(document).ready(function () {
+        myWindow = $("#AddThermalNetworkWindow");
+        $("#open").click(function (e) {
+            myWindow.data("kendoWindow").open();
+            myWindow.data("kendoWindow").center();
+        });
+    });
+    function rebindDataSource() {
+        $("#grThermalNetworks").data("kendoGrid").dataSource.read();
+    }
+</script>
+
+

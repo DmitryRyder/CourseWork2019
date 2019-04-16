@@ -9,7 +9,8 @@ namespace API.Core.Automapper.Profiles
         public ThermalNetworkProfile()
         {
             CreateMap<ThermalNetwork, ThermalNetworkDto>()
-                .ForMember(m => m.OrganizationName, o => o.MapFrom(s => s.Organization.Name));
+                .ForMember(m => m.OrganizationName, o => o.MapFrom(s => s.Organization.Name))
+                .ForMember(m => m.NetworkView, o => o.MapFrom(s => s.ThermalType.Name));
             CreateMap<ThermalNetworkDto, ThermalNetwork>();
         }
     }

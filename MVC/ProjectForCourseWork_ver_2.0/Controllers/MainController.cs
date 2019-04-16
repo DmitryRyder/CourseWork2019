@@ -5,10 +5,14 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
     public class MainController : Controller
     {
         public ActionResult MPTypeOfNodes() => View();
+        public ActionResult MPThermalType() => View();
         public ActionResult MPManagementBodies() => View();
         public ActionResult MPThermalNodes() => View();
         public ActionResult AddThermalNodeWindow() => View();
-
+        public ActionResult MPOrganizations() => View();
+        public ActionResult AddOrganizationMWindow() => View();
+        public ActionResult MPThermalNetworks() => View();
+        public ActionResult AddThermalNetworkWindow() => View();
         //public ActionResult TypeOfRooms() => View();
 
         //public ActionResult Organizations() => View();

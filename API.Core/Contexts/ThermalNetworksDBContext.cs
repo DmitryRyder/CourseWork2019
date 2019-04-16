@@ -60,6 +60,11 @@ namespace API.Core.Contexts
                 .WithMany(t => t.ThermalNetworks)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<ThermalNetwork>()
+                .HasOne(p => p.ThermalType)
+                .WithMany(t => t.ThermalNetworks)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<OrganizationM>()
                 .HasOne(p => p.ManagementBody)
                 .WithMany(t => t.Organizations)

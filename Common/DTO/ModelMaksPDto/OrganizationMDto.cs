@@ -8,7 +8,7 @@ namespace Common.DTO
         [DisplayName("Название организации")]
         public string Name { get; set; }
 
-        public Guid ManagementBodyID { get; set; }
+        public Guid ManagementBodyId { get; set; }
         [DisplayName("Название органа управления")]
         public string ManagementBodyName { get; set; }
     }

@@ -189,6 +189,46 @@
             Метод для удаления органа управления по id
             </summary>
         </member>
+        <member name="T:API.Controllers.MPOrganizationsController">
+            <summary>
+            Контроллер для работы с организациями
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPOrganizationsController.GetAllOrganizationsM">
+            <summary>
+            Метод возвращающий все организации из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPOrganizationsController.AddOrganizationM(Common.DTO.OrganizationMDto)">
+            <summary>
+            Метод добавляющий организацию в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPOrganizationsController.DeleteOrganizationM(System.Guid)">
+            <summary>
+            Метод для удаления организации по id
+            </summary>
+        </member>
+        <member name="T:API.Controllers.MPThermalNetworkController">
+            <summary>
+            Контроллер для работы с тепловыми сетями
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNetworkController.GetAllThermalNetworks">
+            <summary>
+            Метод возвращающий все тепловые сети из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNetworkController.AddThermalNetwork(Common.DTO.ThermalNetworkDto)">
+            <summary>
+            Метод добавляющий тепловую сеть в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalNetworkController.DeleteThermalNetwork(System.Guid)">
+            <summary>
+            Метод для удаления тепловой сети по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.MPThermalNodeController">
             <summary>
             Контроллер для работы с узлами тепловой сети
@@ -207,6 +247,31 @@
         <member name="M:API.Controllers.MPThermalNodeController.DeleteTypeOfNode(System.Guid)">
             <summary>
             Метод для удаления узла по id
+            </summary>
+        </member>
+        <member name="T:API.Controllers.MPThermalTypeController">
+            <summary>
+            Контроллер для c типами сетей
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalTypeController.GetAllThermalTypes">
+            <summary>
+            Метод возвращающий все типы сетей из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalTypeController.AddThermalType(Common.DTO.ThermalTypeDto)">
+            <summary>
+            Метод добавляющий тип сети в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalTypeController.UpdateThermalType(System.Guid,Common.DTO.ThermalTypeDto)">
+            <summary>
+            Метод для обновления существующего типа сети в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPThermalTypeController.DeleteThermalType(System.Guid)">
+            <summary>
+            Метод для удаления типа сети по id
             </summary>
         </member>
         <member name="T:API.Controllers.MPTypeOfNodesController">

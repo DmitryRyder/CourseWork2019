@@ -139,11 +139,13 @@
     <Compile Include="Controllers\MPManagementBodyController.cs" />
     <Compile Include="Controllers\MPOrganizationsController.cs" />
     <Compile Include="Controllers\MPThermalNodeController.cs" />
+    <Compile Include="Controllers\MPThermalTypeController.cs" />
     <Compile Include="Controllers\MPTypeOfNodesController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\RoomsRentalController.cs" />
+    <Compile Include="Controllers\MPThermalNetworkController.cs" />
     <Compile Include="Controllers\TypeOfRoomController.cs" />
     <Compile Include="Extensions\DatePickerExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
@@ -242,6 +244,9 @@
     <Content Include="Views\Main\MPManagementBodies.cshtml" />
     <Content Include="Views\Main\MPOrganizations.cshtml" />
     <Content Include="Views\Main\AddOrganizationMWindow.cshtml" />
+    <Content Include="Views\Main\MPThermalNetworks.cshtml" />
+    <Content Include="Views\Main\MPThermalType.cshtml" />
+    <Content Include="Views\Main\AddThermalNetworkWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,11 +257,13 @@
     <Folder Include="Views\MPManagementBody\" />
     <Folder Include="Views\MPOrganizations\" />
     <Folder Include="Views\MPThermalNode\" />
+    <Folder Include="Views\MPThermalType\" />
     <Folder Include="Views\MPTypeOfNodes\" />
     <Folder Include="Views\Organizations\" />
     <Folder Include="Views\Reports\" />
     <Folder Include="Views\RoomsRental\" />
     <Folder Include="Views\Rooms\" />
+    <Folder Include="Views\ThermalNetwork\" />
     <Folder Include="Views\TypeOfRoom\" />
   </ItemGroup>
   <ItemGroup>

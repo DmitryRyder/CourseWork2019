@@ -44,7 +44,7 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Метод организацию в базу данных
+        /// Метод добавляющий организацию в базу данных
         /// </summary>
         [HttpPost]
         [Route("/AddOrganizationM")]

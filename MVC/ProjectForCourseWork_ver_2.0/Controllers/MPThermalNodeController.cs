@@ -39,5 +39,12 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
 
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<ActionResult> CascadingGetThermalNetworks()
+        {
+            var objectsO = await RestQuery.ExecuteAsync<List<ThermalNetworkDto>>("http://localhost:57770/", "GetAllThermalNetworks", Method.GET);
+
+            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
+        }
     }
 }

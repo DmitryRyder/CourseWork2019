@@ -37,7 +37,7 @@
             model.Field(p => p.Id).Editable(false);
         })
         .PageSize(30)
-        .Read(read => read.Action("GetAllOrganizationsM", "MPThermalNode"))
+        .Read(read => read.Action("GetAllOrganizationsM", "MPOrganizations"))
         //.Create(create => create.Action("AddRoom", "Rooms")).Events(p => p.Sync("rebindDataSource"))
         //.Update(update => update.Action("UpdateRoom", "Rooms"))
         .Destroy(update => update.Action("DeleteOrganizationM", "MPOrganizations"))

@@ -1,0 +1,201 @@
+﻿@using Common.DTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddThermalNetworkWindow</title>
+</head>
+<body>
+    <div class="demo-section k-content">
+        <form id="networkForm">
+            <ul id="fieldlist">
+                <li>
+                    <label for="rooms">Название сети:</label>
+                    @(Html.Kendo().TextBox()
+                    .Name("name")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Введите название сети" })
+                    .Enable(true)
+                    )
+                </li>
+                <li>
+                <label for="number">Номер сети:</label>
+                @(Html.Kendo().NumericTextBox<int>()
+                      .Name("number")
+                      .Value(0)
+                      .Format("0")
+                      .Placeholder("Введите номер сети..")
+                      .HtmlAttributes(new { style = "width: 100%", required = "required", data_required_msg = "Введите номер сети" })
+                )
+                </li>
+                <li>
+                    <label for="organizations">Организация-владелец сети:</label>
+                    @(Html.Kendo().ComboBox()
+                    .Name("organizations")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите организацию" })
+                    .Placeholder("Выберите организацию...")
+                    .DataTextField("Name")
+                    .DataValueField("Id")
+                    .Filter(FilterType.Contains)
+                    .DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("CascadingGetOrganizations", "MPThermalNetwork");
+                        });
+                    })
+                    )
+                </li>
+                <li>
+                    <label for="thermalTypes">Тип сети:</label>
+                    @(Html.Kendo().ComboBox()
+                    .Name("thermalTypes")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите тип сети" })
+                    .Placeholder("Выберите тип сети...")
+                    .DataTextField("Name")
+                    .DataValueField("Id")
+                    .Filter(FilterType.Contains)
+                    .DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("CascadingGetThermalType", "MPThermalNetwork");
+                        });
+                    })
+                    )
+                </li>
+                <li class="confirm">
+                    <button class="k-button k-primary" type="submit">Добавить</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <style>
+        #fieldlist {
+            margin: 0;
+            padding: 0;
+        }
+
+            #fieldlist li {
+                list-style: none;
+                padding-bottom: 1.5em;
+                text-align: left;
+            }
+
+            #fieldlist label {
+                display: block;
+                padding-bottom: .3em;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+        #fieldlist {
+            margin: 0;
+            padding: 0;
+        }
+
+            #fieldlist li {
+                list-style: none;
+                padding-bottom: .7em;
+                text-align: left;
+            }
+
+            #fieldlist label {
+                display: block;
+                padding-bottom: .3em;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 12px;
+                color: #444;
+            }
+
+            #fieldlist li.status {
+                text-align: center;
+            }
+
+            #fieldlist li .k-widget:not(.k-tooltip),
+            #fieldlist li .k-textbox {
+                margin: 0 5px 5px 0;
+            }
+
+        .confirm {
+            padding-top: 1em;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        #fieldlist li input[type="checkbox"] {
+            margin: 0 5px 0 0;
+        }
+
+        #fieldlist li #inputDate, #fieldlist li #outputDate {
+            margin: 0 65px 0 0;
+        }
+
+        span.k-widget.k-tooltip-validation {
+            display: inline-block;
+            width: 160px;
+            text-align: left;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: none;
+            box-shadow: none;
+            color: red;
+        }
+
+        .k-tooltip-validation .k-warning {
+            display: none;
+        }
+    </style>
+    <script>
+        var Network = {
+            Name: 0,
+            NumberOfNetwork: 0,
+            ThermalTypeId: 0,
+            OrganizationID: 0
+        }//Model
+    $(document).ready(function () {
+        var validator = $("#networkForm").kendoValidator().data("kendoValidator");
+        $("form").submit(function (event) {
+            event.preventDefault();
+            if (validator.validate()) {
+                PostSend();
+            } else {
+                status.removeClass("valid").addClass("invalid");
+            }
+        });
+    });
+        function PostSend() {
+            var options = {};
+            options.url = 'http://localhost:57109/MPThermalNetwork/AddThermalNetwork';
+            options.type = "POST";
+            var network = Network;
+            network.Name = $("#name").val();
+            network.NumberOfNetwork = $("#number").val();
+            network.OrganizationID = $("#organizations").val();
+            network.ThermalTypeId = $("#thermalTypes").val();
+            console.dir(network);
+            options.data = JSON.stringify(network);
+            options.contentType = "application/json";
+            options.dataType = "html";
+            options.success = function () {
+                myWindow.data("kendoWindow").close();
+                rebindDataSource();
+            };
+            $.ajax(options);
+        }
+    </script>
+
+</body>
+</html>

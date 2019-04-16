@@ -9,11 +9,12 @@ namespace Common.DTO
         public string Name { get; set; }
         [DisplayName("Номер сети")]
         public int NumberOfNetwork { get; set; }
+        public Guid ThermalTypeId { get; set; }
         [DisplayName("Тип сети")]
         public string NetworkView { get; set; } //"вид сети" - однотрубная/двухтрубная
 
         public Guid OrganizationID { get; set; }
-        [DisplayName("Название организации")]
+        [DisplayName("Организация")]
         public string OrganizationName { get; set; }
     }
 }
