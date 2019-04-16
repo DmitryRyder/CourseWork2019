@@ -14,13 +14,13 @@
 <div class="row2">
     @(Html.Kendo().Grid(Model)
         .BackGrid()
-        .Name("grRoomsRental")
+        .Name("grElectricsByOrganization")
         .HtmlAttributes(new { style = "height:760px" })
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Sortable(false).Width(250);
-            columns.Bound(p => p.Electric).ClientTemplate("#=Electric.Name#").Sortable(false).Width(250);
+            columns.Bound(p => p.OrganizationName);
+            columns.Bound(p => p.ElectricName);
             columns.Command(command => { command.Destroy(); }).Width(200);
         })
         .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
@@ -44,8 +44,8 @@
 
     @(Html.Kendo().Window()
         .Name("AddElectricWindow")
-        .Width(420)
-        .Height(600)
+        .Width(500)
+        .Height(300)
         .Visible(false)
         .Draggable(true)
         .Resizable()
@@ -56,16 +56,15 @@
 </div>
 
 <script>
+    var myWindow;
     $(document).ready(function () {
-        var myWindow = $("#AddElectricWindow");
+        myWindow = $("#AddElectricWindow");
         $("#open").click(function (e) {
             myWindow.data("kendoWindow").open();
             myWindow.data("kendoWindow").center();
         });
     });
-        function filterBuildings() {
-            return {
-                buildingId: $("#electrics").val()
-            };
-        }
+    function rebindDataSource() {
+        $("#grElectricsByOrganization").data("kendoGrid").dataSource.read();
+    }
 </script>

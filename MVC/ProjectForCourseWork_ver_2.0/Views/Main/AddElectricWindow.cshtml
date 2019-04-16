@@ -11,75 +11,153 @@
 </head>
 <body>
     <div class="demo-section k-content">
-        <ul id="fieldlist">
-            <li>
-                <label for="buildings">Здание:</label>
-                @(Html.Kendo().ComboBox()
-                .Name("organizations")
-                .HtmlAttributes(new { style = "width:100%;" })
-                .Placeholder("Выберите организацию...")
-                .DataTextField("Name")
-                .DataValueField("Id")
-                .Filter(FilterType.Contains)
-                .DataSource(source =>
-                {
-                    source.Read(read =>
+        <form id="electricForm">
+            <ul id="fieldlist">
+                <li>
+                    <label for="organizations">Организация:</label>
+                    @(Html.Kendo().ComboBox()
+                    .Name("organizations")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите Организацию" })
+                    .Placeholder("Выберите организацию...")
+                    .DataTextField("Name")
+                    .DataValueField("Id")
+                    .Filter(FilterType.Contains)
+                    .DataSource(source =>
                     {
-                        read.Action("CascadingGetOrganizations", "ElectricsByOrganization");
-                    });
-                })
-                )
-            </li>
-            <li>
-                <label for="buildings">Этаж:</label>
-                @(Html.Kendo().ComboBox()
-                .Name("electrics")
-                .HtmlAttributes(new { style = "width:100%;" })
-                .Placeholder("Выберите оборудование...")
-                .DataTextField("Name")
-                .DataValueField("Id")
-                .Filter(FilterType.Contains)
-                .DataSource(source =>
-                {
-                    source.Read(read =>
+                        source.Read(read =>
+                        {
+                            read.Action("CascadingGetOrganizations", "ElectricsByOrganization");
+                        });
+                    })
+                    )
+                </li>
+                <li>
+                    <label for="electrics">Оборудование:</label>
+                    @(Html.Kendo().ComboBox()
+                    .Name("electrics")
+                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите оборудование" })
+                    .Placeholder("Выберите оборудование...")
+                    .DataTextField("Name")
+                    .DataValueField("Id")
+                    .Filter(FilterType.Contains)
+                    .DataSource(source =>
                     {
-                        read.Action("CascadingGetElectrics", "ElectricsByOrganization");
-                    });
-                })
-                )
-            </li>
-            <li>
-                <button class="k-button k-primary" id="add">Добавить</button>
-            </li>
-        </ul>
+                        source.Read(read =>
+                        {
+                            read.Action("CascadingGetElectrics", "ElectricsByOrganization");
+                        });
+                    })
+                    )
+                </li>
+                <li class="confirm">
+                    <button class="k-button k-primary" type="submit">Добавить</button>
+                </li>
+            </ul>
+        </form>
     </div>
     <style>
-        #fieldlist {
-            margin: 0;
-            padding: 0;
-        }
+#fieldlist {
+    margin: 0;
+    padding: 0;
+    }
 
-            #fieldlist li {
-                list-style: none;
-                padding-bottom: 1.5em;
-                text-align: left;
-            }
+#fieldlist li {
+    list-style: none;
+    padding-bottom: 1.5em;
+    text-align: left;
+    }
 
-            #fieldlist label {
-                display: block;
-                padding-bottom: .3em;
-                font-weight: bold;
-                text-transform: uppercase;
-                font-size: 12px;
-            }
+#fieldlist label {
+    display: block;
+    padding-bottom: .3em;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    }
+    #fieldlist {
+        margin: 0;
+        padding: 0;
+    }
+
+    #fieldlist li {
+        list-style: none;
+        padding-bottom: .7em;
+        text-align: left;
+    }
+
+    #fieldlist label {
+        display: block;
+        padding-bottom: .3em;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #444;
+    }
+
+    #fieldlist li.status {
+        text-align: center;
+    }
+
+    #fieldlist li .k-widget:not(.k-tooltip),
+    #fieldlist li .k-textbox {
+        margin: 0 5px 5px 0;
+    }
+
+    .confirm {
+        padding-top: 1em;
+    }
+
+    .valid {
+        color: green;
+    }
+
+    .invalid {
+        color: red;
+    }
+
+    #fieldlist li input[type="checkbox"] {
+        margin: 0 5px 0 0;
+    }
+
+    #fieldlist li #inputDate, #fieldlist li #outputDate {
+        margin: 0 65px 0 0;
+    }
+
+    span.k-widget.k-tooltip-validation {
+        display: inline-block;
+        width: 160px;
+        text-align: left;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: none;
+        box-shadow: none;
+        color: red;
+    }
+
+    .k-tooltip-validation .k-warning {
+        display: none;
+    }
     </style>
     <script>
-     $(document).ready(function () {
         var ElectricByOrganization = {
             ElectricId: 0,
             OrganizationId: 0
         }//Model
-        $("#add").click(function (e) {
+
+    $(document).ready(function () {
+        var validator = $("#electricForm").kendoValidator().data("kendoValidator");
+        $("form").submit(function (event) {
+            event.preventDefault();
+            if (validator.validate()) {
+                PostSend();
+            } else {
+                status.removeClass("valid").addClass("invalid");
+            }
+        });
+    });
+
+    function PostSend() {
             var options = {};
             options.url = 'http://localhost:57109/ElectricsByOrganization/AddElectricByOrganization';
             options.type = "POST";
@@ -90,13 +168,12 @@
             options.data = JSON.stringify(model);
             options.contentType = "application/json";
             options.dataType = "html";
-            //options.success = function () {
-            //    getDetails(planetId);
-            //};
+            options.success = function () {
+                myWindow.data("kendoWindow").close();
+                rebindDataSource();
+            };
             $.ajax(options);
-        });
-    });
+        }
     </script>
-
 </body>
 </html>

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с электрическим оборудованием для организаций
+    /// </summary>
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
@@ -25,6 +28,9 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Метод для получения оборудования по организациям
+        /// </summary>
         [HttpGet]
         [Route("/GetAllElectricsByOrganization")]
         [ProducesResponseType(typeof(List<ElectricsByOrganizationDto>), 200)]
@@ -37,6 +43,9 @@ namespace API.Controllers
             return Json(mapper, electric, typeof(List<ElectricsByOrganizationDto>));
         }
 
+        /// <summary>
+        /// Метод для добавления оборудования для организации
+        /// </summary>
         [HttpPost]
         [Route("/AddElectricByOrganization")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]

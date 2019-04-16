@@ -11,8 +11,8 @@ namespace API.Core.Automapper
         {
             m.CreateMap<bool, string>()
              .ConvertUsing(b => b ? "Да" : "Нет");
-            //m.CreateMap<BaseModel, Guid>()
-            // .ConvertUsing<ModelToGuidConverter>();
+            m.CreateMap<BaseModel, Guid>()
+             .ConvertUsing<ModelToGuidConverter>();
             m.CreateMissingTypeMaps = true;
             m.ValidateInlineMaps = false;
         }

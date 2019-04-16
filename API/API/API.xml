@@ -104,6 +104,21 @@
             Метод для удаления здания по id
             </summary>
         </member>
+        <member name="T:API.Controllers.ElectricsByOrganizationController">
+            <summary>
+            Контроллер для работы с электрическим оборудованием для организаций
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsByOrganizationController.GetAllElectricsByOrganization">
+            <summary>
+            Метод для получения оборудования по организациям
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ElectricsByOrganizationController.AddElectricByOrganization(Common.DTO.ElectricsByOrganizationDto)">
+            <summary>
+            Метод для добавления оборудования для организации
+            </summary>
+        </member>
         <member name="T:API.Controllers.ElectricsController">
             <summary>
             Контроллер для работы со зданиями

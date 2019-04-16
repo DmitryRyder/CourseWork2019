@@ -17,7 +17,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public async Task<ActionResult> GetAllTypes([DataSourceRequest] DataSourceRequest request)
         {
             var objects = await RestQuery.ExecuteAsync<List<TypeOfRoomDto>>("http://localhost:57770/", "GetAllTypes", Method.GET);
-
             return Json(objects.Data.ToDataSourceResult(request));
         }
 

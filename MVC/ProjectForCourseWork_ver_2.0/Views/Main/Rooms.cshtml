@@ -22,14 +22,10 @@
                 columns.Bound(p => p.Number);
                 columns.Bound(p => p.Area);
                 columns.Bound(p => p.Floor);
-                columns.Bound(p => p.TypeOfRoom).ClientTemplate("#=TypeOfRoom.Name#").Sortable(false).Width(250);//.EditorTemplateName("TypeOfRoomNameEdit");
-                columns.Bound(p => p.Building).ClientTemplate("#=Building.Name#").Sortable(false).Width(250);//.EditorTemplateName("BuildingNameEdit");
+                columns.Bound(p => p.TypeOfRoomName);
+                columns.Bound(p => p.BuildingName);
                 columns.Command(command => {command.Destroy(); }).Width(200);
             })
-            //.ToolBar(tools =>
-            //{
-            //    tools.Create();
-            //})
             .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
             .Pageable()
             .Sortable()
@@ -42,10 +38,6 @@
             {
                 model.Id(p => p.Id);
                 model.Field(p => p.Id).Editable(false);
-                //model.Field(p => p.Building).DefaultValue(
-                //    ViewData["defaultBuilding"] as BuildingDto);
-                //model.Field(p => p.TypeOfRoom).DefaultValue(
-                //    ViewData["defaultType"] as TypeOfRoomDto);
             })
             .PageSize(30)
             .Read(read => read.Action("GetAllRooms", "Rooms"))
@@ -67,8 +59,9 @@
         )
     </div>
 <script>
+    var myWindow;
     $(document).ready(function () {
-        var myWindow = $("#AddRoomWindow");
+        myWindow = $("#AddRoomWindow");
         $("#open").click(function (e) {
             myWindow.data("kendoWindow").open();
             myWindow.data("kendoWindow").center();

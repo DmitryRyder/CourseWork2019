@@ -34,14 +34,12 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public async Task<ActionResult> CascadingGetOrganizations()
         {
             var objectsO = await RestQuery.ExecuteAsync<List<OrganizationDto>>("http://localhost:57770/", "GetAllOrganizations", Method.GET);
-
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> CascadingGetElectrics()
         {
             var objectsO = await RestQuery.ExecuteAsync<List<ElectricDto>>("http://localhost:57770/", "GetAllElectrics", Method.GET);
-
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }
     }

@@ -69,9 +69,9 @@
         .Groupable(g => g.Enabled(true))
         .Columns(columns =>
         {
-            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Width(250);
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Width(250);
-            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Width(250);
+            columns.Bound(p => p.Organization).ClientTemplate("#=Organization.Name#").Width(250).Title("Организация");
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Building.Name#").Width(250).Title("Здание");
+            columns.Bound(p => p.Room).ClientTemplate("#=Room.Number#").Width(250).Title("Номер помещения");
             columns.Bound(p => p.InputDate).Format(Constants.AttributeDateFormat);
             columns.Bound(p => p.OutputDate).Format(Constants.AttributeDateFormat);
             columns.Command(command => { command.Destroy(); }).Width(200);
@@ -109,9 +109,9 @@
 </div>
 
 <script>
-    var grRoomsRental, dtStart, dtEnd;
+    var myWindow;
     $(document).ready(function () {
-        var myWindow = $("#AddRentalWindow");
+        myWindow = $("#AddRentalWindow");
         $("#open").click(function (e) {
             myWindow.data("kendoWindow").open();
             myWindow.data("kendoWindow").center();
