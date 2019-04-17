@@ -18,6 +18,9 @@
     <siteMapNode id="300" title="Отчеты">
       <siteMapNode title="Отчет по организациям за период" controller="Main" action="OneGetOrganizationsForPeriod"/>
       <siteMapNode title="Отчет по организациям въехавшим в выбранное здание за период" controller="Main" action="TwoGetOrganizationsInBuildAndPeriod"/>
+      <siteMapNode title="Отчет по организациям выехавшим из выбранного здания за период" controller="Main" action="ThreeGetOrganizationsOutBuildAndPeriod"/>
+      <siteMapNode title="Отчет по организациям-должникам" controller="Main" action="FourGetOrganizationsDebtForDate"/>
+      <siteMapNode title="Отчет по по всем счетам за электоэнергию за текущий месяц" controller="Main" action="FiveGetInvoicesWithFullInfoOfCurrentMonth"/>
     </siteMapNode>
   </siteMapNode>
 

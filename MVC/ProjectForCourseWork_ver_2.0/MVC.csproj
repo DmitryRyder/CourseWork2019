@@ -232,6 +232,9 @@
     <Content Include="Views\Main\AddInvoiceWindow.cshtml" />
     <Content Include="Views\Main\OneGetOrganizationsForPeriod.cshtml" />
     <Content Include="Views\Main\TwoGetOrganizationsInBuildAndPeriod.cshtml" />
+    <Content Include="Views\Main\ThreeGetOrganizationsOutBuildAndPeriod.cshtml" />
+    <Content Include="Views\Main\FourGetOrganizationsDebtForDate.cshtml" />
+    <Content Include="Views\Main\FiveGetInvoicesWithFullInfoOfCurrentMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,49 @@
+﻿@using Common.DTO
+@using Common
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<OrganizationWithInvoicesForReportsDto>
+
+<div class="title2">
+    <h2>Отчет по по всем счетам за электоэнергию за текущий месяц</h2>
+</div>
+<div class="filters row">
+    <div class="row2">
+        @(Html.Kendo().Grid(Model)
+            .BackGrid()
+            .Name("grOne")
+            .HtmlAttributes(new { style = "height:760px" })
+            .Groupable(g => g.Enabled(true))
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.InvoiceNumber);
+                columns.Bound(p => p.Name);
+                columns.Bound(p => p.InvoiceCreateDate).Format(Constants.AttributeDateFormat);
+                columns.Bound(p => p.PaymentDate).Format(Constants.AttributeDateFormat);
+                columns.Bound(p => p.IsPayment);
+            })
+            .Pageable()
+            .Sortable()
+            .Scrollable()
+            .Filterable()
+            .DataSource(dataSource => dataSource
+            .Ajax()
+            .Events(events => events.Error("error_handler"))
+            .Model(model =>
+            {
+                model.Id(p => p.Id);
+            })
+            .PageSize(20)
+            .Read(read => read.Action("GetInvoicesWithFullInfoOfCurrentMonth", "Reports"))
+            )
+        )
+    </div>
+    <script>
+    function rebindDataSource() {
+        $("#grOne").data("kendoGrid").dataSource.read();
+    }
+    function btFilter_onClick() {
+        rebindDataSource();
+    }
+    </script>
