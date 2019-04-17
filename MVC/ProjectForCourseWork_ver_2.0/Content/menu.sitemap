@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap>
   <siteMapNode>
+      <siteMapNode title="Титульный лист" controller="Main" action="Start"/>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Здания" controller="Main" action="Buildings"/>
       <siteMapNode title="Типы комнат" controller="Main" action="TypeOfRooms"/>
@@ -23,5 +24,4 @@
       <siteMapNode title="Отчет по по всем счетам за электоэнергию за текущий месяц" controller="Main" action="FiveGetInvoicesWithFullInfoOfCurrentMonth"/>
     </siteMapNode>
   </siteMapNode>
-
 </siteMap>

@@ -27,6 +27,7 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult RoomsRental() => View();
 
         public ActionResult Invoices() => View();
+        public ActionResult Start() => View();
 
         //ОТЧЕТЫ
         public ActionResult OneGetOrganizationsForPeriod() => View();

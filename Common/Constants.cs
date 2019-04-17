@@ -8,9 +8,9 @@ namespace Common
     {
         #region Пути для Баз данных
 
-        public static string PlanetDatabse = "workstation id=PlanetsDatabaseContext.mssql.somee.com;packet size=4096;user id=Ryder_SQLLogin_1;pwd=tfah5u3xng;data source=PlanetsDatabaseContext.mssql.somee.com;persist security info=False;Initial Catalog=PlanetsDatabaseContext;";
-        public static string PowerConsumptionDatabase = "Data Source=DESKTOP-UKB4KSV;Initial Catalog=AccountingForEnergy;Integrated Security=True";
-
+        //public static string PlanetDatabse = "workstation id=PlanetsDatabaseContext.mssql.somee.com;packet size=4096;user id=Ryder_SQLLogin_1;pwd=tfah5u3xng;data source=PlanetsDatabaseContext.mssql.somee.com;persist security info=False;Initial Catalog=PlanetsDatabaseContext;";
+        //public static string PowerConsumptionDatabase = "Data Source=DESKTOP-UKB4KSV;Initial Catalog=AccountingForEnergy;Integrated Security=True";
+        public static string PowerConsumptionDatabase = "workstation id=AccountingForEnergy.mssql.somee.com;packet size=4096;user id=Hupz_SQLLogin_1;pwd=o54cioyju6;data source=AccountingForEnergy.mssql.somee.com;persist security info=False;initial catalog=AccountingForEnergy";
         #endregion
 #if NETFRAMEWORK
         public static readonly string ApiUrl = ConfigurationManager.AppSettings["API"];
