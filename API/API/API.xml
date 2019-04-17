@@ -209,6 +209,31 @@
             Метод для удаления организации по id
             </summary>
         </member>
+        <member name="T:API.Controllers.MPSteelPipeController">
+            <summary>
+            Контроллер для работы с трубами
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPSteelPipeController.GetAllPipes">
+            <summary>
+            Метод возвращающий все трубы из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPSteelPipeController.AddPipe(Common.DTO.SteelPipeDto)">
+            <summary>
+            Метод добавляющий трубу в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPSteelPipeController.UpdatePipe(System.Guid,Common.DTO.SteelPipeDto)">
+            <summary>
+            Метод для обновления существующей трубы в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPSteelPipeController.DeletePipe(System.Guid)">
+            <summary>
+            Метод для удаления трубы по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.MPThermalNetworkController">
             <summary>
             Контроллер для работы с тепловыми сетями

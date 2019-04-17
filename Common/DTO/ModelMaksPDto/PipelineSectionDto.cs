@@ -12,7 +12,9 @@ namespace Common.DTO
         [DisplayName("Дата последнего ремонта")]
         public DateTime LastRepair { get; set; }
         public Guid SteelPipeId { get; set; }
-        [DisplayName("Тип трубы")]
+        [DisplayName("Труба")]
         public string SteelPipeName { get; set; }
+        public Guid InitialNoneId { get; set; }
+        public Guid EndNodeId { get; set; }
     }
 }

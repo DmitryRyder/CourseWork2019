@@ -9,14 +9,15 @@ namespace Common.Models
         public int NumberOfNetwork { get; set; }
         public Guid ThermalTypeId { get; set; }
         public ThermalType ThermalType { get; set; } //"вид сети" - однотрубная/двухтрубная
-        public Guid OrganizationID { get; set; }
+
+        public Guid OrganizationId { get; set; }
         public OrganizationM Organization { get; set; }
 
-        public List<ThermalNode> ThermalNodes { get; set; }
+        public List<PipelineSection> PipelineSections { get; set; }
 
         public ThermalNetwork()
         {
-            ThermalNodes = new List<ThermalNode>();
+            PipelineSections = new List<PipelineSection>();
         }
     }
 }

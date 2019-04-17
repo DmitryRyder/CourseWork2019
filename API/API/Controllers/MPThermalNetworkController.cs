@@ -35,7 +35,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<ThermalNetworkDto>), 200)]
         public JsonResult GetAllThermalNetworks()
         {
-            var typeOfNodes = unitOfWork.GetRepository<ThermalNetwork>().Include(x => x.Organization, x => x.ThermalNodes, x => x.ThermalType);
+            var typeOfNodes = unitOfWork.GetRepository<ThermalNetwork>().Include(x => x.Organization, x => x.PipelineSections, x => x.ThermalType);
 
             return Json(mapper, typeOfNodes, typeof(List<ThermalNetworkDto>));
         }

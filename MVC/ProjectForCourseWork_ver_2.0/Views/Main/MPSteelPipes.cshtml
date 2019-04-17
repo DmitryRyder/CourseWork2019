@@ -1,0 +1,54 @@
+﻿@using Common.DTO
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+
+@model IEnumerable<SteelPipeDto>
+
+<div class="title2">
+    <h2>Трубы</h2>
+</div>
+
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grSteelPipes")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.Diameter);
+            columns.Bound(p => p.Thickness);
+            columns.Bound(p => p.Volume);
+            columns.Bound(p => p.Weight);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
+        })
+        .ToolBar(tools =>
+        {
+            tools.Create();
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+        })
+        .PageSize(20)
+        .Read(read => read.Action("GetAllPipes", "MPSteelPipe"))
+        .Create(create => create.Action("AddPipe", "MPSteelPipe")).Events(p => p.Sync("rebindDataSource"))
+        .Update(update => update.Action("UpdatePipe", "MPSteelPipe"))
+        .Destroy(update => update.Action("DeletePipe", "MPSteelPipe"))
+        )
+    )
+</div>
+<script>
+   function rebindDataSource() {
+        $("#grSteelPipes").data("kendoGrid").dataSource.read();
+    }
+</script>

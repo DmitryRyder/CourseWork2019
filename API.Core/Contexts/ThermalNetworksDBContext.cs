@@ -18,42 +18,20 @@ namespace API.Core.Contexts
                 .WithMany(t => t.PipelineSections)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<PipelineSection>()
+                .HasOne(p => p.ThermalNetwork)
+                .WithMany(t => t.PipelineSections)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<ThermalNode>()
                 .HasOne(p => p.TypeOfNode)
                 .WithMany(t => t.ThermalNodes)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<InitialNode>()
-                .HasKey(t => new { t.Id });
-
-            modelBuilder.Entity<EndNode>()
-                .HasKey(t => new { t.Id });
-
-            //modelBuilder.Entity<SectionSupport>()
-            //.HasKey (t => new { t.Id });
-
-            //modelBuilder.Entity<SectionSupport>()
-            //    .HasOne(p => p.PipelineSection)
-            //    .WithMany(t => t.SectionSupports)
-            //    .HasForeignKey(sc => sc.PipelineSectionId)
-            //    .OnDelete(DeleteBehavior.Cascade);
-
-            //modelBuilder.Entity<SectionSupport>()
-            //    .HasOne(p => p.InitialNode)
-            //    .WithMany(t => t.SectionSupports)
-            //    .HasForeignKey(sc => sc.InitialNodeId)
-            //    .OnDelete(DeleteBehavior.Cascade); 
-
-            //modelBuilder.Entity<SectionSupport>()
-            //    .HasOne(p => p.EndNode)
-            //    .WithMany(t => t.SectionSupports)
-            //    .HasForeignKey(sc => sc.EndNodeId)
-            //    .OnDelete(DeleteBehavior.Cascade);
-
             modelBuilder.Entity<ThermalNode>()
-               .HasOne(p => p.ThermalNetwork)
-               .WithMany(t => t.ThermalNodes)
-               .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(p => p.PipelineSection)
+                .WithMany(t => t.Nodes)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ThermalNetwork>()
                 .HasOne(p => p.Organization)
