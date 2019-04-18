@@ -23,15 +23,15 @@ namespace API.Core.Contexts
                 .WithMany(t => t.PipelineSections)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<ThermalNode>()
-                .HasOne(p => p.TypeOfNode)
-                .WithMany(t => t.ThermalNodes)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<ThermalNode>()
+            modelBuilder.Entity<Nodes>()
                 .HasOne(p => p.PipelineSection)
                 .WithMany(t => t.Nodes)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Nodes>()
+                 .HasOne(p => p.ThermalNode)
+                 .WithMany(t => t.Nodes)
+                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ThermalNetwork>()
                 .HasOne(p => p.Organization)

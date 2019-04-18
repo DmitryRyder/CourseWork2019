@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Common.Models
 {
@@ -7,7 +8,11 @@ namespace Common.Models
         public int Number { get; set; }
         public Guid TypeOfNodeId { get; set; }
         public TypeOfNode TypeOfNode { get; set; }
-        public Guid PipelineSectionId { get; set; }
-        public PipelineSection PipelineSection { get; set; }
+        public List<Nodes> Nodes { get; set; }
+
+        public ThermalNode()
+        {
+            Nodes = new List<Nodes>();
+        }
     }
 }

@@ -8,9 +8,7 @@ namespace API.Core.Automapper.Profiles
     {
         public ThermalNodeProfile()
         {
-            CreateMap<ThermalNode, ThermalNodeDto>()
-                .ForMember(m => m.PipelineSectionNumber, o => o.MapFrom(s => s.PipelineSection.NumberOfSection))
-                .ForMember(m => m.TypeOfNodeName, o => o.MapFrom(s => s.TypeOfNode.Name));
+            CreateMap<ThermalNode, ThermalNodeDto>();
             CreateMap<ThermalNodeDto, ThermalNode>();
         }
     }

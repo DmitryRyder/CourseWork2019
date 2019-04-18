@@ -1,0 +1,93 @@
+﻿@using Common.DTO
+@using Common
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.Ui
+
+@model IEnumerable<PipelineSectionDto>
+
+<div class="title2">
+    <h2>Участки трубопровода</h2>
+</div>
+
+<div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
+    <button id="open" class="k-button">Добавить участок трубопровода</button>
+</div>
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grPipelineSections")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.NumberOfSection);
+            columns.Bound(p => p.Length);
+            columns.Bound(p => p.LastRepair).Format(Constants.AttributeDateFormat);
+            columns.Bound(p => p.SteelPipeName);
+            columns.Bound(p => p.InitialThermalNodeNumber);
+            columns.Bound(p => p.EndThermalNodeNumber);
+            columns.Command(command => { command.Destroy(); }).Width(200);
+        })
+        .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+            model.Field(p => p.Id).Editable(false);
+        })
+        .PageSize(30)
+        .Read(read => read.Action("GetAllPipelineSections", "MPPipelineSection"))
+        .Destroy(update => update.Action("DeletePipelineSections", "MPPipelineSection"))
+        )
+    )
+    @(Html.Kendo().Window()
+    .Name("AddPipelineSectionWindow")
+    .Width(450)
+    .Height(700)
+    .Visible(false)
+    .Draggable(true)
+    .Resizable()
+    .Title("Добавление участка трубопровода")
+    .Actions(actions => actions.Refresh().Close())
+    .LoadContentFrom("AddPipelineSectionWindow", "Main")
+    )
+</div>
+<script>
+    var myWindow;
+    $(document).ready(function () {
+        myWindow = $("#AddPipelineSectionWindow");
+        $("#open").click(function (e) {
+            myWindow.data("kendoWindow").open();
+            myWindow.data("kendoWindow").center();
+        });
+    });
+    function rebindDataSource() {
+        $("#grPipelineSections").data("kendoGrid").dataSource.read();
+    }
+        function btInitAdd_onClick(e){
+            $("#addInitialNode").removeClass("unvisible").addClass("visible");
+            $("#buttonsInitialNode").removeClass("visible").addClass("unvisible");
+            //$("#selInitialNode").setAttribute("disabled");
+        }
+        function btInitSelect_onClick(e){
+            $("#selectInitialNode").removeClass("unvisible").addClass("visible");
+            $("#buttonsInitialNode").removeClass("visible").addClass("unvisible");
+        }
+        function btEndAdd_onClick(e){
+            $("#addEndNode").removeClass("unvisible").addClass("visible");
+            $("#buttonsEndNode").removeClass("visible").addClass("unvisible");
+            //$("#selEndNode").setAttribute("disabled");
+        }
+        function btEndSelect_onClick(e){
+            $("#selectEndNode").removeClass("unvisible").addClass("visible");
+            $("#buttonsEndNode").removeClass("visible").addClass("unvisible");
+        }
+</script>
+
+

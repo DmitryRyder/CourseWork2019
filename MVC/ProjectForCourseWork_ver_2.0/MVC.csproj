@@ -248,7 +248,8 @@
     <Content Include="Views\Main\MPThermalType.cshtml" />
     <Content Include="Views\Main\AddThermalNetworkWindow.cshtml" />
     <Content Include="Views\Main\MPSteelPipes.cshtml" />
-    <Content Include="Views\Main\MPPipelineSection.cshtml" />
+    <Content Include="Views\Main\MPPipelineSections.cshtml" />
+    <Content Include="Views\Main\AddPipelineSectionWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,8 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult MPThermalNetworks() => View();
         public ActionResult AddThermalNetworkWindow() => View();
         public ActionResult MPSteelPipes() => View();
+        public ActionResult MPPipelineSections() => View();
+        public ActionResult AddPipelineSectionWindow() => View();
         //public ActionResult TypeOfRooms() => View();
 
         //public ActionResult Organizations() => View();

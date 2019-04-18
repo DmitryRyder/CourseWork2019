@@ -39,9 +39,29 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> CascadingGetThermalType()
+        public async Task<ActionResult> GetAllThermalNetworks()
         {
             var objectsO = await RestQuery.ExecuteAsync<List<ThermalNetworkDto>>("http://localhost:57770/", "GetAllThermalNetworks", Method.GET);
+
+            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetAllThermalNode()
+        {
+            var objectsO = await RestQuery.ExecuteAsync<List<ThermalNodeDto>>("http://localhost:57770/", "GetAllThermalNode", Method.GET);
+
+            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> GetAllTypeOfNodes()
+        {
+            var objectsO = await RestQuery.ExecuteAsync<List<TypeOfNodeDto>>("http://localhost:57770/", "GetAllTypeOfNodes", Method.GET);
+
+            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
+        }
+        public async Task<ActionResult> GetAllPipes()
+        {
+            var objectsO = await RestQuery.ExecuteAsync<List<SteelPipeDto>>("http://localhost:57770/", "GetAllPipes", Method.GET);
 
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }

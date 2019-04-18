@@ -15,11 +15,11 @@ namespace Common.Models
         public Guid ThermalNetworkId { get; set; }
         public ThermalNetwork ThermalNetwork { get; set; }
 
-        public List<ThermalNode> Nodes { get; set; }
+        public List<Nodes> Nodes { get; set; }
 
         public PipelineSection()
         {
-            Nodes = new List<ThermalNode>();
+            Nodes = new List<Nodes>();
         }
     }
 }

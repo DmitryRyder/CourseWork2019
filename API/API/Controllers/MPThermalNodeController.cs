@@ -32,6 +32,19 @@ namespace API.Controllers
         }
 
         /// <summary>
+        /// Метод возвращающий все типы сетей из базы данных
+        /// </summary>
+        [HttpGet]
+        [Route("/GetAllThermalNode")]
+        [ProducesResponseType(typeof(List<ThermalNodeDto>), 200)]
+        public JsonResult GetAllThermalNode()
+        {
+            var thermalTypes = unitOfWork.GetRepository<ThermalNode>().Include(x => x.Nodes, x => x.TypeOfNode);
+
+            return Json(mapper, thermalTypes, typeof(List<ThermalNodeDto>));
+        }
+
+        /// <summary>
         /// Метод добавляющий узел в базу данных
         /// </summary>
         [HttpPost]

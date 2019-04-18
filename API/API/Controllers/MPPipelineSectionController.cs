@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
@@ -36,13 +37,13 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<PipelineSection>), 200)]
         public JsonResult GetAllPipelineSections()
         {
-            var typeOfNodes = unitOfWork.GetRepository<PipelineSection>().Include(x => x.SteelPipe, x => x.Nodes);
+            var pipelineSections = unitOfWork.GetRepository<PipelineSection>().Include(x => x.SteelPipe, x => x.ThermalNetwork);
 
-            return Json(mapper, typeOfNodes, typeof(List<PipelineSectionDto>));
+            return Json(mapper, pipelineSections, typeof(List<PipelineSectionDto>));
         }
 
         /// <summary>
-        /// Метод добавляющий участок трубопровода в базу данных
+        /// Метод добавляющий участок трубопровода в базу данных, включая вновь созданные участки трубопровода
         /// </summary>
         [HttpPost]
         [Route("/AddPipelineSections")]
@@ -50,17 +51,33 @@ namespace API.Controllers
         public async Task<IActionResult> AddPipelineSections(PipelineSectionDto model)
         {
             var pipelineSection = model.MapTo<PipelineSection>(mapper);
-            var initialNode = await unitOfWork.GetRepository<ThermalNode>().GetByIdAsync(model.InitialNoneId);
-            var endNode = await unitOfWork.GetRepository<ThermalNode>().GetByIdAsync(model.EndNodeId);
-            pipelineSection.Nodes.Add(initialNode);
-            pipelineSection.Nodes.Add(endNode);
+            unitOfWork.GetRepository<PipelineSection>().InsertAsync(pipelineSection);
+            unitOfWork.GetRepository<PipelineSection>().SaveAsync();
+            pipelineSection = unitOfWork.GetRepository<PipelineSection>().Query().Where(p => p.NumberOfSection == model.NumberOfSection).FirstOrDefault();
 
-            if (ModelState.IsValid)
+            Guid initialNodeId, endNodeId;
+
+            if (model.InitialThermalNode != null)
             {
-                unitOfWork.GetRepository<PipelineSection>().InsertAsync(pipelineSection);
-                unitOfWork.GetRepository<PipelineSection>().SaveAsync();
-                return new ObjectResult("Model added successfully!");
+                var initialNode = new ThermalNode() { Number = model.InitialThermalNode.Number, TypeOfNodeId = model.InitialThermalNode.TypeOfNodeId };
+                unitOfWork.GetRepository<ThermalNode>().InsertAsync(initialNode);
+                unitOfWork.GetRepository<ThermalNode>().SaveAsync();
+                initialNodeId = unitOfWork.GetRepository<ThermalNode>().Query().Where(n => n.Number == initialNode.Number).Select(p => p.Id).FirstOrDefault();
+                pipelineSection.Nodes.Add(new Nodes() { ThermalNodeId = initialNodeId });
             }
+
+            if (model.EndThermalNode != null)
+            {
+                var endNode = new ThermalNode() { Number = model.EndThermalNode.Number, TypeOfNodeId = model.EndThermalNode.TypeOfNodeId };
+                unitOfWork.GetRepository<ThermalNode>().InsertAsync(endNode);
+                unitOfWork.GetRepository<ThermalNode>().SaveAsync();
+                endNodeId = unitOfWork.GetRepository<ThermalNode>().Query().Where(n => n.Number == endNode.Number).Select(p => p.Id).FirstOrDefault();
+                pipelineSection.Nodes.Add(new Nodes() { ThermalNodeId = endNodeId });
+            }
+
+            unitOfWork.GetRepository<PipelineSection>().Update(pipelineSection);
+            unitOfWork.GetRepository<PipelineSection>().SaveAsync();
+
             return new ObjectResult("Model added unsuccessfully!");
         }
 

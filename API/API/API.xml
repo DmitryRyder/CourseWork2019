@@ -209,6 +209,26 @@
             Метод для удаления организации по id
             </summary>
         </member>
+        <member name="T:API.Controllers.MPPipelineSectionController">
+            <summary>
+            Контроллер для работы с трубами
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPPipelineSectionController.GetAllPipelineSections">
+            <summary>
+            Метод возвращающий все участки трбопровода из базы данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPPipelineSectionController.AddPipelineSections(Common.DTO.PipelineSectionDto)">
+            <summary>
+            Метод добавляющий участок трубопровода в базу данных, включая вновь созданные участки трубопровода
+            </summary>
+        </member>
+        <member name="M:API.Controllers.MPPipelineSectionController.DeletePipelineSections(System.Guid)">
+            <summary>
+            Метод для удаления участка трубопровода по id
+            </summary>
+        </member>
         <member name="T:API.Controllers.MPSteelPipeController">
             <summary>
             Контроллер для работы с трубами
@@ -259,19 +279,14 @@
             Контроллер для работы с узлами тепловой сети
             </summary>
         </member>
-        <member name="M:API.Controllers.MPThermalNodeController.GetAllThermalNodes">
+        <member name="M:API.Controllers.MPThermalNodeController.GetAllThermalNode">
             <summary>
-            Метод возвращающий все узлы из базы данных
+            Метод возвращающий все типы сетей из базы данных
             </summary>
         </member>
         <member name="M:API.Controllers.MPThermalNodeController.AddThermalNode(Common.DTO.ThermalNodeDto)">
             <summary>
             Метод добавляющий узел в базу данных
-            </summary>
-        </member>
-        <member name="M:API.Controllers.MPThermalNodeController.DeleteTypeOfNode(System.Guid)">
-            <summary>
-            Метод для удаления узла по id
             </summary>
         </member>
         <member name="T:API.Controllers.MPThermalTypeController">

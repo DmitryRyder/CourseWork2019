@@ -30,6 +30,7 @@
     <siteMapNode id="200" title="Зависимые таблицы">
       <siteMapNode title="Организации" controller="Main" action="MPOrganizations"/>
       <siteMapNode title="Тепловые сети" controller="Main" action="MPThermalNetworks"/>
+      <siteMapNode title="Участки трубопровода" controller="Main" action="MPPipelineSections"/>
       </siteMapNode>
     </siteMapNode>
 </siteMap>

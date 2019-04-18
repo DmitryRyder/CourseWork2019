@@ -1,0 +1,401 @@
+﻿@using Common.DTO
+@using System
+@using Common.Extensions;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddPipelineSectionWindow</title>
+</head>
+<body>
+    <div class="demo-section k-content">
+        <form id="pipelineForm">
+            <ul id="fieldlist">
+                <li>
+                    <label for="thermalNetwork">Тепловая сеть:</label>
+                    @(Html.Kendo()
+                          .ComboBox()
+                          .Name("thermalNetwork")
+                          .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тепловую сеть" })
+                          .Placeholder("Выберите тепловую сеть...")
+                          .DataTextField("Name")
+                          .DataValueField("Id")
+                          .Filter(FilterType.Contains)
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetAllThermalNetworks", "MPPipelineSection");
+                              });
+                          })
+                    )
+                </li>
+                <li>
+                    <label for="pipeName">Тип труб на участке:</label>
+                    @(Html.Kendo()
+                          .ComboBox()
+                          .Name("pipeName")
+                          .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тип труб" })
+                          .Placeholder("Выберите тип труб...")
+                          .DataTextField("Name")
+                          .DataValueField("Id")
+                          .Filter(FilterType.Contains)
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetAllPipes", "MPPipelineSection");
+                              });
+                          })
+                    )
+                </li>
+                <li>
+                    <label for="number">Номер участка:</label>
+                    @(Html.Kendo().NumericTextBox<int>()
+                          .Name("number")
+                          .Value(0)
+                          .Format("0")
+                          .Placeholder("Введите номер участка..")
+                          .HtmlAttributes(new { style = "width: 50%", required = "required", data_required_msg = "Введите номер участка" })
+                    )
+                </li>
+                <li>
+                    <label for="length">Длина участка:</label>
+                    @(Html.Kendo().NumericTextBox<int>()
+                          .Name("length")
+                          .Value(0)
+                          .Format("0")
+                          .Placeholder("Введите длину участка..")
+                          .HtmlAttributes(new { style = "width: 50%", required = "required", data_required_msg = "Введите длину участка" })
+                    )
+                </li>
+                <li>
+                    <label for="repairDate">Дата последнего ремонта:</label>
+                    @(Html.Kendo().DatePicker()
+                      .Name("repairDate")
+                      .Value(DateTime.Today.StartOfMonth())
+                      .HtmlAttributes(new { style = "width:50%", required = "required", data_required_msg = "Введите дату последнего ремонта" })
+                    )
+                </li>
+                <li>
+                    <label for="pipes">Тип трубы:</label>
+                    @(Html.Kendo()
+                          .ComboBox()
+                          .Name("pipes")
+                          .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тип трубы" })
+                          .Placeholder("Выберите тип трубы...")
+                          .DataTextField("Name")
+                          .DataValueField("Id")
+                          .Filter(FilterType.Contains)
+                          .DataSource(source =>
+                          {
+                              source.Read(read =>
+                              {
+                                  read.Action("CascadingGetSteelPipes", "MPPipelineSection");
+                              });
+                          })
+                    )
+                </li>
+                <li>УЗЕЛ НАЧАЛА УЧАСТКА ТРУБОПРОВОДА:</li>
+                <li id="buttonsInitialNode" class="visible">
+                    <div style="padding-bottom: 10px; padding-top: 10px">
+                        @(Html.Kendo().Button()
+                                      .Name("btFilter1")
+                                      .HtmlAttributes(new { style = "width:40%" })
+                                      .Content("Добавить новый узел")
+                                      .Events(e => e.Click("btInitAdd_onClick"))
+                        )
+                        @(Html.Kendo().Button()
+                                  .Name("btFilter2")
+                                  .HtmlAttributes(new { style = "width:40%" })
+                                  .Content("Выбрать сущ. узел")
+                                  .Events(e => e.Click("btInitSelect_onClick"))
+                        )
+                    </div>
+                </li>
+                <li id="addInitialNode" class="unvisible">
+                    <div id="addInitialNodes" style="position: relative; bottom: 10px; top: -100px; padding-top: 10px" class="button-filters">
+                        <label for="InitialNode">Тип узла:</label>
+                        @(Html.Kendo()
+                              .ComboBox()
+                              .Name("InitialNode")
+                              .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тип узла" })
+                              .Placeholder("Выберите тип узла...")
+                              .DataTextField("Name")
+                              .DataValueField("Id")
+                              .Filter(FilterType.Contains)
+                              .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetAllTypeOfNodes", "MPPipelineSection");
+                                  });
+                              })
+                        )
+                        <label for="numberInitialNode">Номер узла:</label>
+                        @(Html.Kendo().NumericTextBox<int>()
+                              .Name("numberInitialNode")
+                              .Value(0)
+                              .Format("0")
+                              .Placeholder("Введите номер узла..")
+                              .HtmlAttributes(new { style = "width: 50%", required = "required", data_required_msg = "Введите номер узла" })
+                        )
+                    </div>
+                </li>
+                <li id="selectInitialNode" class="unvisible">
+                    <div style="position: relative; bottom: 10px; top: -250px; padding-top: 10px" class="button-filters">
+                        <label for="selInitialNode">Существующие узлы:</label>
+                        @(Html.Kendo()
+                              .ComboBox()
+                              .Name("selInitialNode")
+                              .HtmlAttributes(new { style = "width:70%"/*, required = "required", data_required_msg = "Выберите узел"*/ })
+                              .Placeholder("Выберите узел...")
+                              .DataTextField("Number")
+                              .DataValueField("Id")
+                              .Filter(FilterType.Contains)
+                              .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetAllThermalNode", "MPPipelineSection");
+                                  });
+                              })
+                        )
+                    </div>
+                </li>
+                <li style="position: relative; top: -190px;">УЗЕЛ КОНЦА УЧАСТКА ТРУБОПРОВОДА:</li>
+                <li>
+                    <div id="buttonsEndNode" style="position: relative; bottom: 10px; top: -190px; padding-top: 10px" class="button-filters">
+                        @(Html.Kendo().Button()
+                                              .Name("btFilter3")
+                                              .HtmlAttributes(new { style = "width:40%" })
+                                              .Content("Добавить новый узел")
+                        .Events(e => e.Click("btEndAdd_onClick"))
+                        )
+                        @(Html.Kendo().Button()
+                                  .Name("btFilter4")
+                                  .HtmlAttributes(new { style = "width:40%" })
+                                  .Content("Выбрать сущ. узел")
+                        .Events(e => e.Click("btEndSelect_onClick"))
+                        )
+                    </div>
+                </li>
+                <li id="addEndNode" class="unvisible">
+                    <div style="position: relative; bottom: 10px; top: -280px; padding-top: 10px" class="button-filters">
+                        <label for="EndNode">Тип узла:</label>
+                        @(Html.Kendo()
+                              .ComboBox()
+                              .Name("EndNode")
+                              .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тип узла" })
+                              .Placeholder("Выберите тип узла...")
+                              .DataTextField("Name")
+                              .DataValueField("Id")
+                              .Filter(FilterType.Contains)
+                              .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetAllTypeOfNodes", "MPPipelineSection");
+                                  });
+                              })
+                        )
+                        <label for="numberEndNode">Номер узла:</label>
+                        @(Html.Kendo().NumericTextBox<int>()
+                              .Name("numberEndNode")
+                              .Value(0)
+                              .Format("0")
+                              .Placeholder("Введите номер узла..")
+                              .HtmlAttributes(new { style = "width: 50%", required = "required", data_required_msg = "Введите номер узла" })
+                        )
+                    </div>
+                </li>
+                <li id="selectEndNode" class="unvisible">
+                    <div style="position: relative; bottom: 10px; top: -430px; padding-top: 10px" class="button-filters">
+                        <label for="selEndNode">Существующие узлы:</label>
+                        @(Html.Kendo()
+                              .ComboBox()
+                              .Name("selEndNode")
+                              .HtmlAttributes(new { style = "width:70%"/*, required = "required", data_required_msg = "Выберите узел"*/ })
+                              .Placeholder("Выберите узел...")
+                              .DataTextField("Number")
+                              .DataValueField("Id")
+                              .Filter(FilterType.Contains)
+                              .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetAllThermalNode", "MPPipelineSection");
+                                  });
+                              })
+                        )
+                    </div>
+                </li>
+                <li style="position: relative; top: -380px;" class="confirm">
+                    <button class="k-button k-primary" type="submit">Добавить</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+    <style>
+        .unvisible {
+            visibility: hidden;
+        }
+
+        .visible {
+            visibility: visible;
+        }
+
+        #fieldlist {
+            margin: 0;
+            padding: 0;
+        }
+
+            #fieldlist li {
+                list-style: none;
+                padding-bottom: 1.5em;
+                text-align: left;
+            }
+
+            #fieldlist label {
+                display: block;
+                padding-bottom: .3em;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+        #fieldlist {
+            margin: 0;
+            padding: 0;
+        }
+
+            #fieldlist li {
+                list-style: none;
+                padding-bottom: .7em;
+                text-align: left;
+            }
+
+            #fieldlist label {
+                display: block;
+                padding-bottom: .3em;
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 12px;
+                color: #444;
+            }
+
+            #fieldlist li.status {
+                text-align: center;
+            }
+
+            #fieldlist li .k-widget:not(.k-tooltip),
+            #fieldlist li .k-textbox {
+                margin: 0 5px 5px 0;
+            }
+
+        .confirm {
+            padding-top: 1em;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        #fieldlist li input[type="checkbox"] {
+            margin: 0 5px 0 0;
+        }
+
+        #fieldlist li #inputDate, #fieldlist li #outputDate {
+            margin: 0 65px 0 0;
+        }
+
+        span.k-widget.k-tooltip-validation {
+            display: inline-block;
+            width: 160px;
+            text-align: left;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: none;
+            box-shadow: none;
+            color: red;
+        }
+
+        .k-tooltip-validation .k-warning {
+            display: none;
+        }
+    </style>
+    <script>
+        var PipeLineSection = {
+            ThermalNetworkId: 0,
+            NumberOfSection: 0,
+            SteelPipeId: 0,
+            Length: 0,
+            LastRepair: 0,
+            InitialThermalNode: {
+                Number: 0,
+                TypeOfNodeId: 0,
+                PipelineSectionId: 0
+            },
+            EndThermalNode:{
+                Number: 0,
+                TypeOfNodeId: 0,
+                PipelineSectionId: 0
+            }
+        }//Model
+
+        $(document).ready(function () {
+            var validator = $("#pipelineForm").kendoValidator().data("kendoValidator");
+            $("form").submit(function (event) {
+                event.preventDefault();
+                if (validator.validate()) {
+                    console.log("ok");
+                    PostSend();
+                } else {
+                    console.log("not ok");
+                    status.removeClass("valid").addClass("invalid");
+                }
+            });
+        });
+
+        //$("form").submit(function (event) {
+        //    event.preventDefault();
+        //    console.log("ok");
+        //});
+
+        function PostSend() {
+        var options = {};
+            options.url = 'http://localhost:57109/MPPipelineSection/AddPipelineSections';
+            options.type = "POST";
+            var pipeLineSection = PipeLineSection;
+            pipeLineSection.ThermalNetworkId = $("#thermalNetwork").val();
+            pipeLineSection.NumberOfSection = $("#number").val();
+            pipeLineSection.Length = $("#length").val();
+            pipeLineSection.LastRepair = $("#repairDate").val();
+            pipeLineSection.SteelPipeId = $("#pipeName").val();
+            pipeLineSection.InitialThermalNode.Number = $("#numberInitialNode").val();
+            pipeLineSection.InitialThermalNode.TypeOfNodeId = $("#InitialNode").val();
+            pipeLineSection.EndThermalNode.Number = $("#numberEndNode").val();
+            pipeLineSection.EndThermalNode.TypeOfNodeId = $("#EndNode").val();
+            console.dir(pipeLineSection);
+            options.data = JSON.stringify(pipeLineSection);
+            options.contentType = "application/json";
+            options.dataType = "html";
+            options.success = function () {
+            myWindow.data("kendoWindow").close();
+            rebindDataSource();
+            };
+            $.ajax(options);
+        }
+    </script>
+</body>
+</html>
