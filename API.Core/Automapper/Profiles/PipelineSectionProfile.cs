@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Common.DTO;
 using Common.Models;
+using System.Linq;
 
 namespace API.Core.Automapper.Profiles
 {

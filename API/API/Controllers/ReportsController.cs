@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Controllers.Base;
 using API.Core.DAL;
 using AutoMapper;
-using BackOffice.API.Core.Extensions;
-using Common.Code;
 using Common.DTO;
+using Common.Filters;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -31,16 +30,83 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Метод объем воды по организациям и органам управления
+        /// Метод возвращающий объем воды для всех органов управления
         /// </summary>
         [HttpGet]
-        [Route("/GetWaterVolume")]
-        [ProducesResponseType(typeof(List<TypeOfNodeDto>), 200)]
-        public JsonResult GetAllTypeOfNodes()
+        [Route("/GetWaterVolumeForManagementBodies")]
+        [ProducesResponseType(typeof(List<WaterVolumeDto>), 200)]
+        public async Task<JsonResult> GetWaterVolumeForManagementBodies()
         {
-            var typeOfNodes = unitOfWork.GetRepository<TypeOfNode>().Include(x => x.ThermalNodes);
+            var waterVolums = await unitOfWork.GetRepository<ThermalNetwork>().Query().Select(p => new WaterVolumeDto {
+                                                                                 ManagementBodyName = p.Organization.ManagementBody.Name,
+                                                                                 OrganizationName = p.Organization.Name,
+                                                                                 ThermalNetworkName = p.Name,
+                                                                                 WaterVolume = p.PipelineSections.Select(r=>r.SteelPipe.Volume).Sum() *
+                                                                                 p.PipelineSections.Select(r => r.SteelPipe).Count()
+                                                                                 }).ToListAsync();
 
-            return Json(mapper, typeOfNodes, typeof(List<TypeOfNodeDto>));
+            return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));
+        }
+
+        /// <summary>
+        /// Метод возвращающий объем воды для всех организаций
+        /// </summary>
+        [HttpGet]
+        [Route("/GetWaterVolumeForOrganizations")]
+        [ProducesResponseType(typeof(List<WaterVolumeDto>), 200)]
+        public async Task<JsonResult> GetWaterVolumeForOrganizations()
+        {
+            var waterVolums = await unitOfWork.GetRepository<ThermalNetwork>().Query().Select(p => new WaterVolumeDto {
+                                                                                 OrganizationName = p.Organization.Name,
+                                                                                 ThermalNetworkName = p.Name,
+                                                                                 WaterVolume = p.PipelineSections.Select(r=>r.SteelPipe.Volume).Sum() *
+                                                                                 p.PipelineSections.Select(r => r.SteelPipe).Count()
+                                                                                 }).ToListAsync();
+
+            return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));
+        }
+
+        /// <summary>
+        /// Метод возвращающий протяженность труб для выбранных организаций
+        /// </summary>
+        [HttpGet]
+        [Route("/GetPipesLengthForOrganizations")]
+        [ProducesResponseType(typeof(List<PipeLengthDto>), 200)]
+        public async Task<JsonResult> GetPipesLengthForOrganizations(OrganizationsFilterDto filter)
+        {
+            var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.Organizations.Contains(t.ThermalNetwork.OrganizationId))
+                                                                                     .Select(p => new PipeLengthDto
+                                                                                     {
+                                                                                         OrganizationName = p.ThermalNetwork.Organization.Name,
+                                                                                         Name = p.SteelPipe.Name,
+                                                                                         Diameter = p.SteelPipe.Diameter,
+                                                                                         Thickness = p.SteelPipe.Thickness,
+                                                                                         Volume = p.SteelPipe.Volume,
+                                                                                         Weight = p.SteelPipe.Weight,
+                                                                                         Length = p.Length
+                                                                                     }).ToListAsync();
+
+            return Json(mapper, pipesLength, typeof(List<PipeLengthDto>));
+        }
+
+        /// <summary>
+        /// Метод возвращающий данные о ремонте трубопроводов за указанный период
+        /// </summary>
+        [HttpGet]
+        [Route("/GetRepairsDataForPeriod")]
+        [ProducesResponseType(typeof(List<PipelineSectionDto>), 200)]
+        public async Task<JsonResult> GetPipesLengthForOrganizations(PeriodFilter filter)
+        {
+            var repairs = await unitOfWork.GetRepository<PipelineSection>().Query().Where(r => r.LastRepair >= filter.DateStart && r.LastRepair <= filter.DateEnd)
+                                                                             .Select(p => new PipelineSectionDto
+                                                                             {
+                                                                                 NumberOfSection = p.NumberOfSection,
+                                                                                 Length = p.Length,
+                                                                                 LastRepair = p.LastRepair,
+                                                                                 SteelPipeName = p.SteelPipe.Name
+                                                                             }).ToListAsync();
+
+            return Json(mapper, repairs, typeof(List<PipelineSectionDto>));
         }
     }
 }

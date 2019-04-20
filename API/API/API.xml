@@ -249,9 +249,19 @@
             Контроллер для отчетов согласно заданию
             </summary>
         </member>
-        <member name="M:API.Controllers.ReportsController.GetAllTypeOfNodes">
+        <member name="M:API.Controllers.ReportsController.GetWaterVolumeForManagementBodies">
             <summary>
-            Метод объем воды по организациям и органам управления
+            Метод возвращающий объем воды для всех органов управления
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetWaterVolumeForOrganizations">
+            <summary>
+            Метод возвращающий объем воды для всех организаций
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetPipesLengthForOrganizations(Common.Filters.OrganizationsFilterDto)">
+            <summary>
+            Метод возвращающий протяженность труб для выбранных организаций
             </summary>
         </member>
         <member name="M:API.RouteConfig.Configure(Microsoft.AspNetCore.Routing.IRouteBuilder)">
