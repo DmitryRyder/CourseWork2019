@@ -8,6 +8,7 @@ using Common.Code;
 using Common.DTO;
 using Common.Filters;
 using Kendo.Mvc.Extensions;
+using System.Linq;
 
 namespace ProjectForCourseWork_ver_2._0.Controllers
 {
@@ -27,14 +28,21 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
 
         public async Task<ActionResult> GetPipesLengthForOrganizations([DataSourceRequest] DataSourceRequest request, OrganizationsFilterDto filter)
         {
-            var objects = await RestQuery.ExecuteAsync<List<PipeLengthDto>>("http://localhost:57770/", "GetPipesLengthForOrganizations", Method.GET, filter);
+            var objects = await RestQuery.ExecuteAsync<List<PipeLengthDto>>("http://localhost:57770/", "GetPipesLengthForOrganizations", Method.POST, filter);
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
         public async Task<ActionResult> GetRepairsDataForPeriod([DataSourceRequest] DataSourceRequest request, PeriodFilter filter)
         {
-            var objects = await RestQuery.ExecuteAsync<List<PipelineSectionDto>>("http://localhost:57770/", "GetRepairsDataForPeriod", Method.GET, filter);
+            var objects = await RestQuery.ExecuteAsync<List<PipelineSectionDto>>("http://localhost:57770/", "GetRepairsDataForPeriod", Method.POST, filter);
             return Json(objects.Data.ToDataSourceResult(request));
+        }
+
+        public async Task<ActionResult> CascadingGetOrganizations()
+        {
+            var objectsO = await RestQuery.ExecuteAsync<List<OrganizationMDto>>("http://localhost:57770/", "GetAllOrganizationsM", Method.GET);
+
+            return Json(objectsO.Data.ToList());
         }
     }
 }

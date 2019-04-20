@@ -17,7 +17,7 @@ namespace Common.DTO
         public int Volume { get; set; }
         [DisplayName("Погонный вес")]
         public int Weight { get; set; }
-        [DisplayName("Погонный вес")]
+        [DisplayName("Длина")]
         public int Length { get; set; }
     }
 }

@@ -1,0 +1,90 @@
+﻿@using Common.DTO
+@using Common
+@using ProjectForCourseWork_ver_2._0.Extensions
+@using Kendo.Mvc.UI
+@using Common.Extensions
+
+@model IEnumerable<PipeLengthDto>
+
+<div class="title2">
+    <h2>Отчет по протяженности труб для выбранных организаций</h2>
+</div>
+<div class="filters row">
+    <div class="col-lg-4">
+            <label for="build">Органиации:</label>
+            @(Html.Kendo().MultiSelect()
+            .Name("organization")
+            .HtmlAttributes(new { style = "width:400px" })
+            .DataTextField("Name")
+            .DataValueField("Id")
+            .Filter(FilterType.Contains)
+            .Height(500)
+            .ClearButton(false)
+            .AutoClose(false)
+            .DataSource(source =>
+            {
+                source.Read(read =>
+                {
+                    read.Action("CascadingGetOrganizations", "Reports");
+                });
+            })
+            )
+        </div>
+        <div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
+            @(Html.Kendo().Button()
+                                  .Name("btFilter")
+                                  .Content("Применить фильтры")
+                                  .Events(e => e.Click("btFilter_onClick"))
+            )
+        </div>
+    </div>
+</div>
+<div class="row2">
+    @(Html.Kendo().Grid(Model)
+        .BackGrid()
+        .Name("grOne")
+        .HtmlAttributes(new { style = "height:760px" })
+        .Groupable(g => g.Enabled(true))
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.OrganizationName);
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.Diameter);
+            columns.Bound(p => p.Thickness);
+            columns.Bound(p => p.Volume);
+            columns.Bound(p => p.Weight);
+            columns.Bound(p => p.Length);
+        })
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .DataSource(dataSource => dataSource
+        .Ajax()
+        .Events(events => events.Error("error_handler"))
+        .PageSize(20)
+        .Read(read => read.Action("GetPipesLengthForOrganizations", "Reports").Data("filters"))
+        )
+    )
+</div>
+<script>
+    function rebindDataSource() {
+        $("#grOne").data("kendoGrid").dataSource.read();
+    }
+    function filters() {
+        //console.log($("#organization").val());
+        var t = $("#organization").data("kendoMultiSelect").val(); 
+                console.log(t);
+        return {
+            organizations: t
+        }
+    }
+    function btFilter_onClick() {
+        rebindDataSource();
+    }
+    function btFilter_onClick() {
+        rebindDataSource();
+    }
+</script>
+
+

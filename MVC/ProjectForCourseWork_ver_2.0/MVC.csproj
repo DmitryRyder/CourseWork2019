@@ -226,6 +226,7 @@
     <Content Include="Views\Main\AddPipelineSectionWindow.cshtml" />
     <Content Include="Views\Main\One.cshtml" />
     <Content Include="Views\Main\Two.cshtml" />
+    <Content Include="Views\Main\Three.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
