@@ -37,13 +37,10 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<WaterVolumeDto>), 200)]
         public async Task<JsonResult> GetWaterVolumeForManagementBodies()
         {
-            var waterVolums = await unitOfWork.GetRepository<ThermalNetwork>().Query().Select(p => new WaterVolumeDto {
-                                                                                 ManagementBodyName = p.Organization.ManagementBody.Name,
-                                                                                 OrganizationName = p.Organization.Name,
-                                                                                 ThermalNetworkName = p.Name,
-                                                                                 WaterVolume = p.PipelineSections.Select(r=>r.SteelPipe.Volume).Sum() *
-                                                                                 p.PipelineSections.Select(r => r.SteelPipe).Count()
-                                                                                 }).ToListAsync();
+            var waterVolums = await unitOfWork.GetRepository<ManagementBody>().Query().Select(p => new WaterVolumeDto {
+                                                                                 ManagementBodyName = p.Name,
+                                                                                 WaterVolume = p.Organizations.Select(t => t.ThermalNetworks.Select(r => r.PipelineSections.Select(u => u.SteelPipe.Volume * u.Length).Sum()).Sum()).Sum()
+            }).ToListAsync();
 
             return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));
         }
@@ -56,11 +53,9 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<WaterVolumeDto>), 200)]
         public async Task<JsonResult> GetWaterVolumeForOrganizations()
         {
-            var waterVolums = await unitOfWork.GetRepository<ThermalNetwork>().Query().Select(p => new WaterVolumeDto {
-                                                                                 OrganizationName = p.Organization.Name,
-                                                                                 ThermalNetworkName = p.Name,
-                                                                                 WaterVolume = p.PipelineSections.Select(r=>r.SteelPipe.Volume).Sum() *
-                                                                                 p.PipelineSections.Select(r => r.SteelPipe).Count()
+            var waterVolums = await unitOfWork.GetRepository<OrganizationM>().Query().Select(p => new WaterVolumeDto {
+                                                                                 OrganizationName = p.Name,
+                                                                                 WaterVolume = p.ThermalNetworks.Select(r => r.PipelineSections.Select(u => u.SteelPipe.Volume * u.Length).Sum()).Sum()
                                                                                  }).ToListAsync();
 
             return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));

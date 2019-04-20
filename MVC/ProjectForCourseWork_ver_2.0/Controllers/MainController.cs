@@ -15,8 +15,8 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult MPPipelineSections() => View();
         public ActionResult AddPipelineSectionWindow() => View();
 
-        ////ОТЧЕТЫ
-        //public ActionResult OneGetOrganizationsForPeriod() => View();
-        //public ActionResult TwoGetOrganizationsInBuildAndPeriod() => View();
+        //ОТЧЕТЫ
+        public ActionResult One() => View();
+        public ActionResult Two() => View();
     }
 }

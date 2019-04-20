@@ -264,6 +264,11 @@
             Метод возвращающий протяженность труб для выбранных организаций
             </summary>
         </member>
+        <member name="M:API.Controllers.ReportsController.GetPipesLengthForOrganizations(Common.Filters.PeriodFilter)">
+            <summary>
+            Метод возвращающий данные о ремонте трубопроводов за указанный период
+            </summary>
+        </member>
         <member name="M:API.RouteConfig.Configure(Microsoft.AspNetCore.Routing.IRouteBuilder)">
             <summary>
             Route Builder

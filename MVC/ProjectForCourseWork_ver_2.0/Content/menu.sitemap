@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap>
-  <!--<siteMapNode>
-    <siteMapNode id="100" title="Таблицы справочники">
-      <siteMapNode title="Здания" controller="Main" action="Buildings"/>
-      <siteMapNode title="Типы комнат" controller="Main" action="TypeOfRooms"/>
-      <siteMapNode title="Организации" controller="Main" action="Organizations"/>
-      <siteMapNode title="Электрооборудование" controller="Main" action="Electrics"/>
-    </siteMapNode>
-    <siteMapNode id="200" title="Зависимые таблицы">
-      <siteMapNode id="210" title="Помещения">
-        <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
-        <siteMapNode title="Арендуемые помещения" controller="Main" action="RoomsRental"/>
-      </siteMapNode>
-      <siteMapNode title="Электрооборудование по предприятиям" controller="Main" action="ElectricsByOrganization"/>
-      <siteMapNode title="Счета на оплату" controller="Main" action="invoices"/>
-    </siteMapNode>
-    <siteMapNode id="300" title="Отчеты">
-      <siteMapNode title="Отчет по организациям за период" controller="Main" action="OneGetOrganizationsForPeriod"/>
-      <siteMapNode title="Отчет по организациям въехавшим в выбранное здание за период" controller="Main" action="TwoGetOrganizationsInBuildAndPeriod"/>
-    </siteMapNode>
-  </siteMapNode>-->
   <siteMapNode>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Типы узлов" controller="Main" action="MPTypeOfNodes"/>
@@ -32,5 +12,9 @@
       <siteMapNode title="Тепловые сети" controller="Main" action="MPThermalNetworks"/>
       <siteMapNode title="Участки трубопровода" controller="Main" action="MPPipelineSections"/>
       </siteMapNode>
+    <siteMapNode id="300" title="Отчеты">
+      <siteMapNode title="Объем воды в органах управления" controller="Main" action="One"/>
+      <siteMapNode title="Объем воды в организациях" controller="Main" action="Two"/>
+    </siteMapNode>
     </siteMapNode>
 </siteMap>

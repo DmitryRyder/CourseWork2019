@@ -140,6 +140,7 @@
     <Compile Include="Controllers\MPThermalTypeController.cs" />
     <Compile Include="Controllers\MPTypeOfNodesController.cs" />
     <Compile Include="Controllers\MPThermalNetworkController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Extensions\DatePickerExtensions.cs" />
     <Compile Include="Extensions\GridExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,13 +224,11 @@
     <Content Include="Views\Main\MPSteelPipes.cshtml" />
     <Content Include="Views\Main\MPPipelineSections.cshtml" />
     <Content Include="Views\Main\AddPipelineSectionWindow.cshtml" />
+    <Content Include="Views\Main\One.cshtml" />
+    <Content Include="Views\Main\Two.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Buildings\" />
-    <Folder Include="Views\ElectricsByOrganization\" />
-    <Folder Include="Views\Electrics\" />
-    <Folder Include="Views\Invoice\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
