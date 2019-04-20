@@ -14,27 +14,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult MPSteelPipes() => View();
         public ActionResult MPPipelineSections() => View();
         public ActionResult AddPipelineSectionWindow() => View();
-        //public ActionResult TypeOfRooms() => View();
-
-        //public ActionResult Organizations() => View();
-
-        //public ActionResult ElectricsByOrganization() => View();
-
-        //public ActionResult Electrics() => View();
-
-        //public ActionResult AddElectricWindow() => View();
-
-        //public ActionResult AddRentalWindow() => View(); 
-
-        //public ActionResult AddInvoiceWindow() => View();
-
-        //public ActionResult AddRoomWindow() => View();
-
-        //public ActionResult Rooms() => View();
-
-        //public ActionResult RoomsRental() => View();
-
-        //public ActionResult Invoices() => View();
 
         ////ОТЧЕТЫ
         //public ActionResult OneGetOrganizationsForPeriod() => View();
