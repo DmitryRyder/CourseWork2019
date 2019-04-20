@@ -244,6 +244,16 @@
             Метод для удаления типа узла по id
             </summary>
         </member>
+        <member name="T:API.Controllers.ReportsController">
+            <summary>
+            Контроллер для отчетов согласно заданию
+            </summary>
+        </member>
+        <member name="M:API.Controllers.ReportsController.GetAllTypeOfNodes">
+            <summary>
+            Метод объем воды по организациям и органам управления
+            </summary>
+        </member>
         <member name="M:API.RouteConfig.Configure(Microsoft.AspNetCore.Routing.IRouteBuilder)">
             <summary>
             Route Builder

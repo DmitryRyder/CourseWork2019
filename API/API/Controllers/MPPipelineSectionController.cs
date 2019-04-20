@@ -37,9 +37,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<PipelineSection>), 200)]
         public JsonResult GetAllPipelineSections()
         {
-            var pipelineSections = unitOfWork.GetRepository<PipelineSection>().Include(x => x.SteelPipe, x => x.ThermalNetwork, x => x.Nodes);
-            var pipeSect = unitOfWork.GetRepository<PipelineSection>().Include(x => x.SteelPipe, x => x.ThermalNetwork, x => x.Nodes.Select(p=>p.ThermalNode)).ToList().FirstOrDefault();
-            var nodes = unitOfWork.GetRepository<Nodes>().GetAll();
+            var pipelineSections = unitOfWork.GetRepository<PipelineSection>().Include(x => x.SteelPipe, x => x.ThermalNetwork);
             return Json(mapper, pipelineSections, typeof(List<PipelineSectionDto>));
         }
 
