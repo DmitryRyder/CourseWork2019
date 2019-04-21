@@ -13,7 +13,7 @@
     <div class="col-lg-4">
             <label for="build">Органиации:</label>
             @(Html.Kendo().MultiSelect()
-            .Name("organization")
+            .Name("msOrganizations")
             .HtmlAttributes(new { style = "width:400px" })
             .DataTextField("Name")
             .DataValueField("Id")
@@ -70,10 +70,6 @@
     )
 </div>
 <script>
-    var Data = {
-        organizations: []
-    }
-
     function rebindDataSource() {
         $("#grOne").data("kendoGrid").dataSource.read();
     }
@@ -82,15 +78,10 @@
         rebindDataSource();
     }
     function filters() {
-
-        var data = Data;
-        data.organizations = $("#organization").val();
-
-        ////var data = { organizations: ["3f6c69fc-0754-4daa-06b5-08d6c3ad47ee", "ff9fea7a-bfe6-4163-96c0-08d6c5430943"] };
-        //console.log($("#organization").val());
-        console.log(data);
-        //console.log(JSON.stringify(data));
-        return data;
+        console.log($("msOrganizations").data("kendoMultiselect").val());
+        return {
+            organizations: $("msOrganizations").data("kendoMultiselect").val()
+        }
     }
 </script>
 
