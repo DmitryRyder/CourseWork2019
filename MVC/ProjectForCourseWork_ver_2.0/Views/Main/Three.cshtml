@@ -11,8 +11,8 @@
 </div>
 <div class="filters row">
     <div class="col-lg-4">
-        <div class="col-sm-7">
-            <label for="cbOrganizations">Органиации:</label>
+        <label class="col-sm-5">Организации</label>
+        <div class="col-sm-5">
             @(Html.Kendo().MultiSelect()
             .Name("cbOrganizations")
             .HtmlAttributes(new { style = "width:400px" })
@@ -28,9 +28,9 @@
                 });
             })
             )
-            </div>
+        </div>
+            <label class="col-sm-7">Тип трубы</label>
             <div class="col-sm-7">
-                <label for="cbPipes">Тип трубы:</label>
                 @(Html.Kendo().ComboBox()
                 .Name("cbPipes")
                 .HtmlAttributes(new { style = "width:400px" })
@@ -46,17 +46,15 @@
                     });
                 })
                 )
-            </div>
         </div>
     </div>
-        <div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
-            @(Html.Kendo().Button()
-                                  .Name("btFilter")
-                                  .Content("Применить фильтры")
-                                  .Events(e => e.Click("btFilter_onClick"))
-            )
-        </div>
-    </div>
+</div>
+<div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
+    @(Html.Kendo().Button()
+                          .Name("btFilter")
+                          .Content("Применить фильтры")
+                          .Events(e => e.Click("btFilter_onClick"))
+    )
 </div>
 <div class="row2">
     @(Html.Kendo().Grid(Model)
