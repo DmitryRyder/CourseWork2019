@@ -264,7 +264,7 @@
             Метод возвращающий протяженность труб для выбранных организаций
             </summary>
         </member>
-        <member name="M:API.Controllers.ReportsController.GetPipesLengthForOrganizations(Common.Filters.PeriodFilter)">
+        <member name="M:API.Controllers.ReportsController.GetRepairsDataForPeriod(Common.Filters.PeriodFilter)">
             <summary>
             Метод возвращающий данные о ремонте трубопроводов за указанный период
             </summary>

@@ -1,11 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Common.DTO
 {
     public class Fetch3Dto : BaseDto
     {
+        [DisplayName("Дата ремонта")]
+        public DateTime LastRepair { get; set; }
+
         [DisplayName("Номер участка")]
-        public int Number { get; set; }
+        public string Number { get; set; }
 
         [DisplayName("Длина участка")]
         public int Length { get; set; }
@@ -16,7 +20,7 @@ namespace Common.DTO
         [DisplayName("Тепловая сеть")]
         public string ThermalNetworkName { get; set; }
 
-        [DisplayName("Тепловая сеть")]
+        [DisplayName("Организация")]
         public string OrganizationName { get; set; }
 
     }

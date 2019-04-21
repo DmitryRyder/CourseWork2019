@@ -227,6 +227,7 @@
     <Content Include="Views\Main\One.cshtml" />
     <Content Include="Views\Main\Two.cshtml" />
     <Content Include="Views\Main\Three.cshtml" />
+    <Content Include="Views\Main\Four.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

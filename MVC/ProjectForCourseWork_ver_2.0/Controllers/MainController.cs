@@ -19,5 +19,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult One() => View();
         public ActionResult Two() => View();
         public ActionResult Three() => View();
+        public ActionResult Four() => View();
     }
 }

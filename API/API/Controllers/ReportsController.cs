@@ -99,14 +99,15 @@ namespace API.Controllers
         /// <summary>
         /// Метод возвращающий данные о ремонте трубопроводов за указанный период
         /// </summary>
-        [HttpGet]
+        [HttpPost]
         [Route("/GetRepairsDataForPeriod")]
         [ProducesResponseType(typeof(List<Fetch3Dto>), 200)]
-        public async Task<JsonResult> GetPipesLengthForOrganizations(PeriodFilter filter)
+        public async Task<JsonResult> GetRepairsDataForPeriod(PeriodFilter filter)
         {
             var repairs = await unitOfWork.GetRepository<PipelineSection>().Query().Where(r => r.LastRepair >= filter.DateStart && r.LastRepair <= filter.DateEnd)
                                                                              .Select(p => new Fetch3Dto
                                                                              {
+                                                                                 LastRepair = p.LastRepair,
                                                                                  Number = p.NumberOfSection,
                                                                                  Length = p.Length,
                                                                                  TypeofPipe = p.SteelPipe.Name,

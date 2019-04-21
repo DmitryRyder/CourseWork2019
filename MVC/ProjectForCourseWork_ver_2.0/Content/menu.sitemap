@@ -16,6 +16,7 @@
       <siteMapNode title="Объем воды в органах управления" controller="Main" action="One"/>
       <siteMapNode title="Объем воды в организациях" controller="Main" action="Two"/>
       <siteMapNode title="Протяженность труб для предприятий" controller="Main" action="Three"/>
+      <siteMapNode title="Ремонты трубопроводов за период" controller="Main" action="Four"/>
     </siteMapNode>
     </siteMapNode>
 </siteMap>
