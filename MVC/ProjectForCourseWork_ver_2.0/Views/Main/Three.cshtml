@@ -12,15 +12,15 @@
 <div class="filters row">
     <div class="col-lg-4">
             <label for="build">Органиации:</label>
-            @(Html.Kendo().MultiSelect()
-            .Name("msOrganizations")
+            @(Html.Kendo().ComboBox()
+            .Name("cbOrganizations")
             .HtmlAttributes(new { style = "width:600px" })
             .DataTextField("Name")
             .DataValueField("Id")
             .Filter(FilterType.Contains)
             .Height(500)
             .ClearButton(false)
-            .AutoClose(false)
+            //.AutoClose(false)
             .DataSource(source =>
             {
                 source.Read(read =>
@@ -73,18 +73,13 @@
     function rebindDataSource() {
         $("#grOne").data("kendoGrid").dataSource.read();
     }
-
     function btFilter_onClick() {
         rebindDataSource();
     }
     function filters() {
-        var selectedData = [];
-        var ms = $("msOrganizations").data("kendoMultiSelect");
-        var selectedData = ms.val();
-        console.log(selectedData);
-        //return {
-        //    organizations: $("msOrganizations").val()
-        //}
+        return {
+            organization: $("#cbOrganizations").val()
+        }
     }
 </script>
 

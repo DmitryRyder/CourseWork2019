@@ -69,21 +69,21 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<PipeLengthDto>), 200)]
         public async Task<IActionResult> GetPipesLengthForOrganizations(OrganizationsFilterDto filter)
         {
-            var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.Organizations.Contains(t.ThermalNetwork.OrganizationId))
-                                                                                     .Select(p => new PipeLengthDto
-                                                                                     {
-                                                                                         OrganizationName = p.ThermalNetwork.Organization.Name,
-                                                                                         Name = p.SteelPipe.Name,
-                                                                                         Diameter = p.SteelPipe.Diameter,
-                                                                                         Thickness = p.SteelPipe.Thickness,
-                                                                                         Volume = p.SteelPipe.Volume,
-                                                                                         Weight = p.SteelPipe.Weight,
-                                                                                         Length = p.Length
-                                                                                     }).ToListAsync();
+            //var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.Organizations.Contains(t.ThermalNetwork.OrganizationId))
+            //                                                                         .Select(p => new PipeLengthDto
+            //                                                                         {
+            //                                                                             OrganizationName = p.ThermalNetwork.Organization.Name,
+            //                                                                             Name = p.SteelPipe.Name,
+            //                                                                             Diameter = p.SteelPipe.Diameter,
+            //                                                                             Thickness = p.SteelPipe.Thickness,
+            //                                                                             Volume = p.SteelPipe.Volume,
+            //                                                                             Weight = p.SteelPipe.Weight,
+            //                                                                             Length = p.Length
+            //                                                                         }).ToListAsync();
 
             //var pipesLength = new List<int>() { 1, 2, 3 };
 
-            return Json(pipesLength);
+            return Json("");
         }
 
         /// <summary>
