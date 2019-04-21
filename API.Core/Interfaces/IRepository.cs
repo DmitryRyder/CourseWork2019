@@ -26,7 +26,7 @@ namespace API.Core.Interfaces
         void UpdateRange(IList<T> models);
         //IQueryable<T> Include(Expression<Func<T, object>> criteria);
         //IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
-        Task<List<T>> IncludeAsync(params Expression<Func<T, object>>[] includes);
         IQueryable<T> Include(params Expression<Func<T, object>>[] includes);
+        void Dispose();
     }
 }

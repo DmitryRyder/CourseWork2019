@@ -341,18 +341,12 @@
                 if (validator.validate()) {
                     console.log("ok");
                     PostSend();
-                    rebindDataSource();
                 } else {
                     console.log("not ok");
                     status.removeClass("valid").addClass("invalid");
                 }
             });
         });
-
-        //$("form").submit(function (event) {
-        //    event.preventDefault();
-        //    console.log("ok");
-        //});
 
         function PostSend() {
         var options = {};

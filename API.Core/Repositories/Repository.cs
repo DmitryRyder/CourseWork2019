@@ -85,22 +85,6 @@ namespace API.Core.Repositories
             return query == null ? dbSet : (IQueryable<T>)query;
         }
 
-        public async Task<List<T>> IncludeAsync(params Expression<Func<T, object>>[] includes)
-        {
-            IIncludableQueryable<T, object> query = null;
-
-            if (includes.Length > 0)
-            {
-                query = dbSet.Include(includes[0]);
-            }
-            for (int queryIndex = 1; queryIndex < includes.Length; ++queryIndex)
-            {
-                query = query.Include(includes[queryIndex]);
-            }
-
-            return await ((IQueryable<T>)query).ToListAsync();
-        }
-
         public void Insert(T model)
         {
             dbSet.Add(model);

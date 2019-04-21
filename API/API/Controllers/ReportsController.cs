@@ -67,20 +67,33 @@ namespace API.Controllers
         [HttpPost]
         [Route("/GetPipesLengthForOrganizations")]
         [ProducesResponseType(typeof(List<PipeLengthDto>), 200)]
-        public async Task<IActionResult> GetPipesLengthForOrganizations(OrganizationsFilterDto filter)
+        public IActionResult GetPipesLengthForOrganizations(OrganizationsFilterDto filter)
         {
-            var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.OrganizationIds.Contains(t.ThermalNetwork.OrganizationId))
-                                                                                     .Select(p => new PipeLengthDto
-                                                                                     {
-                                                                                         OrganizationName = p.ThermalNetwork.Organization.Name,
-                                                                                         Name = p.SteelPipe.Name,
-                                                                                         Diameter = p.SteelPipe.Diameter,
-                                                                                         Thickness = p.SteelPipe.Thickness,
-                                                                                         Volume = p.SteelPipe.Volume,
-                                                                                         Weight = p.SteelPipe.Weight,
-                                                                                         Length = p.Length
-                                                                                     }).ToListAsync();
-            return Json(pipesLength);
+            var result = new List<PipeLengthDto>();
+
+            if (filter.SteelPipeId == null)
+                return Json("хуй");
+
+            foreach(var v in filter.OrganizationIds)
+            {
+                var organizationName = unitOfWork.GetRepository<OrganizationM>().GetById(v).Name;
+                var pipe = unitOfWork.GetRepository<SteelPipe>().GetById(filter.SteelPipeId);
+
+                var pipesLength = unitOfWork.GetRepository<PipelineSection>().Query().Where(t => v == t.ThermalNetwork.OrganizationId && t.SteelPipeId == filter.SteelPipeId)
+                                                                           .Sum(p => p.Length);
+                result.Add(new PipeLengthDto
+                {
+                    OrganizationName = organizationName,
+                    Name = pipe.Name,
+                    Diameter = pipe.Diameter,
+                    Thickness = pipe.Thickness,
+                    Volume = pipe.Volume,
+                    Weight = pipe.Weight,
+                    Length = pipesLength
+                });
+            }
+
+            return Json(result);
         }
 
         /// <summary>

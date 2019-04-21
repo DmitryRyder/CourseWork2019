@@ -11,14 +11,16 @@
 </div>
 <div class="filters row">
     <div class="col-lg-4">
-            <label for="cbOrganizations">Органиация:</label>
+        <div class="col-sm-7">
+            <label for="cbOrganizations">Органиации:</label>
             @(Html.Kendo().MultiSelect()
             .Name("cbOrganizations")
             .HtmlAttributes(new { style = "width:400px" })
             .DataTextField("Name")
             .DataValueField("Id")
             .Filter(FilterType.Contains)
-            .DataSource(source =>   
+            .Value(null)
+            .DataSource(source =>
             {
                 source.Read(read =>
                 {
@@ -26,7 +28,27 @@
                 });
             })
             )
+            </div>
+            <div class="col-sm-7">
+                <label for="cbPipes">Тип трубы:</label>
+                @(Html.Kendo().ComboBox()
+                .Name("cbPipes")
+                .HtmlAttributes(new { style = "width:400px" })
+                .DataTextField("Name")
+                .DataValueField("Id")
+                .Filter(FilterType.Contains)
+                .Value(null)
+                .DataSource(source =>
+                {
+                    source.Read(read =>
+                    {
+                        read.Action("CascadingGetPipes", "Reports");
+                    });
+                })
+                )
+            </div>
         </div>
+    </div>
         <div style="padding-bottom: 10px; padding-top: 10px" class="button-filters">
             @(Html.Kendo().Button()
                                   .Name("btFilter")
@@ -77,8 +99,10 @@
     }
     function filters() {
         console.log($("#cbOrganizations").val());
+
         return {
-            OrganizationIds: $("#cbOrganizations").val()
+            OrganizationIds: $("#cbOrganizations").val() == null ? null : $("#cbOrganizations").val(),
+            SteelPipeId: $("#cbPipes").val() == null ? null : $("#cbPipes").val()
         }
     }
 </script>

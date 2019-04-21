@@ -75,7 +75,6 @@ namespace API.Controllers
 
             unitOfWork.GetRepository<PipelineSection>().InsertAsync(pipelineSection);
             unitOfWork.GetRepository<PipelineSection>().SaveAsync();
-
             return new ObjectResult("Model added unsuccessfully!");
         }
 
