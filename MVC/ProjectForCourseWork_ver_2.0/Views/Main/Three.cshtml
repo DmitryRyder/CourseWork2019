@@ -12,13 +12,13 @@
 <div class="filters row">
     <div class="col-lg-4">
             <label for="cbOrganizations">Органиация:</label>
-            @(Html.Kendo().ComboBox()
+            @(Html.Kendo().MultiSelect()
             .Name("cbOrganizations")
             .HtmlAttributes(new { style = "width:400px" })
             .DataTextField("Name")
             .DataValueField("Id")
             .Filter(FilterType.Contains)
-            .DataSource(source =>
+            .DataSource(source =>   
             {
                 source.Read(read =>
                 {
@@ -39,7 +39,6 @@
 <div class="row2">
     @(Html.Kendo().Grid(Model)
         .BackGrid()
-        .AutoBind(false)
         .Name("grOne")
         .HtmlAttributes(new { style = "height:760px" })
         .Groupable(g => g.Enabled(true))
@@ -59,7 +58,10 @@
         .Filterable()
         .DataSource(dataSource => dataSource
         .Ajax()
-        //.ServerOperation(true)
+        .Model(model =>
+        {
+            model.Id(p => p.Id);
+        })
         .Events(events => events.Error("error_handler"))
         .PageSize(20)
         .Read(read => read.Action("GetPipesLengthForOrganizations", "Reports").Data("filters"))
@@ -76,7 +78,7 @@
     function filters() {
         console.log($("#cbOrganizations").val());
         return {
-            organization: $("#cbOrganizations").val()
+            OrganizationIds: $("#cbOrganizations").val()
         }
     }
 </script>

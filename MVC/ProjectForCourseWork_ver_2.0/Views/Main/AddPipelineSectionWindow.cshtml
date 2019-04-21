@@ -82,25 +82,6 @@
                       .HtmlAttributes(new { style = "width:50%", required = "required", data_required_msg = "Введите дату последнего ремонта" })
                     )
                 </li>
-                <li>
-                    <label for="pipes">Тип трубы:</label>
-                    @(Html.Kendo()
-                          .ComboBox()
-                          .Name("pipes")
-                          .HtmlAttributes(new { style = "width:70%", required = "required", data_required_msg = "Выберите тип трубы" })
-                          .Placeholder("Выберите тип трубы...")
-                          .DataTextField("Name")
-                          .DataValueField("Id")
-                          .Filter(FilterType.Contains)
-                          .DataSource(source =>
-                          {
-                              source.Read(read =>
-                              {
-                                  read.Action("CascadingGetSteelPipes", "MPPipelineSection");
-                              });
-                          })
-                    )
-                </li>
                 <li>УЗЕЛ НАЧАЛА УЧАСТКА ТРУБОПРОВОДА:</li>
                 <li id="buttonsInitialNode" class="visible">
                     <div style="padding-bottom: 10px; padding-top: 10px">
@@ -360,6 +341,7 @@
                 if (validator.validate()) {
                     console.log("ok");
                     PostSend();
+                    rebindDataSource();
                 } else {
                     console.log("not ok");
                     status.removeClass("valid").addClass("invalid");

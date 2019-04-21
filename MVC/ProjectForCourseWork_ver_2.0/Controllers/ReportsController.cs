@@ -26,12 +26,11 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
-        [HttpPost]
-        public async Task<ActionResult> GetPipesLengthForOrganizations([DataSourceRequest] DataSourceRequest request, OrganizationsFilterDto filter)
+        public async Task<ActionResult> GetPipesLengthForOrganizations([DataSourceRequest] DataSourceRequest request, OrganizationsFilterDto filters)
         {
-            if (filter == null)
+            if (filters == null)
                 return Json("Non criteria");
-            var objects = await RestQuery.ExecuteAsync<List<PipeLengthDto>>("http://localhost:57770/", "GetPipesLengthForOrganizations", Method.POST, filter);
+            var objects = await RestQuery.ExecuteAsync<List<PipeLengthDto>>("http://localhost:57770/", "GetPipesLengthForOrganizations", Method.POST, filters);
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
