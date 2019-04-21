@@ -101,19 +101,19 @@ namespace API.Controllers
         /// </summary>
         [HttpGet]
         [Route("/GetRepairsDataForPeriod")]
-        [ProducesResponseType(typeof(List<PipelineSectionDto>), 200)]
+        [ProducesResponseType(typeof(List<Fetch3Dto>), 200)]
         public async Task<JsonResult> GetPipesLengthForOrganizations(PeriodFilter filter)
         {
             var repairs = await unitOfWork.GetRepository<PipelineSection>().Query().Where(r => r.LastRepair >= filter.DateStart && r.LastRepair <= filter.DateEnd)
-                                                                             .Select(p => new PipelineSectionDto
+                                                                             .Select(p => new Fetch3Dto
                                                                              {
-                                                                                 NumberOfSection = p.NumberOfSection,
+                                                                                 Number = p.NumberOfSection,
                                                                                  Length = p.Length,
-                                                                                 LastRepair = p.LastRepair,
-                                                                                 SteelPipeName = p.SteelPipe.Name
+                                                                                 TypeofPipe = p.SteelPipe.Name,
+                                                                                 ThermalNetworkName = p.ThermalNetwork.Name,
+                                                                                 OrganizationName = p.ThermalNetwork.Organization.Name
                                                                              }).ToListAsync();
-
-            return Json(mapper, repairs, typeof(List<PipelineSectionDto>));
+            return Json(repairs);
         }
     }
 }

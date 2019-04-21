@@ -24,8 +24,9 @@
             columns.Bound(p => p.Length);
             columns.Bound(p => p.LastRepair).Format(Constants.AttributeDateFormat);
             columns.Bound(p => p.SteelPipeName);
-            columns.Bound(p => p.InitialThermalNodeNumber);
-            columns.Bound(p => p.EndThermalNodeNumber);
+            columns.Bound(p => p.ThermaNetworkName);
+            //columns.Bound(p => p.InitialThermalNodeNumber);
+            //columns.Bound(p => p.EndThermalNodeNumber);
             columns.Command(command => { command.Destroy(); }).Width(200);
         })
         .Editable(editable => editable.Mode(GridEditMode.InLine).DisplayDeleteConfirmation(false))

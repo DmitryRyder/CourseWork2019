@@ -5,7 +5,7 @@ namespace Common.Models
 {
     public class PipelineSection : BaseModel
     {
-        public string NumberOfSection { get; set; }
+        public int NumberOfSection { get; set; }
         public int Length { get; set; }
         public DateTime LastRepair { get; set; }
 

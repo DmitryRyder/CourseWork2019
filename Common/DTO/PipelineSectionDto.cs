@@ -6,6 +6,8 @@ namespace Common.DTO
     public class PipelineSectionDto : BaseDto
     {
         public Guid ThermalNetworkId { get; set; }
+        [DisplayName("Название сети")]
+        public string ThermaNetworkName { get; set; }
         [DisplayName("Номер участка")]
         public string NumberOfSection { get; set; }
         [DisplayName("Длина учаска")]

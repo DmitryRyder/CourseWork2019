@@ -10,7 +10,8 @@ namespace API.Core.Automapper.Profiles
         public PipelineSectionProfile()
         {
             CreateMap<PipelineSection, PipelineSectionDto>()
-                .ForMember(m => m.SteelPipeName, o => o.MapFrom(s => s.SteelPipe.Name));
+                .ForMember(m => m.SteelPipeName, o => o.MapFrom(s => s.SteelPipe.Name))
+                .ForMember(m => m.ThermaNetworkName, o => o.MapFrom(s => s.ThermalNetwork.Name));
             CreateMap<PipelineSectionDto, PipelineSection>();
         }
     }
