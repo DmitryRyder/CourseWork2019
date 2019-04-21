@@ -39,7 +39,7 @@ namespace API.Controllers
         {
             var waterVolums = await unitOfWork.GetRepository<ManagementBody>().Query().Select(p => new WaterVolumeDto {
                                                                                  ManagementBodyName = p.Name,
-                                                                                 WaterVolume = p.Organizations.Select(t => t.ThermalNetworks.Select(r => r.PipelineSections.Select(u => u.SteelPipe.Volume * u.Length).Sum()).Sum()).Sum()
+                                                                                 WaterVolume = p.Organizations.Select(t => t.ThermalNetworks.Select(r => r.PipelineSections.Select(u => (u.SteelPipe.Diameter - u.SteelPipe.Thickness) * u.Length).Sum()).Sum()).Sum()
             }).ToListAsync();
 
             return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));
@@ -55,7 +55,7 @@ namespace API.Controllers
         {
             var waterVolums = await unitOfWork.GetRepository<OrganizationM>().Query().Select(p => new WaterVolumeDto {
                                                                                  OrganizationName = p.Name,
-                                                                                 WaterVolume = p.ThermalNetworks.Select(r => r.PipelineSections.Select(u => u.SteelPipe.Volume * u.Length).Sum()).Sum()
+                                                                                 WaterVolume = p.ThermalNetworks.Select(r => r.PipelineSections.Select(u => (u.SteelPipe.Diameter - u.SteelPipe.Thickness) * u.Length).Sum()).Sum()
                                                                                  }).ToListAsync();
 
             return Json(mapper, waterVolums, typeof(List<WaterVolumeDto>));
@@ -69,19 +69,21 @@ namespace API.Controllers
         [ProducesResponseType(typeof(List<PipeLengthDto>), 200)]
         public async Task<IActionResult> GetPipesLengthForOrganizations(OrganizationsFilterDto filter)
         {
-            //var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.Organizations.Contains(t.ThermalNetwork.OrganizationId))
-            //                                                                         .Select(p => new PipeLengthDto
-            //                                                                         {
-            //                                                                             OrganizationName = p.ThermalNetwork.Organization.Name,
-            //                                                                             Name = p.SteelPipe.Name,
-            //                                                                             Diameter = p.SteelPipe.Diameter,
-            //                                                                             Thickness = p.SteelPipe.Thickness,
-            //                                                                             Volume = p.SteelPipe.Volume,
-            //                                                                             Weight = p.SteelPipe.Weight,
-            //                                                                             Length = p.Length
-            //                                                                         }).GroupBy(p => p.OrganizationName).ToListAsync();
+            var pipesLength = await unitOfWork.GetRepository<PipelineSection>().Query().Where(t => filter.Organizations.Contains(t.ThermalNetwork.OrganizationId))
+                                                                                     .Select(p => new PipeLengthDto
+                                                                                     {
+                                                                                         OrganizationName = p.ThermalNetwork.Organization.Name,
+                                                                                         Name = p.SteelPipe.Name,
+                                                                                         Diameter = p.SteelPipe.Diameter,
+                                                                                         Thickness = p.SteelPipe.Thickness,
+                                                                                         Volume = p.SteelPipe.Volume,
+                                                                                         Weight = p.SteelPipe.Weight,
+                                                                                         Length = p.Length
+                                                                                     }).ToListAsync();
 
-            return Json(mapper, "", typeof(List<PipeLengthDto>));
+            //var pipesLength = new List<int>() { 1, 2, 3 };
+
+            return Json(pipesLength);
         }
 
         /// <summary>

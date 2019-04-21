@@ -17,7 +17,7 @@
             .HtmlAttributes(new { style = "width:400px" })
             .DataTextField("Name")
             .DataValueField("Id")
-            .Filter(FilterType.Contains)
+            .Filter(FilterType.StartsWith)
             .Height(500)
             .ClearButton(false)
             .AutoClose(false)
@@ -42,6 +42,7 @@
 <div class="row2">
     @(Html.Kendo().Grid(Model)
         .BackGrid()
+        .AutoBind(false)
         .Name("grOne")
         .HtmlAttributes(new { style = "height:760px" })
         .Groupable(g => g.Enabled(true))
@@ -61,6 +62,7 @@
         .Filterable()
         .DataSource(dataSource => dataSource
         .Ajax()
+        .ServerOperation(true)
         .Events(events => events.Error("error_handler"))
         .PageSize(20)
         .Read(read => read.Action("GetPipesLengthForOrganizations", "Reports").Data("filters"))
@@ -68,22 +70,27 @@
     )
 </div>
 <script>
+    var Data = {
+        organizations: []
+    }
+
     function rebindDataSource() {
         $("#grOne").data("kendoGrid").dataSource.read();
     }
+
+    function btFilter_onClick() {
+        rebindDataSource();
+    }
     function filters() {
+
+        var data = Data;
+        data.organizations = $("#organization").val();
+
+        ////var data = { organizations: ["3f6c69fc-0754-4daa-06b5-08d6c3ad47ee", "ff9fea7a-bfe6-4163-96c0-08d6c5430943"] };
         //console.log($("#organization").val());
-        var t = $("#organization").data("kendoMultiSelect").val(); 
-                console.log(t);
-        return {
-            organizations: t
-        }
-    }
-    function btFilter_onClick() {
-        rebindDataSource();
-    }
-    function btFilter_onClick() {
-        rebindDataSource();
+        console.log(data);
+        //console.log(JSON.stringify(data));
+        return data;
     }
 </script>
 

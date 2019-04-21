@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Common.DTO
 {
-    public class PipeLengthDto
+    public class PipeLengthDto : BaseDto
     {
         [DisplayName("Организация")]
         public string OrganizationName { get; set; }

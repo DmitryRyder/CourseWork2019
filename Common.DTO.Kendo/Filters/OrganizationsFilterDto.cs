@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Common.Filters
 {
-    public class OrganizationsFilterDto : BaseFilterDto
+    public class OrganizationsFilterDto
     {
-        public List<string> Organizations { get; set; } = new List<string>();
+        public List<Guid> Organizations { get; set; } = new List<Guid>();
     }
 }
