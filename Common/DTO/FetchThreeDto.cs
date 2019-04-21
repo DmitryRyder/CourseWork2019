@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Common.DTO
 {
-    public class Fetch3Dto : BaseDto
+    public class FetchThreeDto : BaseDto
     {
         [DisplayName("Дата ремонта")]
         public DateTime LastRepair { get; set; }

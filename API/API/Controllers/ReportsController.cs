@@ -15,7 +15,7 @@ namespace API.Controllers
     /// <summary>
     /// Контроллер для отчетов согласно заданию
     /// </summary>
-    [Produces("application/json")]
+    //[Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ReportsController : BaseController
@@ -100,12 +100,12 @@ namespace API.Controllers
         /// Метод возвращающий данные о ремонте трубопроводов за указанный период
         /// </summary>
         [HttpPost]
-        [Route("/GetRepairsDataForPeriod")]
-        [ProducesResponseType(typeof(List<Fetch3Dto>), 200)]
-        public async Task<JsonResult> GetRepairsDataForPeriod(PeriodFilter filter)
+        [Route("/GetRepairsForPeriod")]
+        [ProducesResponseType(typeof(List<FetchThreeDto>), 200)]
+        public async Task<IActionResult> GetRepairsForPeriod(PeriodFilter filter)
         {
             var repairs = await unitOfWork.GetRepository<PipelineSection>().Query().Where(r => r.LastRepair >= filter.DateStart && r.LastRepair <= filter.DateEnd)
-                                                                             .Select(p => new Fetch3Dto
+                                                                             .Select(p => new FetchThreeDto
                                                                              {
                                                                                  LastRepair = p.LastRepair,
                                                                                  Number = p.NumberOfSection,

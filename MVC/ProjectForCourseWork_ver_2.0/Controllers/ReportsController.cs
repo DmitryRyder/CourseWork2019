@@ -35,9 +35,9 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
-        public async Task<ActionResult> GetRepairsDataForPeriod([DataSourceRequest] DataSourceRequest request, PeriodFilter filter)
+        public async Task<ActionResult> GetRepairsDataForPeriod([DataSourceRequest] DataSourceRequest request, PeriodFilter filters)
         {
-            var objects = await RestQuery.ExecuteAsync<List<Fetch3Dto>>("http://localhost:57770/", "GetRepairsDataForPeriod", Method.POST, filter);
+            var objects = await RestQuery.ExecuteAsync<List<FetchThreeDto>>("http://localhost:57770/", "GetRepairsForPeriod", Method.POST, filters);
             return Json(objects.Data.ToDataSourceResult(request));
         }
 
