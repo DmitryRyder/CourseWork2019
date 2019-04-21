@@ -14,10 +14,10 @@
             <label for="build">Органиации:</label>
             @(Html.Kendo().MultiSelect()
             .Name("msOrganizations")
-            .HtmlAttributes(new { style = "width:400px" })
+            .HtmlAttributes(new { style = "width:600px" })
             .DataTextField("Name")
             .DataValueField("Id")
-            .Filter(FilterType.StartsWith)
+            .Filter(FilterType.Contains)
             .Height(500)
             .ClearButton(false)
             .AutoClose(false)
@@ -62,7 +62,7 @@
         .Filterable()
         .DataSource(dataSource => dataSource
         .Ajax()
-        .ServerOperation(true)
+        //.ServerOperation(true)
         .Events(events => events.Error("error_handler"))
         .PageSize(20)
         .Read(read => read.Action("GetPipesLengthForOrganizations", "Reports").Data("filters"))
@@ -78,10 +78,13 @@
         rebindDataSource();
     }
     function filters() {
-        console.log($("msOrganizations").data("kendoMultiselect").val());
-        return {
-            organizations: $("msOrganizations").data("kendoMultiselect").val()
-        }
+        var selectedData = [];
+        var ms = $("msOrganizations").data("kendoMultiSelect");
+        var selectedData = ms.val();
+        console.log(selectedData);
+        //return {
+        //    organizations: $("msOrganizations").val()
+        //}
     }
 </script>
 
