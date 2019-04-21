@@ -11,16 +11,13 @@
 </div>
 <div class="filters row">
     <div class="col-lg-4">
-            <label for="build">Органиации:</label>
+            <label for="cbOrganizations">Органиация:</label>
             @(Html.Kendo().ComboBox()
             .Name("cbOrganizations")
-            .HtmlAttributes(new { style = "width:600px" })
+            .HtmlAttributes(new { style = "width:400px" })
             .DataTextField("Name")
             .DataValueField("Id")
             .Filter(FilterType.Contains)
-            .Height(500)
-            .ClearButton(false)
-            //.AutoClose(false)
             .DataSource(source =>
             {
                 source.Read(read =>
@@ -77,6 +74,7 @@
         rebindDataSource();
     }
     function filters() {
+        console.log($("#cbOrganizations").val());
         return {
             organization: $("#cbOrganizations").val()
         }
