@@ -16,9 +16,6 @@ namespace Common.DTO
 
         [DisplayName("Этаж")]
         public int Floor { get; set; }
-        public Guid Type_of_roomId { get; set; }
-        [DisplayName("Тип помещения")]
-        public string TypeOfRoomName { get; set; }
         public Guid BuildingId { get; set; }
         [DisplayName("Здание")]
         public string BuildingName { get; set; }

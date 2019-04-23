@@ -32,8 +32,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         //ОТЧЕТЫ
         public ActionResult OneGetOrganizationsForPeriod() => View();
         public ActionResult TwoGetOrganizationsInBuildAndPeriod() => View();
-        public ActionResult ThreeGetOrganizationsOutBuildAndPeriod() => View();
         public ActionResult FourGetOrganizationsDebtForDate() => View();
-        public ActionResult FiveGetInvoicesWithFullInfoOfCurrentMonth() => View();
     }
 }

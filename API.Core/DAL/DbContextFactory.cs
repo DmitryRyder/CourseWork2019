@@ -14,11 +14,11 @@ namespace API.Core.DAL
             {
                 switch (type)
                 {
-                    case ContextType.PowerConsumptionContext:
+                    case ContextType.RentalRoomsContext:
                         {
-                            var optionsBuilder = new DbContextOptionsBuilder<AccountingForEnergyContext>();
+                            var optionsBuilder = new DbContextOptionsBuilder<RentalRoomsContext>();
                             optionsBuilder = optionsBuilder.UseSqlServer(path);
-                            context = new AccountingForEnergyContext(optionsBuilder.Options);
+                            context = new RentalRoomsContext(optionsBuilder.Options);
                         }
                         break;
                     default: break;

@@ -4,24 +4,19 @@
       <siteMapNode title="Титульный лист" controller="Main" action="Start"/>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Здания" controller="Main" action="Buildings"/>
-      <siteMapNode title="Типы комнат" controller="Main" action="TypeOfRooms"/>
       <siteMapNode title="Организации" controller="Main" action="Organizations"/>
-      <siteMapNode title="Электрооборудование" controller="Main" action="Electrics"/>
     </siteMapNode>
     <siteMapNode id="200" title="Зависимые таблицы">
       <siteMapNode id="210" title="Помещения">
         <siteMapNode title="Помещения" controller="Main" action="Rooms"/>
         <siteMapNode title="Арендуемые помещения" controller="Main" action="RoomsRental"/>
       </siteMapNode>
-      <siteMapNode title="Электрооборудование по предприятиям" controller="Main" action="ElectricsByOrganization"/>
       <siteMapNode title="Счета на оплату" controller="Main" action="invoices"/>
     </siteMapNode>
     <siteMapNode id="300" title="Отчеты">
       <siteMapNode title="Отчет по организациям за период" controller="Main" action="OneGetOrganizationsForPeriod"/>
       <siteMapNode title="Отчет по организациям въехавшим в выбранное здание за период" controller="Main" action="TwoGetOrganizationsInBuildAndPeriod"/>
-      <siteMapNode title="Отчет по организациям выехавшим из выбранного здания за период" controller="Main" action="ThreeGetOrganizationsOutBuildAndPeriod"/>
       <siteMapNode title="Отчет по организациям-должникам" controller="Main" action="FourGetOrganizationsDebtForDate"/>
-      <siteMapNode title="Отчет по по всем счетам за электоэнергию за текущий месяц" controller="Main" action="FiveGetInvoicesWithFullInfoOfCurrentMonth"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

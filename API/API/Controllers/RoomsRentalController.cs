@@ -27,6 +27,9 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Метод получающий все арендуемые помещения в базе данных
+        /// </summary>
         [HttpGet]
         [Route("/GetAllRentalRooms")]
         [ProducesResponseType(typeof(List<RoomRentalDto>), 200)]
@@ -39,6 +42,9 @@ namespace API.Controllers
             return Json(mapper, RoomsRental, typeof(List<RoomRentalDto>));
         }
 
+        /// <summary>
+        /// Метод получающий все арендуемые помещения с фильтрацией по периодам
+        /// </summary>
         [HttpPost]
         [Route("/GetFilteredRentalRooms")]
         [ProducesResponseType(typeof(List<RoomRentalDto>), 200)]
@@ -53,15 +59,15 @@ namespace API.Controllers
             return Json(mapper, RoomsRental, typeof(List<RoomRentalDto>));
         }
 
+        /// <summary>
+        /// Метод добавляющий арендуемое помещение в базу данных
+        /// </summary>
         [HttpPost]
         [Route("/AddRentalRoom")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
         public IActionResult AddRentalRoom(RoomRentalDto model)
         {
             var roomRental = model.MapTo<Room_rental>(mapper);
-
-            //roomRental.Room = null;
-            //roomRental.Organization = null;
 
             if (ModelState.IsValid)
             {
@@ -72,6 +78,9 @@ namespace API.Controllers
             return new ObjectResult("Model added unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод обновляющий существующее арендуемое помещение в базе данных
+        /// </summary>
         [HttpPut]
         [Route("/UpdateRentalRoom/{id}")]
         [ProducesResponseType(typeof(string), 200)]
@@ -91,6 +100,9 @@ namespace API.Controllers
             return new ObjectResult("Model updated unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод удаляющий арендуемое помещение из базы данных по id
+        /// </summary>
         [HttpDelete]
         [Route("/DeleteRentalRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]

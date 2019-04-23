@@ -48,13 +48,6 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
             return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> CascadingGetTypes()
-        {
-            var objectsO = await RestQuery.ExecuteAsync<List<TypeOfRoomDto>>("http://localhost:57770/", "GetAllTypes", Method.GET);
-
-            return Json(objectsO.Data, JsonRequestBehavior.AllowGet);
-        }
-
         public async Task<ActionResult> CascadingGetFloors(Guid buildingId)
         {
             var objectsO = await RestQuery.ExecuteAsync<List<Selected>>("http://localhost:57770/", $"GetFloorsForBuilding/{buildingId}", Method.GET);

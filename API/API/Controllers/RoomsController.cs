@@ -1,6 +1,4 @@
-﻿using Common.Extensions;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using API.Controllers.Base;
 using API.Core.DAL;
 using AutoMapper;
@@ -9,8 +7,6 @@ using Common.Code;
 using Common.DTO;
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace API.Controllers
@@ -29,26 +25,22 @@ namespace API.Controllers
             this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Метод возвращающий все помещения в базе данных
+        /// </summary>
         [HttpGet]
         [Route("/GetAllRooms")]
         [ProducesResponseType(typeof(List<RoomDto>), 200)]
         public JsonResult GetAllRoomsAsync()
         {
-            var rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
+            var rooms = unitOfWork.GetRepository<Room>().Include(x => x.Building);
 
             return Json(mapper, rooms, typeof(List<RoomDto>));
         }
 
-        [HttpGet]
-        [Route("/GetRoomsNotRental")]
-        [ProducesResponseType(typeof(List<RoomDto>), 200)]
-        public JsonResult GetRoomsNotRental()
-        {
-            var Rooms = unitOfWork.GetRepository<Room>().Include(x => x.TypeOfRoom, x => x.Building);
-
-            return Json(mapper, Rooms, typeof(List<RoomDto>));
-        }
-
+        /// <summary>
+        /// Метод добавляющий помещение в базу данных
+        /// </summary>
         [HttpPost]
         [Route("/AddRoom")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
@@ -57,7 +49,6 @@ namespace API.Controllers
             var room = model.MapTo<Room>(mapper);
 
             room.Building = null;
-            room.TypeOfRoom = null;
 
             if (ModelState.IsValid)
             {
@@ -68,6 +59,9 @@ namespace API.Controllers
             return new ObjectResult("Model added unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод обновляющй существующее помещение в базе данных
+        /// </summary>
         [HttpPut]
         [Route("/UpdateRoom/{id}")]
         [ProducesResponseType(typeof(string), 200)]
@@ -88,6 +82,9 @@ namespace API.Controllers
             return new ObjectResult("Model updated unsuccessfully!");
         }
 
+        /// <summary>
+        /// Метод удаляющий помещение в базе данных по id
+        /// </summary>
         [HttpDelete]
         [Route("/DeleteRoom/{id}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]

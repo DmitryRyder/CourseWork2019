@@ -1,5 +1,4 @@
 ﻿public enum ContextType
 {
-    PlanetDatabaseContext,
-    PowerConsumptionContext
+    RentalRoomsContext
 }

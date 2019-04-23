@@ -54,24 +54,6 @@
                     )
                 </li>
                 <li>
-                    <label for="buildings">Тип помещения:</label>
-                    @(Html.Kendo().ComboBox()
-                    .Name("typeOfRoom")
-                    .HtmlAttributes(new { style = "width:100%", required = "required", data_required_msg = "Выберите Тип помещения" })
-                    .Placeholder("Выберите тип помещения...")
-                    .DataTextField("Name")
-                    .DataValueField("Id")
-                    .Filter(FilterType.Contains)
-                    .DataSource(source =>
-                    {
-                        source.Read(read =>
-                        {
-                            read.Action("CascadingGetTypes", "Rooms");
-                        });
-                    })
-                    )
-                </li>
-                <li>
                     <label for="rooms">Номер помещения:</label>
                     @(Html.Kendo().TextBox()
                     .Name("number")
@@ -204,7 +186,6 @@
             room.Number = $("#number").val();
             room.Area = $("#area").val();
             room.Floor = $("#floors").val();
-            room.Type_of_roomId = $("#typeOfRoom").val();
             room.BuildingId = $("#build").val();
             console.dir(room);
             options.data = JSON.stringify(room);

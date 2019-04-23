@@ -9,14 +9,14 @@ using System.Linq;
 
 namespace API.Core.DAL
 {
-    public class UnitOfWork /*: IDisposable*/
+    public class UnitOfWork
     {
         private Dictionary<Type, object> repositories;
         private readonly DbContext context;
         public UnitOfWork(IDbContextFactory contextFactory)
         {
             repositories = new Dictionary<Type, object>();
-            context = contextFactory.CreateDbContext(ContextType.PowerConsumptionContext, Constants.PowerConsumptionDatabase);
+            context = contextFactory.CreateDbContext(ContextType.RentalRoomsContext, Constants.RentalRoomsContext);
         }
 
         public IRepository<T> GetRepository<T>() where T : BaseModel
@@ -36,21 +36,5 @@ namespace API.Core.DAL
         {
             await context.SaveChangesAsync();
         }
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
-
-        //private void Dispose(bool disposing)
-        //{
-        //    if (!disposing) return;
-        //    if (context != null)
-        //    {
-        //        context.Dispose();
-        //        repositories.Clear();
-        //    }
-        //}
     }
 }

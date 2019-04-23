@@ -71,27 +71,6 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Метод возвращающий все организации выехавшие из заданного здания за выбранный период
-        /// </summary>
-        [HttpPost]
-        [Route("/GetOrganizationsOutBuildAndPeriod")]
-        [ProducesResponseType(typeof(List<OrganizationForReportsDto>), 200)]
-        public async Task<IActionResult> GetOrganizationsOutBuildAndPeriod(OrganizationBuildingAndPeriodFilterDto filter)
-        {
-            var organizations = await unitOfWork.GetRepository<Room_rental>().Query().Where(r => r.OutputDate >= filter.DateStart && r.OutputDate <= filter.DateEnd && r.Room.BuildingId == filter.BuildingId)
-                                                               .Select(p => new OrganizationForReportsDto
-                                                               {
-                                                                   Name = p.Organization.Name,
-                                                                   Post = p.Organization.Post,
-                                                                   InputDate = p.InputDate,
-                                                                   OutputDate = p.OutputDate,
-                                                                   BuildingName = p.Room.Building.Name,
-                                                                   RoomNumber = p.Room.Number
-                                                               }).ToListAsync();
-            return Json(organizations);
-        }
-
-        /// <summary>
         /// Метод возвращающий все организации с просроченной оплатой по счетам за электричество
         /// </summary>
         [HttpPost]
@@ -110,26 +89,6 @@ namespace API.Controllers
                                                                    RoomNumber = p.Room_Rental.Room.Number
                                                                }).ToListAsync();
             return Json(organizations);
-        }
-
-        /// <summary>
-        /// Метод возвращающий все счета за текущий месяц
-        /// </summary>
-        [HttpPost]
-        [Route("/GetInvoicesWithFullInfoOfCurrentMonth")]
-        [ProducesResponseType(typeof(List<OrganizationWithInvoicesForReportsDto>), 200)]
-        public async Task<IActionResult> GetInvoicesWithFullInfoOfCurrentMonth()
-        {
-            var invoices = await unitOfWork.GetRepository<Invoice>().Query().Where(r => r.DateOfCreate >= DateTime.Today.StartOfMonth() && r.DateOfCreate <= DateTime.Today.EndOfMonth())
-                                                               .Select(p => new OrganizationWithInvoicesForReportsDto
-                                                               {
-                                                                    InvoiceNumber = p.Number,
-                                                                    Name = p.Room_Rental.Organization.Name,
-                                                                    InvoiceCreateDate = p.DateOfCreate,
-                                                                    PaymentDate = p.PaymentDate,
-                                                                    IsPayment = p.StatusOfPayment
-                                                               }).ToListAsync();
-            return Json(invoices);
         }
     }
 }

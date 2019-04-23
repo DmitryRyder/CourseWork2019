@@ -104,46 +104,6 @@
             Метод для удаления здания по id
             </summary>
         </member>
-        <member name="T:API.Controllers.ElectricsByOrganizationController">
-            <summary>
-            Контроллер для работы с электрическим оборудованием для организаций
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsByOrganizationController.GetAllElectricsByOrganization">
-            <summary>
-            Метод для получения оборудования по организациям
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsByOrganizationController.AddElectricByOrganization(Common.DTO.ElectricsByOrganizationDto)">
-            <summary>
-            Метод для добавления оборудования для организации
-            </summary>
-        </member>
-        <member name="T:API.Controllers.ElectricsController">
-            <summary>
-            Контроллер для работы со зданиями
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsController.GetAllElectrics">
-            <summary>
-            Метод возвращающий всё электрооборудование для организаций в базе данных
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsController.AddElectric(Common.DTO.ElectricDto)">
-            <summary>
-            Метод добавляющий элекрооборудование в базу данных
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsController.UpdateElectric(System.Guid,Common.DTO.ElectricDto)">
-            <summary>
-            Метод для обновления существующего здания в базе данных
-            </summary>
-        </member>
-        <member name="M:API.Controllers.ElectricsController.DeleteElectric(System.Guid)">
-            <summary>
-            Метод для удаления электрооборудования по id
-            </summary>
-        </member>
         <member name="T:API.Controllers.InvoiceController">
             <summary>
             Контроллер для работы со счетами
@@ -204,19 +164,54 @@
             Метод возвращающий все организации въезжавшие в заданное здание за выбранный период
             </summary>
         </member>
-        <member name="M:API.Controllers.ReportsController.GetOrganizationsOutBuildAndPeriod(Common.Filters.OrganizationBuildingAndPeriodFilterDto)">
-            <summary>
-            Метод возвращающий все организации выехавшие из заданного здания за выбранный период
-            </summary>
-        </member>
         <member name="M:API.Controllers.ReportsController.GetDebtorOrganizationForDate(Common.Filters.OrganizationDebtorDateFilter)">
             <summary>
             Метод возвращающий все организации с просроченной оплатой по счетам за электричество
             </summary>
         </member>
-        <member name="M:API.Controllers.ReportsController.GetInvoicesWithFullInfoOfCurrentMonth">
+        <member name="M:API.Controllers.RoomsController.GetAllRoomsAsync">
             <summary>
-            Метод возвращающий все счета за текущий месяц
+            Метод возвращающий все помещения в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsController.AddRoom(Common.DTO.RoomDto)">
+            <summary>
+            Метод добавляющий помещение в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsController.UpdateRoom(System.Guid,Common.DTO.RoomDto)">
+            <summary>
+            Метод обновляющй существующее помещение в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsController.DeleteRoom(System.Guid)">
+            <summary>
+            Метод удаляющий помещение в базе данных по id
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsRentalController.GetAllRentalRooms">
+            <summary>
+            Метод получающий все арендуемые помещения в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsRentalController.GetFilteredRentalRooms(Common.Filters.RoomRentalDtoFilters)">
+            <summary>
+            Метод получающий все арендуемые помещения с фильтрацией по периодам
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsRentalController.AddRentalRoom(Common.DTO.RoomRentalDto)">
+            <summary>
+            Метод добавляющий арендуемое помещение в базу данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsRentalController.UpdateRentalRoom(System.Guid,Common.DTO.RoomRentalDto)">
+            <summary>
+            Метод обновляющий существующее арендуемое помещение в базе данных
+            </summary>
+        </member>
+        <member name="M:API.Controllers.RoomsRentalController.DeleteRentalRoom(System.Guid)">
+            <summary>
+            Метод удаляющий арендуемое помещение из базы данных по id
             </summary>
         </member>
         <member name="M:API.RouteConfig.Configure(Microsoft.AspNetCore.Routing.IRouteBuilder)">

@@ -10,12 +10,9 @@ namespace Common.Models
 
         public List<Room_rental> Room_rentals { get; set; }
 
-        public List<ElectricsByOrganization> ElectricsByOrganization { get; set; }
-
         public Organization()
         {
             Room_rentals = new List<Room_rental>();
-            ElectricsByOrganization = new List<ElectricsByOrganization>();
         }
     }
 }
