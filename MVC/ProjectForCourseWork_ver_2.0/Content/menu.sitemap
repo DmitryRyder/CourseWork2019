@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap>
   <siteMapNode>
+    <siteMapNode title="Титульный лист" controller="Main" action="Start"/>
     <siteMapNode id="100" title="Таблицы справочники">
       <siteMapNode title="Типы узлов" controller="Main" action="MPTypeOfNodes"/>
       <siteMapNode title="Типы сетей" controller="Main" action="MPThermalType"/>
