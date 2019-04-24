@@ -14,6 +14,7 @@ namespace ProjectForCourseWork_ver_2._0.Controllers
         public ActionResult MPSteelPipes() => View();
         public ActionResult MPPipelineSections() => View();
         public ActionResult AddPipelineSectionWindow() => View();
+        public ActionResult Start() => View();
 
         //ОТЧЕТЫ
         public ActionResult One() => View();
