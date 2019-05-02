@@ -47,13 +47,13 @@ namespace API.Controllers
         [HttpPost]
         [Route("/AddPipelineSections")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public async Task<IActionResult> AddPipelineSections(PipelineSectionDto model)
+        public IActionResult AddPipelineSections(PipelineSectionDto model)
         {
             var initThermalNode = new ThermalNode() { Id = Guid.NewGuid(), Number = model.InitialThermalNode.Number, TypeOfNodeId = model.InitialThermalNode.TypeOfNodeId };
             var endThermalNode = new ThermalNode() { Id = Guid.NewGuid(), Number = model.EndThermalNode.Number, TypeOfNodeId = model.EndThermalNode.TypeOfNodeId };
             unitOfWork.GetRepository<ThermalNode>().Insert(initThermalNode);
             unitOfWork.GetRepository<ThermalNode>().Insert(endThermalNode);
-            unitOfWork.GetRepository<ThermalNode>().SaveAsync();
+            unitOfWork.GetRepository<ThermalNode>().Save();
             var pipelineSection = model.MapTo<PipelineSection>(mapper);
 
             pipelineSection.Nodes.Add(new Nodes() { ThermalNodeId = initThermalNode.Id });
@@ -73,9 +73,9 @@ namespace API.Controllers
             //{
             //}
 
-            unitOfWork.GetRepository<PipelineSection>().InsertAsync(pipelineSection);
-            unitOfWork.GetRepository<PipelineSection>().SaveAsync();
-            unitOfWork.GetRepository<Nodes>().SaveAsync();
+            unitOfWork.GetRepository<PipelineSection>().Insert(pipelineSection);
+            unitOfWork.GetRepository<PipelineSection>().Save();
+            unitOfWork.GetRepository<Nodes>().Save();
             return new ObjectResult("Model added unsuccessfully!");
         }
 
