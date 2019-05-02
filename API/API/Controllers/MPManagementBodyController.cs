@@ -40,7 +40,7 @@ namespace API.Controllers
         {
             var typeOfNodes = unitOfWork.GetRepository<ManagementBody>().Include(x => x.Organizations);
 
-            return typeOfNodes == null ? null : Json(mapper, typeOfNodes, typeof(List<ManagementBodyDto>));
+            return Json(mapper, typeOfNodes, typeof(List<ManagementBodyDto>));
         }
 
         /// <summary>
